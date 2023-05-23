@@ -9,23 +9,26 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('kecamatan', function (Blueprint $table) {
             $table->id();
+            $table->string('namacamat');
+            $table->string('notelp');
+            $table->string('email')->nullable();
+            $table->string('kodepos');
+            $table->string('alamat');
+            $table->string('namakecamatan');
             $table->timestamps();
-            $table->string('username');
-            $table->string('password');
-            $table->string('email')->unique();
-            $table->string('role');
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('kecamatan');
     }
 };
