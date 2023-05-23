@@ -16,4 +16,4 @@ Aplikasi Pendaftaran online, dimana pengguna harus meregistrasi akunnya dan admi
 | 2 | Feisal Dharma Yuda | [FeisalDy](https://github.com/FeisalDy)|
 | 3 | Putra Aditya | [Ptradtya26](https://github.com/Ptradtya26)|
 | 4 | Adhiba Alya Firdaus | [dhibaalyaff](https://github.com/dhibaalyaff)|
-| 5 | Putri Meylisa Maulidya| [--](#)|
+| 5 | Putri Meylisa Maulidya| [Putrimeylsa ](https://github.com/Putrimeylsa)|
