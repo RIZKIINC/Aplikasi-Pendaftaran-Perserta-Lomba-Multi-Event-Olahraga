@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('peserta', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('olahraga_id');
+            $table->string('nama_event_cabor');
             $table->unsignedBigInteger('kecamatan_id');
             $table->string('nama');
             $table->string('nik');
@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('jk');
             $table->timestamps();
 
-            $table->foreign('olahraga_id')->references('id')->on('cabang_olahraga');
+            $table->foreign('nama_event_cabor')->references('nama_event')->on('event_cabor');
             $table->foreign('kecamatan_id')->references('id')->on('kecamatan');
         });
     }
