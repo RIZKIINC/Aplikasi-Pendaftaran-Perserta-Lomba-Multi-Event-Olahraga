@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 23, 2023 at 02:18 PM
+-- Generation Time: May 23, 2023 at 03:25 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -95,6 +95,32 @@ INSERT INTO `contact_persons` (`id`, `kecamatan_id`, `nama`, `jabatan`, `email`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `event_cabor`
+--
+
+CREATE TABLE `event_cabor` (
+  `id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `cabang_olahraga_id` bigint UNSIGNED NOT NULL,
+  `nomor_olahraga` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_event` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jenis_kelamin` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `event_cabor`
+--
+
+INSERT INTO `event_cabor` (`id`, `created_at`, `updated_at`, `cabang_olahraga_id`, `nomor_olahraga`, `nama_event`, `jenis_kelamin`) VALUES
+(1, NULL, NULL, 1, '1', 'Lari 100 M Putra', 'Putra'),
+(2, NULL, NULL, 1, '2', 'Lari 200 M Putra', 'Putra'),
+(3, NULL, NULL, 1, '1', 'Lari 100 M Putri', 'Putri'),
+(4, NULL, NULL, 1, '2', 'Lari 200 M Putri', 'Putri');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -159,7 +185,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2023_05_23_132130_create_kecamatan_table', 1),
 (6, '2023_05_23_132318_create_contact_persons_table', 1),
 (7, '2023_05_23_132455_create_cabang_olahraga_table', 1),
-(8, '2023_05_23_132710_create_peserta_table', 1);
+(8, '2023_05_23_144947_create_event_cabor_table', 1),
+(9, '2023_05_23_151628_create_peserta_table', 1);
 
 -- --------------------------------------------------------
 
@@ -200,7 +227,7 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `peserta` (
   `id` bigint UNSIGNED NOT NULL,
-  `olahraga_id` bigint UNSIGNED NOT NULL,
+  `nama_event_cabor` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kecamatan_id` bigint UNSIGNED NOT NULL,
   `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nik` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -221,10 +248,10 @@ CREATE TABLE `peserta` (
 -- Dumping data for table `peserta`
 --
 
-INSERT INTO `peserta` (`id`, `olahraga_id`, `kecamatan_id`, `nama`, `nik`, `ttl`, `nomor_kk`, `akta`, `foto`, `alamat`, `no_olahraga`, `domisili`, `no_ijazah`, `jk`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'Feisal', '123456789', '2000-01-01', '1234567890', 'Akta 1', 'foto1.jpg', 'Alamat Peserta 1', 'Olahraga 001', 'Domisili 1', 'No Ijazah 1', 'L', '2023-05-23 14:14:52', '2023-05-23 14:14:52'),
-(2, 2, 2, 'Dono', '987654321', '1999-02-02', '0987654321', 'Akta 2', 'foto2.jpg', 'Alamat Peserta 2', 'Olahraga 002', 'Domisili 2', 'No Ijazah 2', 'P', '2023-05-23 14:14:52', '2023-05-23 14:14:52'),
-(3, 3, 3, 'Indro', '456789123', '1998-03-03', '4567890123', 'Akta 3', 'foto3.jpg', 'Alamat Peserta 3', 'Olahraga 003', 'Domisili 3', 'No Ijazah 3', 'L', '2023-05-23 14:14:52', '2023-05-23 14:14:52');
+INSERT INTO `peserta` (`id`, `nama_event_cabor`, `kecamatan_id`, `nama`, `nik`, `ttl`, `nomor_kk`, `akta`, `foto`, `alamat`, `no_olahraga`, `domisili`, `no_ijazah`, `jk`, `created_at`, `updated_at`) VALUES
+(1, 'Lari 100 M Putra', 1, 'Feisal', '123456789', '2000-01-01', '1234567890', 'Akta 1', 'foto1.jpg', 'Alamat Peserta 1', 'Olahraga 001', 'Domisili 1', 'No Ijazah 1', 'L', '2023-05-23 15:22:27', '2023-05-23 15:22:27'),
+(2, 'Lari 200 M Putra', 2, 'Dono', '987654321', '1999-02-02', '0987654321', 'Akta 2', 'foto2.jpg', 'Alamat Peserta 2', 'Olahraga 002', 'Domisili 2', 'No Ijazah 2', 'L', '2023-05-23 15:22:27', '2023-05-23 15:22:27'),
+(3, 'Lari 100 M Putri', 3, 'Indri', '456789123', '1998-03-03', '4567890123', 'Akta 3', 'foto3.jpg', 'Alamat Peserta 3', 'Olahraga 003', 'Domisili 3', 'No Ijazah 3', 'P', '2023-05-23 15:22:27', '2023-05-23 15:22:27');
 
 -- --------------------------------------------------------
 
@@ -272,6 +299,13 @@ ALTER TABLE `contact_persons`
   ADD KEY `contact_persons_kecamatan_id_foreign` (`kecamatan_id`);
 
 --
+-- Indexes for table `event_cabor`
+--
+ALTER TABLE `event_cabor`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `event_cabor_nama_event_unique` (`nama_event`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -309,7 +343,7 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `peserta`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `peserta_olahraga_id_foreign` (`olahraga_id`),
+  ADD KEY `peserta_nama_event_cabor_foreign` (`nama_event_cabor`),
   ADD KEY `peserta_kecamatan_id_foreign` (`kecamatan_id`);
 
 --
@@ -336,6 +370,12 @@ ALTER TABLE `contact_persons`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `event_cabor`
+--
+ALTER TABLE `event_cabor`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -351,7 +391,7 @@ ALTER TABLE `kecamatan`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -386,7 +426,7 @@ ALTER TABLE `contact_persons`
 --
 ALTER TABLE `peserta`
   ADD CONSTRAINT `peserta_kecamatan_id_foreign` FOREIGN KEY (`kecamatan_id`) REFERENCES `kecamatan` (`id`),
-  ADD CONSTRAINT `peserta_olahraga_id_foreign` FOREIGN KEY (`olahraga_id`) REFERENCES `cabang_olahraga` (`id`);
+  ADD CONSTRAINT `peserta_nama_event_cabor_foreign` FOREIGN KEY (`nama_event_cabor`) REFERENCES `event_cabor` (`nama_event`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
