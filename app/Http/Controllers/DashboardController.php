@@ -12,6 +12,7 @@ class DashboardController extends Controller
     public function index()
     {
         //ini diarahkan ke view dashboard
+        // return view('admin.layout.appadmin');
         return view('admin.dashboard');
     }
 
