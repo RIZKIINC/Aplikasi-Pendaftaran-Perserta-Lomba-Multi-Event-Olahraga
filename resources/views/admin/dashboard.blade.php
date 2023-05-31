@@ -1,5 +1,12 @@
 @extends('admin.layout.appadmin')
 
+@section('title')
+
+  </span> Dashboard
+
+@endsection
+
+
 @section('content')
 
 <div class="row">
