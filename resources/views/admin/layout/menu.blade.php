@@ -24,8 +24,8 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{url('table')}}">
-                <span class="menu-title">Table</span>
+              <a class="nav-link" href="{{url('user')}}">
+                <span class="menu-title">User</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>

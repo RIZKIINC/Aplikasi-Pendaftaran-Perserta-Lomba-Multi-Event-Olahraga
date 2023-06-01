@@ -3,17 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use DB;
 
-class TableController extends Controller
+
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //ini diarahkan ke view dashboard
-        // return view('admin.layout.appadmin');
-        return view('admin.table');
+        $user = DB::table('users')->get();
+
+        return view('admin.user', compact('user'));
     }
 
     /**
