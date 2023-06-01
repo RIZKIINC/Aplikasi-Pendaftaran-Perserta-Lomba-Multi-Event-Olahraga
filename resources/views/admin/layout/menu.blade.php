@@ -30,8 +30,8 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span class="menu-title">Dashboard</span>
+              <a class="nav-link" href="{{url('cabor')}}">
+                <span class="menu-title">Cabor</span>
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
