@@ -3,20 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Kecamatan;
 use DB;
 
-
-class UserController extends Controller
+class KecamatanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user = DB::table('users')->get();
+        $kecamatan = DB::table('kecamatan')->get();
 
-        return view('admin.user.user', compact('user'));
+        return view('admin.kecamatan.kecamatan', compact('kecamatan'));
     }
 
     /**

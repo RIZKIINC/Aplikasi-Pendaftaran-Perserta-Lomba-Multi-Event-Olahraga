@@ -3,20 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\peserta;
 use DB;
 
-
-class UserController extends Controller
+class PesertaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user = DB::table('users')->get();
+        $peserta = DB::table('peserta')->get();
 
-        return view('admin.user.user', compact('user'));
+        return view('admin.peserta.peserta', compact('peserta'));
     }
 
     /**

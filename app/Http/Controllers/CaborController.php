@@ -3,20 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Cabor;
 use DB;
 
-
-class UserController extends Controller
+class CaborController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user = DB::table('users')->get();
+        $cabor = DB::table('cabang_olahraga')->get();
 
-        return view('admin.user.user', compact('user'));
+        return view('admin.cabor.cabor', compact('cabor'));
     }
 
     /**

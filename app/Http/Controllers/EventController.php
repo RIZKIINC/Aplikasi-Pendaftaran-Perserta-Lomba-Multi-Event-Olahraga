@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Event;
 use DB;
 
 
-class UserController extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user = DB::table('users')->get();
+        $event = DB::table('event_cabor')->get();
 
-        return view('admin.user.user', compact('user'));
+        return view('admin.event.event', compact('event'));
     }
 
     /**

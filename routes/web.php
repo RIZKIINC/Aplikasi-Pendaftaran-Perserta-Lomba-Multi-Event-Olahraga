@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CaborController;
+use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\PesertaController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +25,13 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
+
 Route::get('/user', [UserController::class, 'index']);
+
+Route::get('/cabor', [CaborController::class, 'index']);
+
+Route::get('/kecamatan', [KecamatanController::class, 'index']);
+
+Route::get('/peserta', [PesertaController::class, 'index']);
+
+Route::get('/event', [EventController::class, 'index']);
