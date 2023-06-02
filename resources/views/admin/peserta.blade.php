@@ -2,7 +2,7 @@
 
 @section('title')
 
-  </span> Kecamatan
+  </span> Peserta Lomba
 
 @endsection
 
@@ -37,7 +37,7 @@
                           <td>{{$d->nik}} </td>
                           <td>{{$d->foto}} </td>
                           <td>
-                          <button type="button" class="mdi mdi-tooltip-edit btn btn-gradient-primary btn-rounded"> Detail</button>
+                          <button type="button" class="mdi mdi-bookmark btn btn-gradient-primary btn-rounded"> Detail</button>
                           <button type="button" class="mdi mdi-tooltip-edit btn btn-gradient-info btn-rounded"> Edit</button>
                           <button type="button" class="mdi mdi-account-remove btn btn-gradient-danger btn-rounded"> Hapus</button>
                           </td>
