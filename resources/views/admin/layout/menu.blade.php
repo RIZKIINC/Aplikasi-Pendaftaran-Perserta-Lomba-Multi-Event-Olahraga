@@ -35,6 +35,18 @@
                 <i class="mdi mdi-home menu-icon"></i>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url('kecamatan')}}">
+                <span class="menu-title">Kecamatan</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url('peserta')}}">
+                <span class="menu-title">Peserta</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
 
             <!-- --------------------------------------- -->
             <!-- <li class="nav-item">
