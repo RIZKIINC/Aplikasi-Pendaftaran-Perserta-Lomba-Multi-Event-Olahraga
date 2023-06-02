@@ -13,7 +13,7 @@
 <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <button type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded"> Tambah</button>
+                    <a type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded" href="{{url('user/create')}}"> Tambah</a>
                     </p>
 
                     <table class="table table-striped">
@@ -39,9 +39,11 @@
                           <td> {{$d->email}} </td>
                           <td> {{$d->role}} </td>
                           <td>
-                          <button type="button" class="mdi mdi-tooltip-edit btn btn-gradient-info btn-rounded"> Edit</button>
-                          <button type="button" class="mdi mdi-account-remove btn btn-gradient-danger btn-rounded"> Hapus</button>
-                          </td>
+                            <form action="" method="post">
+                              <button type="button" class="mdi mdi-tooltip-edit btn btn-gradient-info btn-rounded"> Edit</button>
+                              <a name="proses" class="mdi mdi-account-remove btn btn-gradient-danger btn-rounded" href="{{url('user/delete/'.$d->id)}}" > Hapus</a>
+                              </td>
+                            </form>
                         </tr>
                         </tr>
 

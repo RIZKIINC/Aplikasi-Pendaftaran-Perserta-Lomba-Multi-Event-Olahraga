@@ -27,6 +27,9 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/create', [UserController::class, 'create']);
+Route::get('/user/store', [UserController::class, 'store']);
+Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
 
 Route::get('/cabor', [CaborController::class, 'index']);
 
