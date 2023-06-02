@@ -24,8 +24,8 @@
                           <th>No HP</th>
                           <th>Email</th>
                           <th>Pos</th>
-                          <th>Alamat</th>
-                          <th>Kecamatan</th>
+                          <!-- <th>Alamat</th> -->
+                          <!-- <th>Kecamatan</th> -->
                         </tr>
                       </thead>
                       <tbody>
@@ -39,8 +39,8 @@
                           <td>{{$d->notelp}} </td>
                           <td>{{$d->email}} </td>
                           <td>{{$d->kodepos}} </td>
-                          <td>{{$d->alamat}} </td>
-                          <td>{{$d->namakecamatan}} </td>
+                          <!-- <td>{{$d->alamat}} </td> -->
+                          <!-- <td>{{$d->namakecamatan}} </td> -->
                           <td>
                           <button type="button" class="mdi mdi-tooltip-edit btn btn-gradient-info btn-rounded"> Edit</button>
                           <button type="button" class="mdi mdi-account-remove btn btn-gradient-danger btn-rounded"> Hapus</button>

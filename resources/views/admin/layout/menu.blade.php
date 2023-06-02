@@ -26,25 +26,31 @@
             <li class="nav-item">
               <a class="nav-link" href="{{url('user')}}">
                 <span class="menu-title">User</span>
-                <i class="mdi mdi-home menu-icon"></i>
+                <i class="mdi mdi-account menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{url('cabor')}}">
-                <span class="menu-title">Cabor</span>
-                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">Cabang Olahraga</span>
+                <i class="mdi mdi-swim menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{url('kecamatan')}}">
                 <span class="menu-title">Kecamatan</span>
-                <i class="mdi mdi-home menu-icon"></i>
+                <i class="mdi mdi-map-marker menu-icon"></i>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{url('peserta')}}">
                 <span class="menu-title">Peserta</span>
-                <i class="mdi mdi-home menu-icon"></i>
+                <i class="mdi mdi-account-card-details menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url('event')}}">
+                <span class="menu-title">Event Cabor</span>
+                <i class="mdi mdi-trophy menu-icon"></i>
               </a>
             </li>
 

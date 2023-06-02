@@ -15,7 +15,7 @@ class CaborController extends Controller
     {
         $cabor = DB::table('cabang_olahraga')->get();
 
-        return view('admin.cabor', compact('cabor'));
+        return view('admin.cabor.cabor', compact('cabor'));
     }
 
     /**

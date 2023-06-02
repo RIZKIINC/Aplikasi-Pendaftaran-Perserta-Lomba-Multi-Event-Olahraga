@@ -3,19 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\peserta;
+use App\Models\Event;
 use DB;
 
-class PesertaController extends Controller
+
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $peserta = DB::table('peserta')->get();
+        $event = DB::table('event_cabor')->get();
 
-        return view('admin.peserta.peserta', compact('peserta'));
+        return view('admin.event.event', compact('event'));
     }
 
     /**

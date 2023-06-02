@@ -15,7 +15,7 @@ class KecamatanController extends Controller
     {
         $kecamatan = DB::table('kecamatan')->get();
 
-        return view('admin.kecamatan', compact('kecamatan'));
+        return view('admin.kecamatan.kecamatan', compact('kecamatan'));
     }
 
     /**
