@@ -40,7 +40,7 @@
                           <td> {{$d->role}} </td>
                           <td>
                             <form action="" method="post">
-                              <button type="button" class="mdi mdi-tooltip-edit btn btn-gradient-info btn-rounded"> Edit</button>
+                              <a href="{{url('user/edit/'.$d->id)}}" type="button" class="mdi mdi-tooltip-edit btn btn-gradient-info btn-rounded"> Edit</a>
 
                               <!-- Button trigger modal -->
                             <button type="button" class="mdi mdi-account-remove btn btn-gradient-danger btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal{{$d->id}}">

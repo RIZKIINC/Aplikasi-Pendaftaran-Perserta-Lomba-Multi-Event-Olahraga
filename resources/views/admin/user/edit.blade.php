@@ -2,32 +2,32 @@
 
 @section('title')
 
-  </span> Tambah Data Users
+  </span> Edit Data Users
 
 @endsection
 
 @section('content')
-
-  <form method="POST" action="{{url('user/store')}}" enctype="multipart/form-data">
+@foreach ($user as $us )
+  <form method="POST" action="{{url('user/update')}}" enctype="multipart/form-data">
     {{csrf_field()}}
     <div class="col-md-6 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
           <div class="form-group">
             <label>Username</label>
-            <input name="username" type="text" class="form-control form-control-sm" placeholder="Username" aria-label="Username">
+            <input name="username" value="{{$us->username}}" type="text" class="form-control form-control-sm" placeholder="Username">
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input name="password" type="text" class="form-control form-control-sm" placeholder="Password" aria-label="Username">
+            <input name="password" value="{{$us->password}}" type="text" class="form-control form-control-sm" placeholder="Password">
           </div>
           <div class="form-group">
             <label>Email</label>
-            <input name="email" type="text" class="form-control form-control-sm" placeholder="Email" aria-label="Username">
+            <input name="email" value="{{$us->email}}" type="text" class="form-control form-control-sm" placeholder="Email">
           </div>
           <div class="form-group">
-            <label for="exampleFormControlSelect3">Role</label>
-            <select name="role" class="form-control form-control-sm" id="exampleFormControlSelect3">
+            <label for="">Role</label>
+            <select name="role" value="{{$us->role}}" class="form-control form-control-sm" id="">
               <option>admin</option>
               <option>pegawai_kec</option>
               <option>ketuapelaksana</option>
@@ -40,4 +40,5 @@
       </div>
     </div>
   </form>
+  @endforeach
 @endsection

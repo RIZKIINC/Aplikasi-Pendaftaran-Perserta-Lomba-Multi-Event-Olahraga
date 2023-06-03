@@ -36,7 +36,7 @@ class UserController extends Controller
     {
         DB::table('users')->insert([
             'username' => $request->username,
-            'password' => $request->password,
+            'password' =>  bcrypt($request->password),
             'email' => $request->email,
             'role' => $request->role,
         ]);
@@ -56,15 +56,22 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = DB::table('users')->where('id',$id)->get();
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        DB::table('users')->where('id', $request->id)->update([
+            'username' => $request->username,
+            'password' => $request->password,
+            'email' => $request->email,
+            'role' => $request->role,
+        ]);
+        return redirect('user');
     }
 
     /**
