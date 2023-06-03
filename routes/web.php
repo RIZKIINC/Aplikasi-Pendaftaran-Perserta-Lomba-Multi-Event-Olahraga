@@ -40,3 +40,5 @@ Route::get('/kecamatan', [KecamatanController::class, 'index']);
 Route::get('/peserta', [PesertaController::class, 'index']);
 
 Route::get('/event', [EventController::class, 'index']);
+
+Route::resource('peserta', PesertaController::class);
