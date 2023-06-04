@@ -32,6 +32,8 @@ Route::get('/cabor', [CaborController::class, 'index']);
 
 Route::get('/kecamatan', [KecamatanController::class, 'index']);
 
+// route peserta
 Route::get('/peserta', [PesertaController::class, 'index']);
+
 
 Route::get('/event', [EventController::class, 'index']);

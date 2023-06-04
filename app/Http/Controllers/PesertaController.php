@@ -23,7 +23,9 @@ class PesertaController extends Controller
      */
     public function create()
     {
-        //
+        //create peserta
+        
+
     }
 
     /**
