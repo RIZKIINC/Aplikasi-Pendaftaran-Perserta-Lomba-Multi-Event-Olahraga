@@ -23,9 +23,13 @@ class CaborController extends Controller
      */
     public function create()
     {
+ muy
         $cabor = DB::table('cabang_olahraga')->get();
 
         return view ('admin.cabor.create', compact('cabor'));
+
+        //
+ main
     }
 
     /**
@@ -33,11 +37,14 @@ class CaborController extends Controller
      */
     public function store(Request $request)
     {
+ muy
         DB::table('cabang_olahraga')->insert([
             'cabor' => $request->cabor,
             'catatan' => $request->catatan,
         ]);
         return redirect('cabor');
+
+        main
     }
 
     /**
@@ -53,8 +60,12 @@ class CaborController extends Controller
      */
     public function edit(string $id)
     {
+ muy
         $cabor = DB::table('cabang_olahraga')->where('id',$id)->get();
         return view('admin.cabor.edit', compact('cabor'));
+
+        //
+ main
     }
 
     /**
@@ -62,11 +73,15 @@ class CaborController extends Controller
      */
     public function update(Request $request, string $id)
     {
+ muy
         DB::table('cabang_olahraga')->where('id', $request->id)->update([
             'cabor' => $request->cabor,
             'catatan' => $request->catatan,
         ]);
         return redirect('cabor');
+
+        //
+  main
     }
 
     /**
@@ -74,7 +89,11 @@ class CaborController extends Controller
      */
     public function destroy(string $id)
     {
+ muy
         DB::table('cabang_olahraga')->where('id', $id)->delete();
         return redirect('cabor');
+
+        //
+main
     }
 }

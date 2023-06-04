@@ -9,11 +9,19 @@
 @section('content')
 
 <div class="row">
+ muy
 
 <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <a type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded" href="{{url('cabor/create')}}"> Tambah</a>
+
+              
+<div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <button type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded"> Tambah</button>
+ main
                     </p>
 
                     <table class="table table-striped">
@@ -33,6 +41,7 @@
                           <td>{{$no}} </td>
                           <td>{{$d->cabor}} </td>
                           <td>
+ muy
                             <form action="" method="post">
                               <a href="{{url('cabor/edit/'.$d->id)}}" type="button" class="mdi mdi-tooltip-edit btn btn-gradient-info btn-rounded"> Edit</a>
 
@@ -61,6 +70,10 @@
                             </div>
                               </td>
                             </form>
+
+                          <button type="button" class="mdi mdi-tooltip-edit btn btn-gradient-info btn-rounded"> Edit</button>
+                          <button type="button" class="mdi mdi-account-remove btn btn-gradient-danger btn-rounded"> Hapus</button>
+ main
                           </td>
                         </tr>
                         </tr>
@@ -75,4 +88,8 @@
                   </div>
                 </div>
               </div>
+ muy
 @endsection
+=======
+@endsection
+ main
