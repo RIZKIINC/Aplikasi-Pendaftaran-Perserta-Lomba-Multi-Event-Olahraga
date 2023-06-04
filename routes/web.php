@@ -33,7 +33,17 @@ Route::get('/user/edit/{id}', [UserController::class, 'edit']);
 Route::post('/user/update', [UserController::class, 'update']);
 Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
 
+ muy
+//Cabang olahraga
 Route::get('/cabor', [CaborController::class, 'index']);
+Route::get('/cabor/create', [CaborController::class, 'create']);
+Route::POST('/cabor/store', [CaborController::class, 'store']);
+Route::get('/cabor/edit/{id}', [CaborController::class, 'edit']);
+Route::post('/cabor/{id}', [CaborController::class, 'update']);
+Route::get('/cabor/delete/{id}', [CaborController::class, 'destroy']);
+
+Route::get('/cabor', [CaborController::class, 'index']);
+ main
 
 Route::get('/kecamatan', [KecamatanController::class, 'index']);
 
