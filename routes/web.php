@@ -27,6 +27,11 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
 Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/create', [UserController::class, 'create']);
+Route::post('/user/store', [UserController::class, 'store']);
+Route::get('/user/edit/{id}', [UserController::class, 'edit']);
+Route::post('/user/update', [UserController::class, 'update']);
+Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
 
 Route::get('/cabor', [CaborController::class, 'index']);
 
@@ -37,3 +42,5 @@ Route::get('/peserta', [PesertaController::class, 'index']);
 
 
 Route::get('/event', [EventController::class, 'index']);
+
+Route::resource('peserta', PesertaController::class);
