@@ -8,10 +8,15 @@
 
 @section('content')
 @foreach ($user as $us )
+ muy
+  <form method="POST" action="{{url('user/update')}}" enctype="multipart/form-data">
+    {{csrf_field()}}
+
   <form method="POST" action="{{url('user/update')}}" enctype="multipart/form-data" >
     {{csrf_field()}}
     <input type="hidden" name="id" value="{{$us->id}}">
 
+ main
     <div class="col-md-6 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
