@@ -34,5 +34,7 @@ Route::get('/kecamatan', [KecamatanController::class, 'index']);
 
 Route::get('/peserta', [PesertaController::class, 'index']);
 
+// route event
 Route::get('/event', [EventController::class, 'index']);
 Route::get('/event/create', [EventController::class, 'create']);
+Route::post('/event/store', [EventController::class, 'store']);
