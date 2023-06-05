@@ -24,7 +24,10 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        //tambah event cabor
+        $event = DB::table('event_cabor')->get();
+
+        return view ('admin.event.create', compact('event'));
     }
 
     /**
@@ -33,6 +36,13 @@ class EventController extends Controller
     public function store(Request $request)
     {
         //
+        DB::table('event_cabor')->insert([
+            'nomor_olahraga' => $request->nomor_olahraga,
+            'nama_event' =>  bcrypt($request->nama_event),
+            'jenis_kelamin' => $request->jenis_kelamin,
+       
+        ]);
+        return redirect('admin/event');
     }
 
     /**
@@ -40,7 +50,10 @@ class EventController extends Controller
      */
     public function show(string $id)
     {
-        //
+        //detail
+        $event = DB::table('event_cabor')->get();
+
+        return view('admin.event.detail', compact('event'));
     }
 
     /**
