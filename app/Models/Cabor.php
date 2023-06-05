@@ -9,5 +9,5 @@ class Cabor extends Model
 {
     use HasFactory;
     protected $table = 'cabang_olahraga';//ini pemanggilan nama table
-
+    protected $fillable = ['cabor', 'catatan'];
 }

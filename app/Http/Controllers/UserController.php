@@ -24,7 +24,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $user = DB::table('users')->get();
+
+        return view ('admin.user.create', compact('user'));
     }
 
     /**
@@ -32,7 +34,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('users')->insert([
+            'username' => $request->username,
+            'password' =>  bcrypt($request->password),
+            'email' => $request->email,
+            'role' => $request->role,
+        ]);
+        return redirect('user');
     }
 
     /**
@@ -48,15 +56,22 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = DB::table('users')->where('id',$id)->get();
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        DB::table('users')->where('id', $request->id)->update([
+            'username' => $request->username,
+            'password' => $request->password,
+            'email' => $request->email,
+            'role' => $request->role,
+        ]);
+        return redirect('user');
     }
 
     /**
@@ -64,6 +79,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('users')->where('id', $id)->delete();
+        return redirect('/user');
     }
 }
