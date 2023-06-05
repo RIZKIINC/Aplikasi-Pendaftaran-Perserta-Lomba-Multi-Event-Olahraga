@@ -13,8 +13,8 @@
 <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <button type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded"> Tambah</button>
-                    </p>
+                    <a href="{{url('admin/event/create')}}" class="btn btn-primary btn-sm">Tambah</a>
+                  
 
                     <table class="table table-striped">
                       <thead>

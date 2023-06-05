@@ -26,6 +26,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
+// route user
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/create', [UserController::class, 'create']);
 Route::post('/user/store', [UserController::class, 'store']);
@@ -45,12 +46,15 @@ Route::get('/cabor/delete/{id}', [CaborController::class, 'destroy']);
 Route::get('/cabor', [CaborController::class, 'index']);
  main
 
+// route kecamatan
 Route::get('/kecamatan', [KecamatanController::class, 'index']);
 
 // route peserta
 Route::get('/peserta', [PesertaController::class, 'index']);
 
-
+// route event
 Route::get('/event', [EventController::class, 'index']);
+Route::get('/event', [EventController::class, 'create']);
 
+// route peserta
 Route::resource('peserta', PesertaController::class);
