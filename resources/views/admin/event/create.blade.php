@@ -20,12 +20,7 @@ Tambah Data Event Cabor
                     <label>Nama Event</label>
                     <input name="nama_event" type="text" class="form-control form-control-sm" placeholder="Masukkan Nama Event" aria-label="Nama Event">
 
-                    <!-- <select name="nama_event" class="form-control form-control-sm">
-                        <option value="">Pilih Event Cabor</option>
-                        @foreach ($event as $e)
-                        <option value="{{ $e }}">{{ $e }}</option>
-                        @endforeach
-                    </select> -->
+                 
                 </div>
                
                 <div class="form-group">
@@ -34,7 +29,7 @@ Tambah Data Event Cabor
                 </div>
 
                 <button type="submit" name="submit" class="btn btn-gradient-success btn-rounded">Simpan</button>
-                <a type="submit" name="submit" class="btn btn-gradient-danger btn-rounded" href="{{ url('user') }}">Kembali</a>
+                <a type="submit" name="submit" class="btn btn-gradient-danger btn-rounded" href="{{ url('event') }}">Kembali</a>
             </div>
         </div>
     </div>
