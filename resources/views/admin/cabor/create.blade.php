@@ -2,7 +2,7 @@
 
 @section('title')
 
-  </span> Tambah CabangOlahraga
+  </span> Tambah Cabang Olahraga
 
 @endsection
 

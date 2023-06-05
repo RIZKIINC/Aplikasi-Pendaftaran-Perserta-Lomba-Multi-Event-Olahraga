@@ -2,7 +2,7 @@
 
 @section('title')
 
-  </span> Cabor
+  </span> Cabang Olahraga
 
 @endsection
 
