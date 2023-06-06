@@ -89,7 +89,6 @@ class KecamatanController extends Controller
             return redirect()->back()->with('error', 'Kecamatan not found.');
         }
 
-    
 
         return view('admin.kecamatan.edit', compact('kecamatan', 'kecamatan'));
     }
@@ -113,13 +112,14 @@ class KecamatanController extends Controller
         // Find the record to be updated
         $kecamatan = Kecamatan::findOrFail($id);
 
-        $kecamatan = Kecamatan::where('namakecamatan', $request->input('nama_kecamatan'))->first();
-        $kecamatan_id = $kecamatan ? $kecamatan->id : null;
+        //salah
+        // $kecamatan = Kecamatan::where('namakecamatan', $request->input('nama_kecamatan'))->first();
+        // $kecamatan_id = $kecamatan ? $kecamatan->id : null;
 
 
        // Update the record with the new values
        $kecamatan->namacamat = $request->input('namacamat');
-       $kecamatan->nama = $request->input('notelp');
+       $kecamatan->notelp = $request->input('notelp');
        $kecamatan->email = $request->input('email');
        $kecamatan->kodepos = $request->input('kodepos');
        $kecamatan->alamat = $request->input('alamat');
