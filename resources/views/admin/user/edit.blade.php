@@ -7,34 +7,29 @@
 @endsection
 
 @section('content')
-@foreach ($user as $us )
- muy
-  <form method="POST" action="{{url('user/update')}}" enctype="multipart/form-data">
-    {{csrf_field()}}
 
-  <form method="POST" action="{{url('user/update')}}" enctype="multipart/form-data" >
+  <form method="POST" action="{{route('user.update', $user->id)}}" enctype="multipart/form-data">
     {{csrf_field()}}
-    <input type="hidden" name="id" value="{{$us->id}}">
-
- main
+    @csrf
+    @method('PUT')
     <div class="col-md-6 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
           <div class="form-group">
             <label>Username</label>
-            <input name="username" value="{{$us->username}}" type="text" class="form-control form-control-sm" placeholder="Username">
+            <input name="username" value="{{$user->username}}" type="text" class="form-control form-control-sm" placeholder="Username">
           </div>
           <div class="form-group">
             <label>Password</label>
-            <input name="password" value="{{$us->password}}" type="text" class="form-control form-control-sm" placeholder="Password">
+            <input name="password" value="{{$user->password}}" type="text" class="form-control form-control-sm" placeholder="Password">
           </div>
           <div class="form-group">
             <label>Email</label>
-            <input name="email" value="{{$us->email}}" type="text" class="form-control form-control-sm" placeholder="Email">
+            <input name="email" value="{{$user->email}}" type="text" class="form-control form-control-sm" placeholder="Email">
           </div>
           <div class="form-group">
             <label for="">Role</label>
-            <select name="role" value="{{$us->role}}" class="form-control form-control-sm" id="">
+            <select name="role" value="{{$user->role}}" class="form-control form-control-sm" id="">
               <option>admin</option>
               <option>pegawai_kec</option>
               <option>ketuapelaksana</option>
@@ -47,5 +42,4 @@
       </div>
     </div>
   </form>
-  @endforeach
 @endsection

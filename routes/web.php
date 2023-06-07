@@ -52,3 +52,8 @@ Route::get('/event/create', [EventController::class, 'create']);
 Route::post('/event/store', [EventController::class, 'store']);
 
 Route::resource('peserta', PesertaController::class);
+
+
+Route::resource('kecamatan', KecamatanController::class);
+
+Route::resource('user', userController::class);
