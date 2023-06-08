@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Peserta;
+use App\Models\Cabor;
+use App\Models\Event;
 
 class DashboardController extends Controller
 {
@@ -11,9 +14,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //ini diarahkan ke view dashboard
-        // return view('admin.layout.appadmin');
-        return view('admin.dashboard');
+        $peserta = Peserta::count();
+        $cabor = Cabor::count();
+        $event = Event::count();
+
+        return view('admin.dashboard', compact('peserta','cabor','event'));
     }
 
     /**
