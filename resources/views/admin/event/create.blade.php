@@ -28,6 +28,8 @@ Tambah Data Event Cabor
                 <div class="form-group">
                     <label>Nama Event</label>
                     <input name="nama_event" type="text" class="form-control form-control-sm" placeholder="Masukkan Nama Event" aria-label="Nama Event">
+
+                 
                 </div>
 
                 <div class="form-group">

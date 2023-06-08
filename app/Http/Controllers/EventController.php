@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Cabor;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
@@ -15,8 +15,10 @@ class EventController extends Controller
     public function index()
     {
         $event_cabor = DB::table('event_cabor')->get();
-        
-        return view('admin.event.event', compact('event_cabor'));
+        $cabor = DB::table('cabang_olahraga')->get();
+
+        return view('admin.event.event', compact('event_cabor', 'cabor'));
+        // return $cabor;
     }
 
     /**
@@ -27,23 +29,27 @@ class EventController extends Controller
         // $event_cabor = DB::table('event_cabor')->get();
         $event_cabor = DB::table('event_cabor')->select('cabang_olahraga_id', 'nomor_olahraga', 'nama_event', 'jenis_kelamin')->get();
         $cabor = DB::table('cabang_olahraga')->pluck('cabor');
-        
+
         return view('admin.event.create', compact('event_cabor', 'cabor'));
     }
-    
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        $name = DB::table('cabang_olahraga')
+            ->where('cabor', $request->cabang_olahraga_id)
+            ->value('id');
+
         DB::table('event_cabor')->insert([
-            'cabang_olahraga_id' => $request->cabang_olahraga_id,
+            'cabang_olahraga_id' => $name,
             'nomor_olahraga' => $request->nomor_olahraga,
             'nama_event' => $request->nama_event,
-            'jenis_kelamin' => $request->jenis_kelamin,
+            'jenis_kelamin' => $request->jenis_kelamin
         ]);
 
-        return redirect()->route('event.index');
+        return redirect('/event');
     }
 
     /**
