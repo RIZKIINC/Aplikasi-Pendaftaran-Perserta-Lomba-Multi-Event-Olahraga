@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
-use DB;
-
+use App\Models\Cabor;
+use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
@@ -14,9 +14,11 @@ class EventController extends Controller
      */
     public function index()
     {
-        $event = DB::table('event_cabor')->get();
+        $event_cabor = DB::table('event_cabor')->get();
+        $cabor = DB::table('cabang_olahraga')->get();
 
-        return view('admin.event.event', compact('event'));
+        return view('admin.event.event', compact('event_cabor', 'cabor'));
+        // return $cabor;
     }
 
     /**
@@ -24,10 +26,11 @@ class EventController extends Controller
      */
     public function create()
     {
-        //tambah event cabor
-        $event = DB::table('event_cabor')->get();
+        // $event_cabor = DB::table('event_cabor')->get();
+        $event_cabor = DB::table('event_cabor')->select('cabang_olahraga_id', 'nomor_olahraga', 'nama_event', 'jenis_kelamin')->get();
+        $cabor = DB::table('cabang_olahraga')->pluck('cabor');
 
-        return view ('admin.event.create', compact('event'));
+        return view('admin.event.create', compact('event_cabor', 'cabor'));
     }
 
     /**
@@ -35,48 +38,63 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = DB::table('cabang_olahraga')
+            ->where('cabor', $request->cabang_olahraga_id)
+            ->value('id');
+
         DB::table('event_cabor')->insert([
+            'cabang_olahraga_id' => $name,
             'nomor_olahraga' => $request->nomor_olahraga,
-            'nama_event' =>  bcrypt($request->nama_event),
-            'jenis_kelamin' => $request->jenis_kelamin,
-       
+            'nama_event' => $request->nama_event,
+            'jenis_kelamin' => $request->jenis_kelamin
         ]);
-        return redirect('admin/event');
+
+        return redirect('/event');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //detail
-        $event = DB::table('event_cabor')->get();
+        $event_cabor = DB::table('event_cabor')->find($id);
 
-        return view('admin.event.detail', compact('event'));
+        return view('admin.event.detail', compact('event_cabor'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $event_cabor = DB::table('event_cabor')->find($id);
+        $cabor = DB::table('cabang_olahraga')->pluck('cabor');
+
+        return view('admin.event.edit', compact('event_cabor', 'cabor'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        DB::table('event_cabor')->where('id', $id)->update([
+            'cabang_olahraga_id' => $request->cabang_olahraga_id,
+            'nomor_olahraga' => $request->nomor_olahraga,
+            'nama_event' => $request->nama_event,
+            'jenis_kelamin' => $request->jenis_kelamin,
+        ]);
+
+        return redirect()->route('event.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        DB::table('event_cabor')->where('id', $id)->delete();
+
+        return redirect()->route('event.index');
     }
 }
