@@ -2,7 +2,7 @@
 
 @section('title')
 
-  </span> Dashboard
+  </span> Dashboard 
 
 @endsection
 
@@ -16,7 +16,7 @@
                     <img src="{{asset('admin/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Peserta <i class="mdi mdi-account-card-details mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5">{{$peserta}} Peserta</h2>
+                    <h2 class="mb-5">{{number_format($peserta)}} Peserta</h2>
                   </div>
                 </div>
               </div>
@@ -26,7 +26,7 @@
                     <img src="{{asset('admin/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Cabang Olahraga <i class="mdi mdi-swim mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5">{{$cabor}} Cabor</h2>
+                    <h2 class="mb-5">{{number_format($cabor)}} Cabor</h2>
                   </div>
                 </div>
               </div>
@@ -36,12 +36,16 @@
                     <img src="{{asset('admin/images/dashboard/circle.svg')}}" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Event <i class="mdi mdi-trophy mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5">{{$event}} Event</h2>
+                    <h2 class="mb-5">{{number_format($event)}} Event</h2>
                   </div>
                 </div>
               </div>
               
             </div>
+            
+            
+            <br>Tenggat Waktu <b>{{$selisihHari}}</b> Hari Lagi Sebelum Tanggal 30 Juni 2023
+
             <!-- <div class="row">
               <div class="col-md-7 grid-margin stretch-card">
                 <div class="card">
