@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Cabor;
 use DB;
 
 class EventController extends Controller
@@ -13,9 +14,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = DB::table('event_cabor')->get();
-
-        return view('admin.event.event', compact('events'));
+        $event_cabor = DB::table('event_cabor')->get();
+        
+        return view('admin.event.event', compact('event_cabor'));
     }
 
     /**
@@ -23,17 +24,19 @@ class EventController extends Controller
      */
     public function create()
     {
-        $events = DB::table('event_cabor')->get();
+        $event_cabor = DB::table('event_cabor')->get();
+        $cabor = DB::table('cabang_olahraga')->pluck('cabor');
         
-        return view('admin.event.create');
+        return view('admin.event.create', compact('event_cabor', 'cabor'));
     }
-
+    
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
         DB::table('event_cabor')->insert([
+            'cabang_olahraga_id' => $request->cabang_olahraga_id,
             'nomor_olahraga' => $request->nomor_olahraga,
             'nama_event' => $request->nama_event,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -47,9 +50,9 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        $event = DB::table('event_cabor')->find($id);
+        $event_cabor = DB::table('event_cabor')->find($id);
 
-        return view('admin.event.detail', compact('event'));
+        return view('admin.event.detail', compact('event_cabor'));
     }
 
     /**
@@ -57,9 +60,10 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = DB::table('event_cabor')->find($id);
+        $event_cabor = DB::table('event_cabor')->find($id);
+        $cabor = DB::table('cabang_olahraga')->pluck('cabor');
 
-        return view('admin.event.edit', compact('event'));
+        return view('admin.event.edit', compact('event_cabor', 'cabor'));
     }
 
     /**
@@ -68,6 +72,7 @@ class EventController extends Controller
     public function update(Request $request, $id)
     {
         DB::table('event_cabor')->where('id', $id)->update([
+            'cabang_olahraga_id' => $request->cabang_olahraga_id,
             'nomor_olahraga' => $request->nomor_olahraga,
             'nama_event' => $request->nama_event,
             'jenis_kelamin' => $request->jenis_kelamin,

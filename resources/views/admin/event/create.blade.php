@@ -10,6 +10,16 @@ Tambah Data Event Cabor
     {{ csrf_field() }}
     <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
+        <div class="form-group row">
+    <label for="select1" class="col-4 col-form-label">Cabang Olahraga</label> 
+            <div class="col-8">
+                <select id="select1" name="cabang_olahraga_id" class="custom-select">
+                    @foreach($cabor as $c)
+                    <option value="{{$c->id}}">{{$c->cabor}}</option>
+                    @endforeach
+                </select>
+                </div>
+            </div>
             <div class="card-body">
                 <div class="form-group">
                     <label>Nomor Olahraga</label>

@@ -1,7 +1,7 @@
 @extends('admin.layout.appadmin')
 
 @section('title')
-Users
+Event Cabang Olahraga
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@ Users
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <a href="{{ url('event.update') }}" type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded"> Tambah</a>
+            <a type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded" href="{{url('event/create')}}"> Tambah</a>
                 </p>
 
                 <table class="table table-striped">
@@ -27,24 +27,24 @@ Users
                         @php
                         $no = 1;
                         @endphp
-                        @foreach($events as $event)
+                        @foreach($event_cabor as $e)
                         <tr>
-                            <td>{{ $no }} </td>
-                            <td>{{ $event->cabang_olahraga_id }} </td>
-                            <td> {{ $event->nomor_olahraga }} </td>
-                            <td> {{ $event->nama_event }} </td>
-                            <td> {{ $event->jenis_kelamin }} </td>
+                            <td> {{ $no }} </td>
+                            <td> {{ $e->cabang_olahraga_id }} </td>
+                            <td> {{ $e->nomor_olahraga }} </td>
+                            <td> {{ $e->nama_event }} </td>
+                            <td> {{ $e->jenis_kelamin }} </td>
                             <td>
                             <form action="" method="post">
-                              <a href="{{url('event/edit/'.$event->id)}}" type="button" class="mdi mdi-tooltip-edit btn btn-gradient-info btn-rounded"> Edit</a>
+                              <a href="{{url('event/edit/'.$e->id)}}" type="button" class="mdi mdi-tooltip-edit btn btn-gradient-info btn-rounded"> Edit</a>
 
                               <!-- Button trigger modal -->
-                            <button type="button" class="mdi mdi-account-remove btn btn-gradient-danger btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal{{$event->id}}">
+                            <button type="button" class="mdi mdi-account-remove btn btn-gradient-danger btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal{{$e->id}}">
                                 hapus
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal{{$event->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal{{$e->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -56,7 +56,7 @@ Users
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-gradient-success btn-rounded" data-bs-dismiss="modal">Batal</button>
-                                    <a class="mdi mdi-account-remove btn btn-gradient-danger btn-rounded" href="{{url('event/delete/'.$event->id)}}">Hapus</a>
+                                    <a class="mdi mdi-account-remove btn btn-gradient-danger btn-rounded" href="{{url('event/delete/'.$e->id)}}">Hapus</a>
                                     </div>
                                 </div>
                                 </div>

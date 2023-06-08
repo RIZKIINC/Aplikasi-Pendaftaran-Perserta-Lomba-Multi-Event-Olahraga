@@ -9,22 +9,22 @@ Edit Event
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <form method="POST" action="{{ url('event/', $event->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ url('event/', $e->id) }}" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
+                    @method('get')
                     <div class="form-group">
                         <label>Nomor Olahraga</label>
-                        <input name="nomor_olahraga" type="text" class="form-control form-control-sm" value="{{ $event->nomor_olahraga }}" placeholder="Masukkan Nomor Olahraga" aria-label="Nomor Olahraga">
+                        <input name="nomor_olahraga" type="text" class="form-control form-control-sm" value="{{ $e->nomor_olahraga }}" placeholder="Masukkan Nomor Olahraga" aria-label="Nomor Olahraga">
                     </div>
 
                     <div class="form-group">
                         <label>Nama Event</label>
-                        <input name="nama_event" type="text" class="form-control form-control-sm" value="{{ $event->nama_event }}" placeholder="Masukkan Nama Event" aria-label="Nama Event">
+                        <input name="nama_event" type="text" class="form-control form-control-sm" value="{{ $e->nama_event }}" placeholder="Masukkan Nama Event" aria-label="Nama Event">
                     </div>
                    
                     <div class="form-group">
                         <label>Jenis Kelamin</label>
-                        <input name="jenis_kelamin" type="text" class="form-control form-control-sm" value="{{ $event->jenis_kelamin }}" placeholder="Masukkan Jenis Kelamin" aria-label="Jenis Kelamin">
+                        <input name="jenis_kelamin" type="text" class="form-control form-control-sm" value="{{ $e->jenis_kelamin }}" placeholder="Masukkan Jenis Kelamin" aria-label="Jenis Kelamin">
                     </div>
 
                     <button type="submit" class="btn btn-gradient-success btn-rounded">Update</button>
