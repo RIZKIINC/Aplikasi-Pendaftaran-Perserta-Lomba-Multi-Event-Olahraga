@@ -6,7 +6,7 @@ Tambah Data Event Cabor
 
 @section('content')
 
-<form method="#" action="#" enctype="multipart/form-data">
+<form method="POST" action="{{ url('event/store') }}" enctype="multipart/form-data">
     {{ csrf_field() }}
     <div class="col-md-6 grid-margin stretch-card">
         <div class="card">

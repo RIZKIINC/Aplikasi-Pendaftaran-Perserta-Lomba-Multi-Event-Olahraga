@@ -50,5 +50,8 @@ Route::get('/peserta', [PesertaController::class, 'index']);
 Route::get('/event', [EventController::class, 'index']);
 Route::get('/event/create', [EventController::class, 'create']);
 Route::post('/event/store', [EventController::class, 'store']);
+Route::get('/event/edit/{id}', [EventController::class, 'edit']);
+Route::post('/event/update/{id}', [EventController::class, 'update']);
+Route::get('/event/delete/{id}', [EventController::class, 'destroy']);
 
-Route::resource('peserta', PesertaController::class);
+
