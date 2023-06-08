@@ -12,6 +12,19 @@
               
 <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
+
+                @if(session('success'))
+      <div class="alert alert-success">
+        {{ session('success') }}
+      </div>
+      @endif
+
+      @if(session('error'))
+      <div class="alert alert-danger">
+        {{ session('error') }}
+      </div>
+      @endif
+
                   <div class="card-body">
                     <a type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded" href="{{url('user/create')}}"> Tambah</a>
                     </p>
