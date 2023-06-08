@@ -60,6 +60,4 @@ Route::get('/event/edit/{id}', [EventController::class, 'edit']);
 Route::post('/event/update/{id}', [EventController::class, 'update']);
 Route::get('/event/delete/{id}', [EventController::class, 'destroy']);
 
-
-
 Route::resource('kecamatan', KecamatanController::class);
