@@ -15,7 +15,7 @@ Tambah Data Event Cabor
             <div class="col-8">
                 <select id="select1" name="cabang_olahraga_id" class="custom-select">
                     @foreach($cabor as $c)
-                    <option value="{{$c->id}}">{{$c->cabor}}</option>
+                    <option value="{{$c->id}}">{{$c}}</option>
                     @endforeach
                 </select>
                 </div>
@@ -35,7 +35,7 @@ Tambah Data Event Cabor
                
                 <div class="form-group">
                     <label>Jenis Kelamin</label>
-                    <input name="jk" type="text" class="form-control form-control-sm" placeholder="Jenis Kelamin" aria-label="Jenis Kelamin">
+                    <input name="jenis_kelamin" type="text" class="form-control form-control-sm" placeholder="Jenis Kelamin" aria-label="Jenis Kelamin">
                 </div>
 
                 <button type="submit" name="submit" class="btn btn-gradient-success btn-rounded">Simpan</button>

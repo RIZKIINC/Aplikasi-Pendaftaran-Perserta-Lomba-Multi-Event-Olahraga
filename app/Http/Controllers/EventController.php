@@ -24,7 +24,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        $event_cabor = DB::table('event_cabor')->get();
+        // $event_cabor = DB::table('event_cabor')->get();
+        $event_cabor = DB::table('event_cabor')->select('cabang_olahraga_id', 'nomor_olahraga', 'nama_event', 'jenis_kelamin')->get();
         $cabor = DB::table('cabang_olahraga')->pluck('cabor');
         
         return view('admin.event.create', compact('event_cabor', 'cabor'));
