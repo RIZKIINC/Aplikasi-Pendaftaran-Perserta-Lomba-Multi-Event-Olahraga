@@ -44,7 +44,7 @@ Route::get('/cabor/delete/{id}', [CaborController::class, 'destroy']);
 
 Route::get('/kecamatan', [KecamatanController::class, 'index']);
 
-Route::get('/peserta', [PesertaController::class, 'index']);
+Route::get('/peserta', [PesertaController::class]);
 
 // route event
 Route::get('/event', [EventController::class, 'index']);

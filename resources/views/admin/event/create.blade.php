@@ -15,7 +15,7 @@ Tambah Data Event Cabor
             <div class="col-8">
                 <select id="select1" name="cabang_olahraga_id" class="custom-select">
                     @foreach($cabor as $c)
-                    <option value="{{$c->id}}">{{$c}}</option>
+                    <option value="{{$c}}">{{$c}}</option>
                     @endforeach
                 </select>
                 </div>
