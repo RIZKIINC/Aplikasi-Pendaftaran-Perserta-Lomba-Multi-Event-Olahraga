@@ -21,7 +21,14 @@
       </div>
       @endif
       <div class="card-body">
-        <a href="{{ route('kecamatan.create') }}" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded">Tambah</a>
+        <div style="float: left;">
+          <a href="{{ route('kecamatan.create') }}" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded">Tambah</a>
+        </div>
+        <div style="float: right;">
+          <a type="button" class="mdi mdi-file-pdf btn btn btn-outline-info btn-rounded" target="_blank" href="#"> PDF</a>
+          <a type="button" class="mdi mdi-file-excel btn btn-outline-info btn-rounded" target="_blank" href="#"> Excel</a>
+          <a type="button" class="mdi mdi-printer btn btn-outline-info btn-rounded" target="_blank" href="#"> Print</a>
+        </div>
         </p>
 
         <table class="table table-striped">
@@ -31,7 +38,7 @@
                 <th>Nama Camat</th>
                 <th>No HP</th>
                 <th>Email</th>
-                <th>Pos</th>
+                <!-- <th>Pos</th> -->
                 <!-- <th>Alamat</th> -->
                 <!-- <th>Kecamatan</th> -->
             </tr>
@@ -46,7 +53,7 @@
                 <td>{{$d->namacamat}} </td>
                 <td>{{$d->notelp}} </td>
                 <td>{{$d->email}} </td>
-                <td>{{$d->kodepos}} </td>
+                <!-- <td>{{$d->kodepos}} </td> -->
                 <!-- <td>{{$d->alamat}} </td> -->
                 <!-- <td>{{$d->namakecamatan}} </td> -->
               <td>

@@ -21,7 +21,14 @@
       </div>
       @endif
       <div class="card-body">
-        <a href="{{ route('peserta.create') }}" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded">Tambah</a>
+        <div style="float: left;">
+          <a href="{{ route('peserta.create') }}" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded">Tambah</a>
+        </div>
+        <div style="float: right;">
+          <a type="button" class="mdi mdi-file-pdf btn btn btn-outline-info btn-rounded" target="_blank" href="#"> PDF</a>
+          <a type="button" class="mdi mdi-file-excel btn btn-outline-info btn-rounded" target="_blank" href="#"> Excel</a>
+          <a type="button" class="mdi mdi-printer btn btn-outline-info btn-rounded" target="_blank" href="#"> Print</a>
+        </div>
         </p>
 
         <table class="table table-striped">
@@ -31,7 +38,7 @@
               <th>Nama</th>
               <th>NIK</th>
               <th>Foto</th>
-              <th>Action</th>
+              <!-- <th>Action</th> -->
             </tr>
           </thead>
           <tbody>
