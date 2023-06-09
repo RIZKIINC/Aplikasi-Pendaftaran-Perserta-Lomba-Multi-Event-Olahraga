@@ -47,6 +47,7 @@ Route::get('/cabor/delete/{id}', [CaborController::class, 'destroy']);
 
 // Kecamatan
 Route::get('/kecamatan', [KecamatanController::class, 'index']);
+Route::resource('kecamatan', KecamatanController::class);
 
 // Peserta
 Route::get('/peserta', [PesertaController::class, 'index']);
@@ -60,4 +61,3 @@ Route::get('/event/edit/{id}', [EventController::class, 'edit']);
 Route::post('/event/update/{id}', [EventController::class, 'update']);
 Route::get('/event/delete/{id}', [EventController::class, 'destroy']);
 
-Route::resource('kecamatan', KecamatanController::class);
