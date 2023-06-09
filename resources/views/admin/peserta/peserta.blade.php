@@ -35,9 +35,9 @@
           <thead>
             <tr>
               <th>No</th>
+              <th>Foto</th>
               <th>Nama</th>
               <th>NIK</th>
-              <th>Foto</th>
               <!-- <th>Action</th> -->
             </tr>
           </thead>
@@ -48,9 +48,9 @@
             @foreach($peserta as $d)
             <tr>
               <td>{{$no}} </td>
+              <td><img src="{{ asset('uploads/'.$d->foto) }}"></td>
               <td>{{$d->nama}} </td>
               <td>{{$d->nik}} </td>
-              <td>{{$d->foto}} </td>
               <td>
                 <a href="#" class="mdi mdi-bookmark btn btn-gradient-primary btn-rounded" onclick="showDetail('{{ $d->id }}')">Detail</a>
                 <a href="{{ route('peserta.edit', $d->id) }}" class="mdi mdi-tooltip-edit btn btn-gradient-info btn-rounded">Edit</a>
