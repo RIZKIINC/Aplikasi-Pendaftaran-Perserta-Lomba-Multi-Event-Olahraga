@@ -32,9 +32,9 @@ class UserController extends Controller
 
     // export pdf masih error
     public function exportpdf(){
-        $data = DB::table('users')->get();
-        view()->share ('data', $data);
-        $pdf = PDF::loadview('admin.user.exportpdf');
+        // $data = DB::table('users')->get();
+        $data = User::all();
+        $pdf = PDF::loadview('admin.user.exportpdf', ['data' => $data])->setPaper('a4', 'potrait');
 
         return $pdf->download('Data_User.pdf');
     }
