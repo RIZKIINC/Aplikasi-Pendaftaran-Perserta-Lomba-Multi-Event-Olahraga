@@ -30,7 +30,7 @@
                       <a type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded" href="{{url('user/create')}}"> Tambah</a>
                     </div>
                     <div style="float: right;">
-                      <a type="button" class="mdi mdi-file-pdf btn btn btn-outline-info btn-rounded" target="_blank" href="#"> PDF</a>
+                      <a type="button" class="mdi mdi-file-pdf btn btn btn-outline-info btn-rounded" target="_blank" href="{{url('user/exportpdf')}}"> PDF</a>
                       <a type="button" class="mdi mdi-file-excel btn btn-outline-info btn-rounded" target="_blank" href="#"> Excel</a>
                       <a type="button" class="mdi mdi-printer btn btn-outline-info btn-rounded" target="_blank" href="{{url('user/cetak')}}"> Print</a>
                     </div>

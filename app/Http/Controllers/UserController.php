@@ -30,9 +30,15 @@ class UserController extends Controller
         return view('admin.user.cetak', compact('cetak','hariini'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // export pdf masih error
+    public function exportpdf(){
+        $data = DB::table('users')->get();
+        view()->share ('data', $data);
+        $pdf = PDF::loadview('admin.user.exportpdf');
+
+        return $pdf->download('Data_User.pdf');
+    }
+
     public function create()
     {
         $user = DB::table('users')->get();
@@ -40,9 +46,6 @@ class UserController extends Controller
         return view ('admin.user.create', compact('user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
 
