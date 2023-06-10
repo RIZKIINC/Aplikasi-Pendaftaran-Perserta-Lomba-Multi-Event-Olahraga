@@ -32,7 +32,7 @@
                     <div style="float: right;">
                       <a type="button" class="mdi mdi-file-pdf btn btn btn-outline-info btn-rounded" target="_blank" href="#"> PDF</a>
                       <a type="button" class="mdi mdi-file-excel btn btn-outline-info btn-rounded" target="_blank" href="#"> Excel</a>
-                      <a type="button" class="mdi mdi-printer btn btn-outline-info btn-rounded" target="_blank" href="#"> Print</a>
+                      <a type="button" class="mdi mdi-printer btn btn-outline-info btn-rounded" target="_blank" href="{{url('user/cetak')}}"> Print</a>
                     </div>
 
                     <table class="table table-striped">

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Carbon\Carbon;
 use DB;
+use PDF;
 
 
 class UserController extends Controller
@@ -17,6 +19,15 @@ class UserController extends Controller
         $user = DB::table('users')->get();
 
         return view('admin.user.user', compact('user'));
+    }
+
+    public function cetak()
+    {
+        $cetak = DB::table('users')->get();
+
+        $hariini = Carbon::now();
+
+        return view('admin.user.cetak', compact('cetak','hariini'));
     }
 
     /**
