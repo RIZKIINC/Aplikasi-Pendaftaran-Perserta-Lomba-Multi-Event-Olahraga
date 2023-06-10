@@ -33,6 +33,8 @@ Route::post('/user/store', [UserController::class, 'store']);
 Route::get('/user/edit/{id}', [UserController::class, 'edit']);
 Route::post('/user/update', [UserController::class, 'update']);
 Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
+Route::get('/user/cetak', [UserController::class, 'cetak']);
+Route::get('/user/exportpdf', [UserController::class, 'exportpdf']);
 
 Route::resource('user', UserController::class);
 

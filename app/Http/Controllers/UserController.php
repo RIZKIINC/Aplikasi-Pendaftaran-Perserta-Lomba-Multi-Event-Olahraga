@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Carbon\Carbon;
 use DB;
+use PDF;
 
 
 class UserController extends Controller
@@ -19,9 +21,24 @@ class UserController extends Controller
         return view('admin.user.user', compact('user'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function cetak()
+    {
+        $cetak = DB::table('users')->get();
+
+        $hariini = Carbon::now();
+
+        return view('admin.user.cetak', compact('cetak','hariini'));
+    }
+
+    // export pdf masih error
+    public function exportpdf(){
+        // $data = DB::table('users')->get();
+        $data = User::all();
+        $pdf = PDF::loadview('admin.user.exportpdf', ['data' => $data])->setPaper('a4', 'potrait');
+
+        return $pdf->download('Data_User.pdf');
+    }
+
     public function create()
     {
         $user = DB::table('users')->get();
@@ -29,9 +46,6 @@ class UserController extends Controller
         return view ('admin.user.create', compact('user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
 
