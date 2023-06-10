@@ -21,17 +21,24 @@
       </div>
       @endif
       <div class="card-body">
-        <a href="{{ route('peserta.create') }}" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded">Tambah</a>
+        <div style="float: left;">
+          <a href="{{ route('peserta.create') }}" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded">Tambah</a>
+        </div>
+        <div style="float: right;">
+          <a type="button" class="mdi mdi-file-pdf btn btn btn-outline-info btn-rounded" target="_blank" href="#"> PDF</a>
+          <a type="button" class="mdi mdi-file-excel btn btn-outline-info btn-rounded" target="_blank" href="#"> Excel</a>
+          <a type="button" class="mdi mdi-printer btn btn-outline-info btn-rounded" target="_blank" href="#"> Print</a>
+        </div>
         </p>
 
         <table class="table table-striped">
           <thead>
             <tr>
               <th>No</th>
+              <th>Foto</th>
               <th>Nama</th>
               <th>NIK</th>
-              <th>Foto</th>
-              <th>Action</th>
+              <!-- <th>Action</th> -->
             </tr>
           </thead>
           <tbody>
@@ -41,9 +48,9 @@
             @foreach($peserta as $d)
             <tr>
               <td>{{$no}} </td>
+              <td><img src="{{ asset('uploads/'.$d->foto) }}"></td>
               <td>{{$d->nama}} </td>
               <td>{{$d->nik}} </td>
-              <td>{{$d->foto}} </td>
               <td>
                 <a href="#" class="mdi mdi-bookmark btn btn-gradient-primary btn-rounded" onclick="showDetail('{{ $d->id }}')">Detail</a>
                 <a href="{{ route('peserta.edit', $d->id) }}" class="mdi mdi-tooltip-edit btn btn-gradient-info btn-rounded">Edit</a>

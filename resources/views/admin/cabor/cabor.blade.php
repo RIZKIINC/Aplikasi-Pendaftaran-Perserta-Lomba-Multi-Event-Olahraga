@@ -13,7 +13,14 @@
 <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <a type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded" href="{{url('cabor/create')}}"> Tambah</a>
+                    <div style="float: left;">
+                      <a type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded" href="{{url('cabor/create')}}"> Tambah</a>
+                    </div>
+                    <div style="float: right;">
+                      <a type="button" class="mdi mdi-file-pdf btn btn btn-outline-info btn-rounded" target="_blank" href="#"> PDF</a>
+                      <a type="button" class="mdi mdi-file-excel btn btn-outline-info btn-rounded" target="_blank" href="#"> Excel</a>
+                      <a type="button" class="mdi mdi-printer btn btn-outline-info btn-rounded" target="_blank" href="#"> Print</a>
+                    </div>
 
                     </p>
 
@@ -22,7 +29,7 @@
                         <tr>
                           <th> No </th>
                           <th> Cabang Olahraga </th>
-                          <th> Action </th>
+                          <th></th>
                         </tr>
                       </thead>
                       <tbody>
@@ -79,5 +86,6 @@
                   </div>
                 </div>
               </div>
+            </div>
 @endsection
 

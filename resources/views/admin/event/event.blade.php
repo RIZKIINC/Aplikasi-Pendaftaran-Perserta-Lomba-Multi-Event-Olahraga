@@ -9,7 +9,14 @@ Event Cabang Olahraga
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <a type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded" href="{{url('event/create')}}"> Tambah</a>
+                <div style="float: left;">
+                    <a type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded" href="{{url('event/create')}}"> Tambah</a>
+                </div>
+                <div style="float: right;">
+                    <a type="button" class="mdi mdi-file-pdf btn btn btn-outline-info btn-rounded" target="_blank" href="#"> PDF</a>
+                    <a type="button" class="mdi mdi-file-excel btn btn-outline-info btn-rounded" target="_blank" href="#"> Excel</a>
+                    <a type="button" class="mdi mdi-printer btn btn-outline-info btn-rounded" target="_blank" href="#"> Print</a>
+                </div>
                 </p>
 
                 <table class="table table-striped">
@@ -20,7 +27,7 @@ Event Cabang Olahraga
                             <th> No. Olahraga </th>
                             <th> Nama Event </th>
                             <th> Jenis Kelamin </th>
-                            <th> Action </th>
+                            <!-- <th> Action </th> -->
                         </tr>
                     </thead>
                     <tbody>

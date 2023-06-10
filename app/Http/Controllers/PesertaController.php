@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\peserta;
+use App\Models\Peserta;
 use App\Models\Kecamatan;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +24,10 @@ class PesertaController extends Controller
      */
     public function create()
     {
-        //
+        $peserta = DB::table('peserta')->get();
+        $event_cabor = DB::table('event_cabor')->pluck('nama_event');
+        $kecamatan = DB::table('kecamatan')->pluck('namakecamatan');
+        return view('admin.peserta.create', compact('peserta', 'event_cabor', 'kecamatan'));
     }
 
     /**

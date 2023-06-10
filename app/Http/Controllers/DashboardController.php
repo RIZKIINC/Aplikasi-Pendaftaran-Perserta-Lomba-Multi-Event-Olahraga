@@ -7,6 +7,8 @@ use App\Models\Peserta;
 use App\Models\Cabor;
 use App\Models\Event;
 
+use Carbon\Carbon;
+
 class DashboardController extends Controller
 {
     /**
@@ -18,7 +20,15 @@ class DashboardController extends Controller
         $cabor = Cabor::count();
         $event = Event::count();
 
-        return view('admin.dashboard', compact('peserta','cabor','event'));
+        // Menghitung Deadline
+        $tanggalInput = '2023-06-30';
+        $tanggal = Carbon::createFromFormat('Y-m-d', $tanggalInput);
+        $tanggalSekarang = Carbon::now();
+
+        // Hitung selisih hari
+        $selisihHari = $tanggalSekarang->diffInDays($tanggal);
+
+        return view('admin.dashboard', compact('peserta','cabor','event','selisihHari'));
     }
 
     /**
