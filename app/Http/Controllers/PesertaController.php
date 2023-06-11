@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\peserta;
+use App\Models\Peserta;
 use App\Models\Kecamatan;
 use Illuminate\Support\Facades\DB;
 
