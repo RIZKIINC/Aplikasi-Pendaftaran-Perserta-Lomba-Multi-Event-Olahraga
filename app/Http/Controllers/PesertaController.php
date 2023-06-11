@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Peserta;
 use App\Models\Kecamatan;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\PDF;
+use App\Exports\DataExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PesertaController extends Controller
 {
@@ -57,9 +60,11 @@ class PesertaController extends Controller
             $aktaFile = $request->file('akta');
             $fotoFile = $request->file('foto');
 
-            // Store the uploaded files and get their paths
-            $aktaPath = $aktaFile->store('public/akta');
-            $fotoPath = $fotoFile->store('public/foto');
+            $aktaName = date('YmdHis') . "." . $aktaFile->getClientOriginalExtension();
+            $fotoName = date('YmdHis') . "." . $fotoFile->getClientOriginalExtension();
+
+            $aktaFile->move(public_path('uploads'), $aktaName);
+            $fotoFile->move(public_path('uploads'), $fotoName);
 
             $kecamatan = Kecamatan::where('namakecamatan', $request->input('nama_kecamatan'))->first();
             $kecamatan_id = $kecamatan ? $kecamatan->id : null;
@@ -73,8 +78,8 @@ class PesertaController extends Controller
             $peserta->nik = $request->input('nik');
             $peserta->ttl = $request->input('ttl');
             $peserta->nomor_kk = $request->input('nomor_kk');
-            $peserta->akta = $aktaPath;
-            $peserta->foto = $fotoPath;
+            $peserta->akta = $aktaName; // Store the path relative to the 'public' disk
+            $peserta->foto = $fotoName; // Store the path relative to the 'public' disk
             $peserta->alamat = $request->input('alamat');
             $peserta->no_olahraga = $request->input('no_olahraga');
             $peserta->domisili = $request->input('domisili');
@@ -202,5 +207,37 @@ class PesertaController extends Controller
         $peserta->delete();
 
         return redirect()->route('peserta.index')->with('success', 'Peserta deleted successfully.');
+    }
+
+    public function generatePDF()
+    {
+        // Retrieve data for your table
+        $data =  Peserta::all();
+        $kecamatan = Kecamatan::all();
+
+
+        $pdf = app()->make('dompdf.wrapper');
+
+        $pdf->loadView('admin.peserta.table', ['data' => $data, 'kecamatan' => $kecamatan])->setPaper('a4', 'landscape');
+
+        return $pdf->download('table.pdf');
+    }
+
+    public function export_excel()
+    {
+        return Excel::download(new DataExport, 'peserta.xlsx');
+    }
+
+    public function cetakpdf()
+    {
+        $data = Peserta::all();
+        $kecamatan = Kecamatan::all();
+
+        // Generate the PDF using the same logic as in generatePDF()
+        $pdf = app()->make('dompdf.wrapper');
+        $pdf->loadView('admin.peserta.table', ['data' => $data, 'kecamatan' => $kecamatan])->setPaper('a4', 'landscape');
+
+        // Return the PDF view for display in the browser
+        return $pdf->stream('table.pdf');
     }
 }

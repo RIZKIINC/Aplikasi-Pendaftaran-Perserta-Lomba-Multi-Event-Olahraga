@@ -52,6 +52,9 @@ Route::get('/kecamatan', [KecamatanController::class, 'index']);
 
 // Peserta
 Route::get('/peserta', [PesertaController::class, 'index']);
+Route::get('/peserta/pdf', [PesertaController::class, 'generatePDF']);
+Route::get('/peserta/cetak', [PesertaController::class, 'cetakpdf']);
+Route::get('/peserta/excel', [PesertaController::class, 'export_excel']);
 Route::resource('peserta', PesertaController::class);
 
 // route event
