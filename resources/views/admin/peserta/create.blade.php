@@ -80,4 +80,5 @@ Tambah Data Peserta
         </div>
     </div>
 </form>
+
 @endsection

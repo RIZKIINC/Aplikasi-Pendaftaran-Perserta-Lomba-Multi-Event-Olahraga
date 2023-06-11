@@ -12,19 +12,38 @@
               
 <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
+
+                @if(session('success'))
+      <div class="alert alert-success">
+        {{ session('success') }}
+      </div>
+      @endif
+
+      @if(session('error'))
+      <div class="alert alert-danger">
+        {{ session('error') }}
+      </div>
+      @endif
+
                   <div class="card-body">
-                    <a type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded" href="{{url('user/create')}}"> Tambah</a>
-                    </p>
+                    <div style="float: left;">
+                      <a type="button" class="mdi mdi-account-plus btn btn-gradient-success btn-rounded" href="{{url('user/create')}}"> Tambah</a>
+                    </div>
+                    <div style="float: right;">
+                      <a type="button" class="mdi mdi-file-pdf btn btn btn-outline-info btn-rounded" target="_blank" href="{{url('user/exportpdf')}}"> PDF</a>
+                      <a type="button" class="mdi mdi-file-excel btn btn-outline-info btn-rounded" target="_blank" href="#"> Excel</a>
+                      <a type="button" class="mdi mdi-printer btn btn-outline-info btn-rounded" target="_blank" href="{{url('user/cetak')}}"> Print</a>
+                    </div>
 
                     <table class="table table-striped">
                       <thead>
-                        <tr align="center">
+                        <tr>
                           <th> No </th>
                           <th> Username </th>
                           <th> Password </th>
                           <th> Email </th>
                           <th> Role </th>
-                          <th> Action </th>
+                          <!-- <th> Action </th> -->
                         </tr>
                       </thead>
                       <tbody>
@@ -80,4 +99,5 @@
                   </div>
                 </div>
               </div>
+            </div>
 @endsection

@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Peserta;
+use App\Models\Cabor;
+use App\Models\Event;
+
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -11,9 +16,19 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        //ini diarahkan ke view dashboard
-        // return view('admin.layout.appadmin');
-        return view('admin.dashboard');
+        $peserta = Peserta::count();
+        $cabor = Cabor::count();
+        $event = Event::count();
+
+        // Menghitung Deadline
+        $tanggalInput = '2023-06-30';
+        $tanggal = Carbon::createFromFormat('Y-m-d', $tanggalInput);
+        $tanggalSekarang = Carbon::now();
+
+        // Hitung selisih hari
+        $selisihHari = $tanggalSekarang->diffInDays($tanggal);
+
+        return view('admin.dashboard', compact('peserta','cabor','event','selisihHari'));
     }
 
     /**
