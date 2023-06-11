@@ -75,7 +75,7 @@ Tambah Data Peserta
                 </div>
 
                 <button type="submit" name="submit" class="btn btn-gradient-success btn-rounded">Simpan</button>
-                <a type="submit" name="submit" class="btn btn-gradient-danger btn-rounded" href="{{ url('user') }}">Kembali</a>
+                <a type="submit" name="submit" class="btn btn-gradient-danger btn-rounded" href="{{ url('peserta') }}">Kembali</a>
             </div>
         </div>
     </div>
