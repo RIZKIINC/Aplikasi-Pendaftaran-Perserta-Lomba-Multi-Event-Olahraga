@@ -12,7 +12,7 @@
     <thead>
       <tr>
         <th>No</th>
-        <th>Cabor</th>
+        <th>Cabang Olahraga</th>
       </tr>
     </thead>
     <tbody>
