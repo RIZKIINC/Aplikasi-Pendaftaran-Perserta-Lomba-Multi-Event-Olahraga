@@ -2,80 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Participant;
+use App\Models\Sport;
 use Illuminate\Http\Request;
-use App\Models\Peserta;
-use App\Models\Cabor;
-use App\Models\Event;
-
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function dashboardAdmin()
     {
-        $peserta = Peserta::count();
-        $cabor = Cabor::count();
-        $event = Event::count();
+        $admin = count(User::where('id_role', '=', '1')->get());
+        $camat = count(User::where('id_role', '=', '3')->get());
+        $peserta = count(Participant::all());
+        $sport = count(Sport::all());
 
-        // Menghitung Deadline
-        $tanggalInput = '2023-06-30';
-        $tanggal = Carbon::createFromFormat('Y-m-d', $tanggalInput);
-        $tanggalSekarang = Carbon::now();
+        return view('dashboard.admin', compact('admin', 'camat', 'peserta', 'sport'));
+    }
+    
+    public function adminCount()
+    {
+        $admin = count(User::where('id_role', '=', '1')->get());
+        $camat = count(User::where('id_role', '=', '3')->get());
+        $peserta = count(Participant::all());
+        $sport = count(Sport::all());
+        
+        return view('dashboard.admin', compact('admin', 'camat', 'peserta', 'sport'));
+    }
+    
+    public function camatCount()
+    {
+        // dd(Auth::user()->id_role);
+        $admin = count(User::where('id_role', '=', '1')->get());
+        $camat = count(User::where('id_role', '=', '3')->get());
+        $peserta = count(Participant::all());
+        $sport = count(Sport::all());
 
-        // Hitung selisih hari
-        $selisihHari = $tanggalSekarang->diffInDays($tanggal);
-
-        return view('admin.dashboard', compact('peserta','cabor','event','selisihHari'));
+        return view('dashboard.camat', compact('admin', 'camat', 'peserta', 'sport'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

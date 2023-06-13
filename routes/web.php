@@ -1,13 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CamatController;
+use App\Http\Controllers\SubDistrictProfileController;
+use App\Http\Controllers\MapDistrictSportController;
+use App\Http\Controllers\ParticipantController;
+use App\Http\Controllers\ContactPeopleController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\CaborController;
-use App\Http\Controllers\KecamatanController;
-use App\Http\Controllers\PesertaController;
-use App\Http\Controllers\EventController;
+use App\Http\Controllers\SportController;
+use App\Http\Controllers\VerifikasiPendaftaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,54 +18,97 @@ use App\Http\Controllers\EventController;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/mapdistrictsport/create/partisipan', function () {
+    return view('user.pendaftaran.pendaftaranpartisipan2');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/mapdistrictsport/create/test2', function () {
+    return view('user.pendaftaran.test2');
+});
 
-//User
-Route::get('/user', [UserController::class, 'index']);
-Route::get('/user/create', [UserController::class, 'create']);
-Route::post('/user/store', [UserController::class, 'store']);
-Route::get('/user/edit/{id}', [UserController::class, 'edit']);
-Route::post('/user/update', [UserController::class, 'update']);
-Route::get('/user/delete/{id}', [UserController::class, 'destroy']);
-Route::get('/user/cetak', [UserController::class, 'cetak']);
-Route::get('/user/exportpdf', [UserController::class, 'exportpdf']);
+Route::get('/mapdistrictsport/create/pendaftaranedit', function () {
+    return view('user.pendaftaran.pendaftaranedit');
+});
+// Route::get('/', function () {
+//     return view('layout.mainlayout_u');
+// });
+Route::get('/pendaftaran', function () {
+    return view('user.pendaftaran.pendaftaran');
+});
+Route::get('/', function () {
+    return view('layout.mainlayout_u');
+});
 
-Route::resource('user', UserController::class);
+Route::get('/registration', function () {
+    return view('registration');
+});
 
+Route::get('/', [UsersController::class, 'indexLogin'])->name('login');
+Route::post('/post_login', [UsersController::class, 'postLogin'])->name('post_login');
+Route::get('/register', [UsersController::class, 'preRegister'])->name('register');
+Route::post('/post_register', [UsersController::class, 'postRegister'])->name('post_register');
+Route::get('/logout', [UsersController::class, 'Logout'])->name('logout');
 
-//Cabang olahraga
-Route::get('/cabor', [CaborController::class, 'index']);
-Route::get('/cabor/create', [CaborController::class, 'create']);
-Route::POST('/cabor/store', [CaborController::class, 'store']);
-Route::get('/cabor/edit/{id}', [CaborController::class, 'edit']);
-Route::post('/cabor/{id}', [CaborController::class, 'update']);
-Route::get('/cabor/delete/{id}', [CaborController::class, 'destroy']);
+Route::middleware(['auth', 'CheckRole:1'])->group(function () {
+    Route::get('/dashboard/admin', [DashboardController::class, 'dashboardAdmin']);
 
-// Kecamatan
-Route::get('/kecamatan', [KecamatanController::class, 'index']);
+    // cabor
+    Route::get('/camatlist', [CamatController::class, 'index']);
 
-// Peserta
-Route::get('/peserta', [PesertaController::class, 'index']);
-Route::get('/peserta/pdf', [PesertaController::class, 'generatePDF']);
-Route::get('/peserta/cetak', [PesertaController::class, 'cetakpdf']);
-Route::get('/peserta/excel', [PesertaController::class, 'export_excel']);
-Route::resource('peserta', PesertaController::class);
+    // admin
+    Route::get('/adminlist', [AdminController::class, 'index']);
 
-// route event
-Route::get('/event', [EventController::class, 'index']);
-Route::get('/event/create', [EventController::class, 'create']);
-Route::post('/event/store', [EventController::class, 'store']);
-Route::get('/event/edit/{id}', [EventController::class, 'edit']);
-Route::post('/event/update/{id}', [EventController::class, 'update']);
-Route::get('/event/delete/{id}', [EventController::class, 'destroy']);
+    // admin
+    Route::get('/participantlist', [ParticipantController::class, 'index2']);
 
-Route::resource('kecamatan', KecamatanController::class);
+    // sport -> cabor
+    Route::get('/sport/index', [SportController::class, 'index']);
+    Route::get('/sport/create', [SportController::class, 'create']);
+    Route::post('/sport/store', [SportController::class, 'store']);
+    Route::get('/sport/show/{sport}', [SportController::class, 'show']);
+    Route::get('/sport/edit/{sport}', [SportController::class, 'edit']);
+    Route::post('/sport/update/{sport}', [SportController::class, 'update']);
+    Route::get('/sport/delete/{sport}', [SportController::class, 'destroy']);
+
+    //verifikasipendaftaran
+    Route::get('/verifkasi-pendaftaran/index', [VerifikasiPendaftaranController::class, 'index']);
+    Route::get('/detail-pendaftaran/{id}', [VerifikasiPendaftaranController::class, 'indexDetail']);
+    Route::post('/verif/{id}', [VerifikasiPendaftaranController::class, 'VerifikasiPendaftaran']);
+
+});
+
+Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
+    Route::get('/dashboard/camat', [DashboardController::class, 'camatCount']);
+    
+    Route::get('/subprofil/editsubprofil/{id}', [SubDistrictProfileController::class, 'indexupdateSubProfile'])->name('subprofil');
+
+    Route::get('/camat', function () {
+        return view('dashboard.camat');
+    });
+    Route::get('/subprofil/editsubprofil', [SubDistrictProfileController::class, 'indexupdateSubProfile']);
+    Route::post('/subprofil/updateSubProfile', [SubDistrictProfileController::class, 'updateSubProfile']);
+    Route::post('/subprofil/updatecontactpeople', [SubDistrictProfileController::class, 'updateContactPeople']);
+
+    // mapdistrictsport -> mapdistrictsport
+    Route::get('/mapdistrictsport/index', [MapDistrictSportController::class, 'index']);
+    Route::get('/mapdistrictsport/create', [MapDistrictSportController::class, 'create']);
+    Route::post('/mapdistrictsport/store', [MapDistrictSportController::class, 'store']);
+    Route::get('/mapdistrictsport/show/{id}', [MapDistrictSportController::class, 'show']);
+    Route::get('/mapdistrictsport/edit/{id}', [MapDistrictSportController::class, 'edit']);
+    Route::post('/mapdistrictsport/update/{id}', [MapDistrictSportController::class, 'update']);
+    Route::get('/mapdistrictsport/delete/{id}', [MapDistrictSportController::class, 'destroy']);
+
+    // participants -> participant
+    Route::get('/participant/index/{id}', [ParticipantController::class, 'index']);
+    Route::get('/participant/create/{id}', [ParticipantController::class, 'create']);
+    Route::post('/participant/store/{id}', [ParticipantController::class, 'store']);
+    Route::get('/participant/show/{id}', [ParticipantController::class, 'show']);
+    Route::get('/participant/edit/{id}', [ParticipantController::class, 'edit']);
+    Route::post('/participant/update/{id}', [ParticipantController::class, 'update']);
+    Route::get('/participant/delete/{id}', [ParticipantController::class, 'destroy']);
+});
