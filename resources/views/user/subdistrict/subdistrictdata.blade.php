@@ -4,6 +4,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,12 +14,12 @@
 </head>
 
 @section('content')
+
 <body>
     <section class="sample-page">
         <div class="container" data-aos="fade-up">
 
-        <!------ Include the above in your HEAD tag ---------->
-
+            <!------ Include the above in your HEAD tag ---------->
             <div class="container">
                 <div class="row">
                     <div class="col-md-3 ">
@@ -39,10 +40,10 @@
                                     <div class="col-md-12">
                                         <ul class="nav nav-tabs">
                                             <li class="active">
-                                            <a class="nav-link" data-toggle="tab" id="first_tab" href="#first">Profile</a>
+                                                <a class="nav-link" data-toggle="tab" id="first_tab" href="#first">Profile</a>
                                             </li>
                                             <li class="active">
-                                            <a class="nav-link" data-toggle="tab" id="second_tab" href="#second">Contact Person</a>
+                                                <a class="nav-link" data-toggle="tab" id="second_tab" href="#second">Contact Person</a>
                                             </li>
                                         </ul>
                                         <br>
@@ -50,7 +51,6 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-
                                         {{-- Update Profil --}}
                                         <div class="tab-content">
                                             <div class="tab-pane fade show active" id="first">
@@ -72,9 +72,10 @@
                                                     <div class="form-group row">
                                                         <label for="nama_camat" class="col-4 col-form-label">Kecamatan</label>
                                                         <div class="col-8">
-                                                            <input id="id_kecamatan" name="id_kecamatan" placeholder="Nama Camat" class="form-control here" value="{{ $subdisctrictprofile[0]->id_kecamatan }}" readonly required="required" type="text">
+                                                            <input id="id_kecamatan" name="id_kecamatan" placeholder="Nama Camat" class="form-control here" value="{{ $kecamatan->where('id_kecamatan', $subdisctrictprofile[0]->id_kecamatan)->pluck('nama_kecamatan')->first() }}" readonly required="required" type="text">
                                                         </div>
                                                     </div>
+
                                                     <div class="form-group row">
                                                         <label for="nama_camat" class="col-4 col-form-label">Kode Kecamatan</label>
                                                         <div class="col-8">
@@ -106,9 +107,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="text" class="col-4 col-form-label">Kode Pos</label>
+                                                        <label for="kodepos" class="col-4 col-form-label">Kode Pos</label>
                                                         <div class="col-8">
-                                                            <input id="kodepos" name="kodepos" placeholder="Kode Pos" class="form-control here" value="{{ $subdisctrictprofile[0]->kodepos }}" required="required" type="text">
+                                                            <input id="kodepos" name="kodepos" placeholder="Kode Pos" class="form-control here" value="{{ $postalCode }}" required="required" type="text" disabled>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -139,19 +140,19 @@
                                                     <div class="form-group row">
                                                         <label for="nama_camat" class="col-4 col-form-label">Nama Kontak</label>
                                                         <div class="col-8">
-                                                            <input id="nama_camat" name="nama_kontak" placeholder="Nama Kontak" class="form-control here" value="{{ $contactpeople[0]->nama_kontak }}"  required="required" type="text">
+                                                            <input id="nama_camat" name="nama_kontak" placeholder="Nama Kontak" class="form-control here" value="{{ $contactpeople[0]->nama_kontak }}" required="required" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="nama_camat" class="col-4 col-form-label">Jabatan Kontak</label>
                                                         <div class="col-8">
-                                                            <input id="nama_camat" name="jabatan_kontak" placeholder="Jabatan Kontak" class="form-control here" value="{{ $contactpeople[0]->jabatan_kontak }}"  required="required" type="text">
+                                                            <input id="nama_camat" name="jabatan_kontak" placeholder="Jabatan Kontak" class="form-control here" value="{{ $contactpeople[0]->jabatan_kontak }}" required="required" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="nama_camat" class="col-4 col-form-label">Nomor Telepon</label>
                                                         <div class="col-8">
-                                                            <input id="nama_camat" name="telp_kontak" placeholder="Nomor Telepon" class="form-control here" value="{{ $contactpeople[0]->telp_kontak }}"  required="required" type="text">
+                                                            <input id="nama_camat" name="telp_kontak" placeholder="Nomor Telepon" class="form-control here" value="{{ $contactpeople[0]->telp_kontak }}" required="required" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
@@ -180,6 +181,7 @@
     </section>
 </body>
 @endsection
+
 </html>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
