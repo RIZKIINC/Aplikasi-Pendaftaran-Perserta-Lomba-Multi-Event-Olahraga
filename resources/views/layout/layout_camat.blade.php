@@ -37,9 +37,11 @@
             <div class="main-sidebar">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
+                        <img src="{{ asset('assets/template/images/logo_KONI.png') }}" alt="" width="35px">
                         <a href="{{ URL::to('home') }}">MULTI EVENT</a>
                     </div>
                     <ul class="sidebar-menu">
+                        <br>
                         <li class="menu-header">M E N U</li>
                         <li><a class="nav-link" href="{{ URL::to('dashboard/camat') }}"><i class="fas fa-home"></i> <span>Dashboard</span></a>
                         </li>
@@ -65,7 +67,7 @@
         <footer class="main-footer">
             <div class="footer-left">
                 Copyright &copy; 2023 <div class="bullet"></div>
-                    <a href="">MULTI EVENT</a>
+                <a href="">LOMBA PEKAN OLAHRAGA KOTA PALEMBANG - MULTI EVENT</a>
             </div>
             <div class="footer-right">
                 Airlangga University

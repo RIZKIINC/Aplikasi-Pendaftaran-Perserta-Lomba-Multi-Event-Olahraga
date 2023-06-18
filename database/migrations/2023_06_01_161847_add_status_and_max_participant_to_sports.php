@@ -14,7 +14,7 @@ class AddStatusAndMaxParticipantToSports extends Migration
     public function up()
     {
         Schema::table('sports', function (Blueprint $table) {
-            $table->string('max_participant')->after('sport_name');
+            $table->Integer('max_participant')->after('sport_name');
             $table->enum('status', ['active', 'inactive'])->after('max_participant');
         });
     }

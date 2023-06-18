@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up Form by Colorlib</title>
+    <title>Sign Up</title>
 
     <!-- Font Icon -->
     <link rel="stylesheet" href="{{ asset('assets/template/fonts/material-icon/css/material-design-iconic-font.min.css') }}">
@@ -20,12 +20,18 @@
             <div class="container">
                 <div class="signin-content">
                     <div class="signin-image">
-                        <figure><img src="{{ asset('assets/template/images/signin-image.jpg') }}" alt="sing in image"></figure>
-                        <a href="{{ route('register') }}" class="signin-image-link">Create an account</a>
+                        <figure><img src="{{ asset('assets/template/images/logo_KONI.png') }}" alt="sing in image"></figure>
                     </div>
 
                     <div class="signin-form">
                         <h2 class="form-title">Sign in</h2>
+                        @if (Session::has('error'))
+                            <div class="alert alert-danger alert-dismissible show fade mx-4">
+                                <div class="alert-body">
+                                    <a style="color: red;">{{ Session::get('error') }}</a>
+                                </div>
+                            </div>
+                        @endif
                         <form action="{{ route('post_login') }}" method="POST" class="login-form" id="login-form">
                             @csrf
                             <div class="form-group">
@@ -39,6 +45,9 @@
                             <div class="form-group">
                                 <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
                                 <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                            </div>
+                            <div class="form-group">
+                                <a href="{{ route('register') }}" class="signin-image-link">Create an account</a>
                             </div>
                             <div class="form-group form-button">
                                 <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>

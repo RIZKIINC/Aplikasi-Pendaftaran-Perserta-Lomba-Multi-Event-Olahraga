@@ -21,9 +21,6 @@
                         <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
                         <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                {{-- <a href="{{ URL::to('') }}" class="dropdown-item has-icon text-danger">
-                                    <i class="fas fa-sign-out-alt"></i><b>PROFILE</b>
-                                </a> --}}
                                 <a href="{{ URL::to('logout') }}" class="dropdown-item has-icon text-danger">
                                     <i class="fas fa-sign-out-alt"></i><b>LOG OUT</b>
                                 </a>
@@ -37,9 +34,11 @@
             <div class="main-sidebar">
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
+                        <img src="{{ asset('assets/template/images/logo_KONI.png') }}" alt="" width="35px">
                         <a href="{{ URL::to('home') }}">MULTI EVENT</a>
                     </div>
                     <ul class="sidebar-menu">
+                        <br>
                         <li class="menu-header">M E N U</li>
                         <li><a class="nav-link" href="{{ URL::to('dashboard/admin') }}"><i class="fas fa-home"></i> <span>Dashboard</span></a>
                         </li>
@@ -48,7 +47,8 @@
                                     Master</span></a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ URL::to('adminlist') }}">Admin</a></li>
-                                <li><a class="nav-link" href="{{ URL::to('sport/index') }}">Sport</a></li>
+                                <li><a class="nav-link" href="{{ URL::to('user') }}">Data User</a></li>
+                                <li><a class="nav-link" href="{{ URL::to('sport/index') }}">Cabang Olahraga</a></li>
                                 <li><a class="nav-link" href="{{ URL::to('camatlist') }}">Camat</a></li>
                                 <li><a class="nav-link" href="{{ URL::to('/participantlist') }}">Peserta</a></li>
                             </ul>
@@ -76,7 +76,7 @@
         <footer class="main-footer">
             <div class="footer-left">
                 Copyright &copy; 2023 <div class="bullet"></div>
-                    <a href="">MULTI EVENT</a>
+                    <a href="">LOMBA PEKAN OLAHRAGA KOTA PALEMBANG - MULTI EVENT</a>
             </div>
             <div class="footer-right">
                 Airlangga University

@@ -13,6 +13,7 @@ class Sport extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'sport_name',
+        'max_participant',
         'notes'
     ];
     public $incrementing = true;

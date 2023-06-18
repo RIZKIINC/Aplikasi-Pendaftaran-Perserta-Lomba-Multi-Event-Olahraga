@@ -14,7 +14,7 @@ class ChangeDataTypeTelpKontak extends Migration
     public function up()
     {
         Schema::table('contact_people', function (Blueprint $table) {
-            $table->Integer('telp_kontak')->length(14)->change();
+            $table->string('telp_kontak')->length(14)->change();
         });
     }
 

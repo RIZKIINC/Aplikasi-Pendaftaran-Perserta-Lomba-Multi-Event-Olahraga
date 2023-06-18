@@ -37,7 +37,7 @@
                             <h4>Total Team</h4>
                         </div>
                         <div class="card-body">
-                            {{-- {{ $peserta }} --}}
+                            {{ $team }}
                         </div>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Total Partisipan</h4>
+                            <h4>Total Peserta</h4>
                         </div>
                         <div class="card-body">
                             {{ $peserta }}

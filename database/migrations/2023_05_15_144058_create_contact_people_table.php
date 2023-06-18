@@ -16,10 +16,10 @@ class CreateContactPeopleTable extends Migration
         Schema::create('contact_people', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('id_profile');
-            $table->string('nama_kontak');
-            $table->string('jabatan_kontak');
-            $table->string('telp_kontak');
-            $table->string('email_kontak');
+            $table->string('nama_kontak')->nullable();
+            $table->string('jabatan_kontak')->nullable();
+            $table->string('telp_kontak')->nullable();
+            $table->string('email_kontak')->nullable();
             $table->timestamps();
         });
     }

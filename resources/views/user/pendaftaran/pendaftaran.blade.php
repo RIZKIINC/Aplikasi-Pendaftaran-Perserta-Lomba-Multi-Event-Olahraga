@@ -33,8 +33,9 @@
                             <label for="id_sport" class="col-4 col-form-label">Cabang Olahraga</label>
                             <div class="col-8">
                                 <select name="id_sport" id="id_sport" class="form-control">
+                                    <option value=""> --- Pilih Cabang Olahraga --- </option>
                                     @foreach($sports as $sport)
-                                        <option value="{{ $sport->id }}" {{ old('id_sport', $sport->id) === $sport->id ? 'selected' : '' }}>{{ $sport->sport_name }}</option>
+                                        <option value="{{ $sport->id }}">{{ $sport->sport_name }}</option>
                                     @endforeach
                                 </select>
                             </div>

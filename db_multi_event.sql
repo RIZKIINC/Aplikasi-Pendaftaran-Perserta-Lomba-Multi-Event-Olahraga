@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2023 at 11:43 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Jun 13, 2023 at 06:21 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.0.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,10 +30,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `contact_people` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_profile` bigint(20) NOT NULL,
-  `nama_kontak` varchar(255) DEFAULT NULL,
-  `jabatan_kontak` varchar(255) DEFAULT NULL,
-  `telp_kontak` varchar(255) DEFAULT NULL,
-  `email_kontak` varchar(255) DEFAULT NULL,
+  `nama_kontak` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `jabatan_kontak` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telp_kontak` varchar(14) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_kontak` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -43,7 +43,7 @@ CREATE TABLE `contact_people` (
 --
 
 INSERT INTO `contact_people` (`id`, `id_profile`, `nama_kontak`, `jabatan_kontak`, `telp_kontak`, `email_kontak`, `created_at`, `updated_at`) VALUES
-(1, 1, 'nama kon', 'jab kon', 'nommm', 'email', '2023-05-27 04:29:06', '2023-05-27 04:29:06');
+(1, 1, 'Budak Camat', 'Budak', '08123456789', 'budakcamat@gmail.com', '2023-06-12 09:42:59', '2023-06-12 09:42:59');
 
 -- --------------------------------------------------------
 
@@ -53,11 +53,11 @@ INSERT INTO `contact_people` (`id`, `id_profile`, `nama_kontak`, `jabatan_kontak
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -71,19 +71,19 @@ CREATE TABLE `map_district_sports` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_sub_district` bigint(20) NOT NULL,
   `id_sport` bigint(20) NOT NULL,
+  `group_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('On Process','Verified','Unverified') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `group_name` varchar(255) NOT NULL,
-  `status` enum('On Process','Verified','Unverified') NOT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `map_district_sports`
 --
 
-INSERT INTO `map_district_sports` (`id`, `id_sub_district`, `id_sport`, `created_at`, `updated_at`, `group_name`, `status`) VALUES
-(1, 2, 1, NULL, NULL, 'lalala', 'On Process'),
-(2, 2, 1, NULL, NULL, 'lilili', 'On Process');
+INSERT INTO `map_district_sports` (`id`, `id_sub_district`, `id_sport`, `group_name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 'Bulu Kaki Camat', 'Verified', '2023-06-13 07:42:01', '2023-06-13 07:42:01'),
+(2, 2, 1, 'Bulu kaki indah', 'Unverified', '2023-06-13 08:03:25', '2023-06-13 08:03:25');
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,7 @@ INSERT INTO `map_district_sports` (`id`, `id_sub_district`, `id_sport`, `created
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -102,17 +102,24 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2023_05_15_142911_create_roles_table', 1),
-(6, '2023_05_15_143210_create_sports_table', 1),
-(7, '2023_05_15_143331_create_sub_district_profiles_table', 1),
-(8, '2023_05_15_144058_create_contact_people_table', 1),
-(9, '2023_05_15_144704_create_map_district_sports_table', 1),
-(10, '2023_05_15_144815_create_participants_table', 1),
-(11, '2023_05_27_110846_add_group_name_and_status_to_map_district_sports', 2);
+(16, '2023_06_01_224526_swap_column_group_name_and_status', 4),
+(17, '2023_06_02_003216_re_add_column_group_name_and_status', 4),
+(19, '2014_10_12_000000_create_users_table', 5),
+(20, '2014_10_12_100000_create_password_resets_table', 5),
+(21, '2019_08_19_000000_create_failed_jobs_table', 5),
+(22, '2019_12_14_000001_create_personal_access_tokens_table', 5),
+(23, '2023_05_15_142911_create_roles_table', 5),
+(24, '2023_05_15_143210_create_sports_table', 5),
+(25, '2023_05_15_143331_create_sub_district_profiles_table', 5),
+(26, '2023_05_15_144058_create_contact_people_table', 5),
+(27, '2023_05_15_144704_create_map_district_sports_table', 5),
+(28, '2023_05_15_144815_create_participants_table', 5),
+(29, '2023_05_27_110846_add_group_name_and_status_to_map_district_sports', 5),
+(30, '2023_06_01_161847_add_status_and_max_participant_to_sports', 5),
+(31, '2023_06_01_162407_change_data_type_telp_camat', 5),
+(32, '2023_06_01_223308_change_data_type_telp_kontak', 5),
+(33, '2023_06_01_223428_change_data_type_participant_gender', 5),
+(34, '2023_06_02_003319_re_add_column_participant_gender', 5);
 
 -- --------------------------------------------------------
 
@@ -123,18 +130,16 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE `participants` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_map_district_sport` bigint(20) NOT NULL,
-  `participant_name` varchar(255) NOT NULL,
+  `participant_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `participant_dob` date NOT NULL,
-  `participant_gender` varchar(255) NOT NULL,
-  `participant_address` varchar(255) NOT NULL,
-  `participant_domicile` varchar(255) NOT NULL,
-  `participant_status` varchar(255) NOT NULL,
-  `no_ktp` varchar(255) NOT NULL,
-  `no_kk` varchar(255) NOT NULL,
-  `no_akte` varchar(255) NOT NULL,
-  `no_ijazah` varchar(255) NOT NULL,
-  `no_class` varchar(255) NOT NULL,
-  `pas_foto` text NOT NULL,
+  `participant_gender` enum('Perempuan','Laki-laki') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `participant_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `participant_domicile` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no_ktp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no_kk` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no_akte` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no_ijazah` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pas_foto` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -143,8 +148,10 @@ CREATE TABLE `participants` (
 -- Dumping data for table `participants`
 --
 
-INSERT INTO `participants` (`id`, `id_map_district_sport`, `participant_name`, `participant_dob`, `participant_gender`, `participant_address`, `participant_domicile`, `participant_status`, `no_ktp`, `no_kk`, `no_akte`, `no_ijazah`, `no_class`, `pas_foto`, `created_at`, `updated_at`) VALUES
-(1, 1, 'nama partisipan', '2023-06-01', 'laki-laki', 'alamat partisipan', 'sidoarjo', 'gaada', '1234567890', '23456789322', '234576879762', '234567890782', '23456789083', '', NULL, NULL);
+INSERT INTO `participants` (`id`, `id_map_district_sport`, `participant_name`, `participant_dob`, `participant_gender`, `participant_address`, `participant_domicile`, `no_ktp`, `no_kk`, `no_akte`, `no_ijazah`, `pas_foto`, `created_at`, `updated_at`) VALUES
+(1, 1, 'peserta 1', '2023-06-13', 'Laki-laki', 'alamat ktp', 'domisili', '12345', 'no kk', 'no akte', 'no ijazah', '130623144250-1-watermark_shino-removebg-preview.png', '2023-06-13 07:42:50', '2023-06-13 07:42:50'),
+(2, 2, 'bulu indah', '2023-06-13', 'Laki-laki', 'alamat ktp', 'alamat dom', '352353', '65754444443', '65375', '573385', '130623150444-2-WIN_20230223_15_11_39_Pro.jpg', '2023-06-13 08:04:44', '2023-06-13 08:04:44'),
+(4, 2, 'oleo', '2023-06-13', 'Perempuan', 'ktp alamat', 'domisiloy', 'rhshfj', 'dfjdjdkkg', '8594382', '4597537374724', '130623150501-2-logo uoi.png', '2023-06-13 08:05:01', '2023-06-13 08:05:01');
 
 -- --------------------------------------------------------
 
@@ -153,8 +160,8 @@ INSERT INTO `participants` (`id`, `id_map_district_sport`, `participant_name`, `
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -166,11 +173,11 @@ CREATE TABLE `password_resets` (
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -184,7 +191,7 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `role_name` varchar(255) NOT NULL,
+  `role_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -206,8 +213,10 @@ INSERT INTO `roles` (`id`, `role_name`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `sports` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `sport_name` varchar(255) NOT NULL,
-  `notes` varchar(255) NOT NULL,
+  `sport_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `max_participant` int(11) NOT NULL,
+  `status` enum('active','inactive') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -216,8 +225,8 @@ CREATE TABLE `sports` (
 -- Dumping data for table `sports`
 --
 
-INSERT INTO `sports` (`id`, `sport_name`, `notes`, `created_at`, `updated_at`) VALUES
-(1, 'Sepak Bola', '<p>lalalala</p>', '2023-05-31 21:25:33', '2023-05-31 21:25:33');
+INSERT INTO `sports` (`id`, `sport_name`, `max_participant`, `status`, `notes`, `created_at`, `updated_at`) VALUES
+(1, 'Bulu Kaki pulu', 4, 'active', '<p>Bulu kaki pulu pulu pulu</p>', '2023-06-12 09:28:32', '2023-06-12 09:36:40');
 
 -- --------------------------------------------------------
 
@@ -229,12 +238,12 @@ CREATE TABLE `sub_district_profiles` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_user` bigint(20) NOT NULL,
   `id_kecamatan` bigint(20) NOT NULL,
-  `kode_kecamatan` varchar(255) NOT NULL,
-  `nama_camat` varchar(255) DEFAULT NULL,
-  `telp_camat` varchar(255) DEFAULT NULL,
-  `alamat` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `kodepos` varchar(255) DEFAULT NULL,
+  `kode_kecamatan` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_camat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telp_camat` varchar(14) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `alamat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `kodepos` varchar(5) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -244,7 +253,7 @@ CREATE TABLE `sub_district_profiles` (
 --
 
 INSERT INTO `sub_district_profiles` (`id`, `id_user`, `id_kecamatan`, `kode_kecamatan`, `nama_camat`, `telp_camat`, `alamat`, `email`, `kodepos`, `created_at`, `updated_at`) VALUES
-(1, 1, 4, '44444', 'nama camat', 'telp', 'ini alamat', 'ziyu@gmail.com', '12345678', '2023-05-27 04:28:39', '2023-05-27 04:28:39');
+(1, 2, 2, '010101', 'Bapak Camat Ganteng', '081555420844', 'SAWAHAN BARU 2/54-A', 'pakcamat@gmail.com', '60252', '2023-06-12 09:42:21', '2023-06-12 09:42:21');
 
 -- --------------------------------------------------------
 
@@ -258,7 +267,7 @@ CREATE TABLE `tbl_kabkot` (
   `nama_kota` varchar(50) NOT NULL,
   `ibukota` varchar(50) NOT NULL,
   `k_bsni` char(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_kabkot`
@@ -790,7 +799,7 @@ CREATE TABLE `tbl_kecamatan` (
   `id_kecamatan` int(11) NOT NULL,
   `id_kota` int(11) NOT NULL,
   `nama_kecamatan` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_kecamatan`
@@ -7909,7 +7918,7 @@ CREATE TABLE `tbl_kelurahan` (
   `id_kecamatan` int(11) NOT NULL,
   `nama_kelurahan` varchar(50) NOT NULL,
   `kodepos` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_kelurahan`
@@ -90489,7 +90498,7 @@ CREATE TABLE `tbl_provinsi` (
   `nama_provinsi` varchar(50) NOT NULL,
   `ibukota` varchar(50) NOT NULL,
   `p_bsni` char(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_provinsi`
@@ -90540,11 +90549,11 @@ INSERT INTO `tbl_provinsi` (`id_provinsi`, `nama_provinsi`, `ibukota`, `p_bsni`)
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `id_role` bigint(20) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -90554,8 +90563,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `id_role`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 3, 'ziyu', 'ziyu@gmail.com', NULL, '$2y$10$03yZ3Pc7Gi3oyU9GUB3JOe8Pa35zQq9CsGuXfWJQESY25.cVs8d.G', NULL, '2023-05-27 04:25:38', '2023-05-27 04:25:38'),
-(2, 2, 'Ketupel', 'ketupel@gmail.com', NULL, 'lalalala', NULL, NULL, NULL);
+(1, 1, 'admin', 'admin@gmail.com', NULL, '$2y$10$/VOtLS.DdQeDWjReSJOF3Olyb3E4iUV.b4pZbihAQYCNKdZA01Yzu', NULL, NULL, NULL),
+(2, 3, 'Camat', 'pakcamat@gmail.com', NULL, '$2y$10$/VOtLS.DdQeDWjReSJOF3Olyb3E4iUV.b4pZbihAQYCNKdZA01Yzu', NULL, '2023-06-12 09:41:26', '2023-06-12 09:41:26'),
+(4, 2, 'Ketua Pelaksana', 'ketupel@gmail.com', NULL, '$2y$10$.Y3eak6wsVj5E.e9loM43.bwM.ILm5oXSoGgFtuGpFq/baw1auNkG', NULL, '2023-06-13 07:40:41', '2023-06-13 07:40:41');
 
 --
 -- Indexes for dumped tables
@@ -90684,13 +90694,13 @@ ALTER TABLE `map_district_sports`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `participants`
 --
 ALTER TABLE `participants`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -90720,7 +90730,7 @@ ALTER TABLE `sub_district_profiles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

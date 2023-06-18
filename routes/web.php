@@ -9,6 +9,7 @@ use App\Http\Controllers\MapDistrictSportController;
 use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\ContactPeopleController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KetupelController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\VerifikasiPendaftaranController;
 
@@ -75,6 +76,14 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::post('/sport/update/{sport}', [SportController::class, 'update']);
     Route::get('/sport/delete/{sport}', [SportController::class, 'destroy']);
 
+    // CRUD USER
+    Route::get('/user', [UsersController::class, 'indexUser']);
+    Route::get('/user/create', [UsersController::class, 'indexCreateuser']);
+    Route::post('/user/store', [UsersController::class, 'CreateUser']);
+    Route::get('/user/edit/{user}', [UsersController::class, 'editUser']);
+    Route::post('/user/update/{user}', [UsersController::class, 'updateUser']);
+    Route::get('/user/delete/{user}', [UsersController::class, 'destroy']);
+
     //verifikasipendaftaran
     Route::get('/verifkasi-pendaftaran/index', [VerifikasiPendaftaranController::class, 'index']);
     Route::get('/detail-pendaftaran/{id}', [VerifikasiPendaftaranController::class, 'indexDetail']);
@@ -84,7 +93,7 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
 
 Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
     Route::get('/dashboard/camat', [DashboardController::class, 'camatCount']);
-    
+
     Route::get('/subprofil/editsubprofil/{id}', [SubDistrictProfileController::class, 'indexupdateSubProfile'])->name('subprofil');
 
     Route::get('/camat', function () {
@@ -111,4 +120,11 @@ Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttt
     Route::get('/participant/edit/{id}', [ParticipantController::class, 'edit']);
     Route::post('/participant/update/{id}', [ParticipantController::class, 'update']);
     Route::get('/participant/delete/{id}', [ParticipantController::class, 'destroy']);
+});
+
+Route::middleware(['auth', 'CheckRole:2'])->group(function () {
+    Route::get('/dashboard/ketupel', [KetupelController::class, 'index']);
+    Route::get('/ketupel/detail/{id}', [KetupelController::class, 'show']);
+    Route::get('/detail/cetak_pdf/{id}', [KetupelController::class, 'print'])->name('print.pdf');
+    Route::get('/cetak_pdf/{id}', [KetupelController::class, 'print_detail'])->name('cetak');
 });

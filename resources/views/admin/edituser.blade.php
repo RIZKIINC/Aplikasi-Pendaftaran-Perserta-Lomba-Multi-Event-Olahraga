@@ -8,11 +8,11 @@
 
 @section('content')
     <div class="section-header">
-        <h1>Edit Data Cabang Olahraga</h1>
+        <h1>Edit Data User</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item"><a href="{{ URL::to('admin') }}">Dashboard</a></div>
-            <div class="breadcrumb-item active"><a href="{{ URL::to('sport/index') }}">Daftar</a></div>
-            <div class="breadcrumb-item active"><a href="{{ URL::to('sport/create') }}">Tambah</a></div>
+            <div class="breadcrumb-item active"><a href="{{ URL::to('user') }}">Daftar</a></div>
+            <div class="breadcrumb-item active"><a href="{{ URL::to('user/create') }}">Tambah</a></div>
         </div>
     </div>
     <div class="section-body">
@@ -22,21 +22,27 @@
                     <h4>Informasi Data</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ URL::to('sport/update/' . $sport->id) }}" method="POST">
+                    <form action="{{ URL::to('user/update/' . $user->id) }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label>Nama Cabang Olahraga</label><span style="color: red">*</span>
-                            <input type="text" class="form-control" name="sport_name" value="{{ $sport->sport_name }}"
+                            <label>Nama</label><span style="color: red">*</span>
+                            <input type="text" class="form-control" name="name" value="{{ $user->name }}"
                                 required>
                         </div>
                         <div class="form-group">
-                            <label>Jumlah Partisipan</label><span style="color: red">*</span>
-                            <input type="number" class="form-control" name="max_participant" value="{{ $sport->max_participant }}"
+                            <label>Email</label><span style="color: red">*</span>
+                            <input type="text" class="form-control" name="email" value="{{ $user->email }}"
                                 required>
                         </div>
                         <div class="form-group">
-                            <label>Keterangan</label>
-                            <textarea class="summernote-simple" name="notes">{{ $sport->notes }}</textarea>
+                            <label>Role</label>
+                            <div>
+                                <select name="id_role" id="id_role" class="form-control">
+                                    @foreach($role as $roles)
+                                        <option value="{{ $roles->id }}" class="form-control" @if ($user->id_role === $roles->id) selected @endif>{{ $roles->role_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <a href="{{ URL::to('sport/index') }}" class="btn btn-secondary">Batal</a>
                         <button class="btn btn-success">Simpan</button>

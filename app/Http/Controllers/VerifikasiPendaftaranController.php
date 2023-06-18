@@ -34,7 +34,6 @@ class VerifikasiPendaftaranController extends Controller
         ->leftjoin('map_district_sports','participants.id_map_district_sport','=','map_district_sports.id')
         ->where('participants.id_map_district_sport', $id)
         ->get();
-        // dd($participants);
         return view('admin.detailpendaftaran', compact('mds', 'participants','sports'));
     }
 

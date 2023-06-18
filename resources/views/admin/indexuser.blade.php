@@ -1,5 +1,5 @@
 @extends('layout.layout_admin')
-@section('title', 'Admin | Sport')
+@section('title', 'Admin | User Data')
 
 @section('custom_css')
     <!-- CSS Libraries -->
@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="section-header">
-        <h1>Cabang Olahraga</h1>
+        <h1>Data User</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item"><a href="{{ URL::to('admin') }}">Dashboard</a></div>
             <div class="breadcrumb-item active"><a href="{{ URL::to('sport/index') }}">Index</a></div>
@@ -20,7 +20,7 @@
         <div class="col-12 col-md-12 col-lg-12 px-0">
             <div class="card">
                 <div class="card-header pb-0">
-                    <h4>Daftar Cabang Olahraga</h4>
+                    <h4>Daftar user</h4>
                 </div>
                 @if (Session::has('success'))
                     <div class="alert alert-success alert-dismissible show fade mx-4">
@@ -45,8 +45,8 @@
                 <div class="card-body pt-0">
                     <div class="row p-3">
                         {{-- ini fontawesomenya masih ngebug --}}
-                        <a href="{{ URL::to('sport/create') }}" class="btn btn-primary"><i
-                                class="fa-solid fa-plus"></i>Tambah Data</a>
+                        <a href="{{ URL::to('user/create') }}" class="btn btn-primary"><i
+                                class="""></i>Tambah User</a>
                     </div>
                     <div class="row p-3">
                         <div class="table-responsive">
@@ -54,28 +54,30 @@
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
-                                        <th class="text-center">Nama Cabang Olahraga</th>
-                                        <th class="text-center">Jumlah Partisipan</th>
-                                        <th class="text-center">Keterangan</th>
+                                        <th class="text-center">Nama</th>
+                                        <th class="text-center">Email</th>
+                                        <th class="text-center">Role</th>
                                         <th class="text-center">Tanggal Dibuat</th>
                                         <th class="text-center">Terakhir Diperbarui</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($sport as $item)
+                                    @foreach ($user as $item)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td>{{ $item->sport_name }}</td>
-                                            <td>{{ $item->max_participant }}</td>
-                                            <td>{!! $item->notes !!}</td>
-                                            <td class="text-center">{{ $item->created_at }}</td>
-                                            <td class="text-center">{{ $item->updated_at }}</td>
-                                            <td class="text-center"><a href="{{ URL::to('sport/edit/' . $item->id) }}"
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->email }}</td>
+                                            <td>{{ $item->role_name }}</td>
+                                            <td class="text-center">{{ $item->user_created_at }}</td>
+                                            <td class="text-center">{{ $item->user_updated_at }}</td>
+                                            @if($item->role_name == 'Admin' || $item->role_name == 'Ketua Pelaksana')
+                                            <td class="text-center"><a href="{{ URL::to('user/edit/' . $item->id_user) }}"
                                                     class="btn btn-warning">Edit</a><a
-                                                    href="{{ URL::to('sport/delete/' . $item->id) }}"
+                                                    href="{{ URL::to('user/delete/' . $item->id_user) }}"
                                                     class="btn btn-danger">Hapus</a>
                                             </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                 </tbody>

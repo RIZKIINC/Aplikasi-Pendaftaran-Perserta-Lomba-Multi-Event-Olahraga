@@ -14,8 +14,8 @@ class AddGroupNameAndStatusToMapDistrictSports extends Migration
     public function up()
     {
         Schema::table('map_district_sports', function (Blueprint $table) {
-            $table->string('group_name');
-            $table->enum('status', ['On Process', 'Verified', 'Unverified']);
+            $table->string('group_name')->after('id_sport');
+            $table->enum('status', ['On Process', 'Verified', 'Unverified'])->after('group_name');
         });
     }
 

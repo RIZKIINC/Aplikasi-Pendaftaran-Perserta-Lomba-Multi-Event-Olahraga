@@ -4,8 +4,8 @@
 @section('custom_css')
     <!-- CSS Libraries -->
     <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}">
+    {{-- <link rel="stylesheet" --}}
+        {{-- href="{{ asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}"> --}}
 @endsection
 
 @section('content')
@@ -46,7 +46,7 @@
                     <div class="row p-3">
                         {{-- ini fontawesomenya masih ngebug --}}
                         <a href="{{ URL::to('mapdistrictsport/create') }}" class="btn btn-primary"><i
-                                class="fa-solid fa-plus"></i>Tambah Data</a>
+                                class="fa fa-plus"></i> Tambah Pendaftaran</a>
                     </div>
                     <div class="row p-3">
                         <div class="table-responsive">
@@ -65,15 +65,17 @@
                                     @foreach ($mds as $item)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td>{{ $item->sport_name }}</td>
-                                            <td>{!! $item->group_name !!}</td>
+                                            <td class="text-center">{{ $item->sport_name }}</td>
+                                            <td class="text-center">{!! $item->group_name !!}</td>
                                             <td class="text-center">{{ $item->created_at }}</td>
                                             <td class="text-center">{{ $item->updated_at }}</td>
                                             <td class="text-center"><a
+                                                    href="{{ URL::to('mapdistrictsport/show/' . $item->id_map_district_sports) }}"
+                                                    class="btn btn-primary m-1"><i class="fas fa-eye"></i></a><a
                                                     href="{{ URL::to('mapdistrictsport/edit/' . $item->id_map_district_sports) }}"
-                                                    class="btn btn-warning">Edit</a><a
-                                                    href="{{ URL::to('mapdistrictsport/delete/' . $item->id_map_district_sports) }}"
-                                                    class="btn btn-danger">Hapus</a>
+                                                    class="btn btn-warning m-1"><i class="fas fa-edit"></i></a><button
+                                                    data-toggle="modal" data-target="#ModalConfirmation-{{$mds[0]->id_map_district_sport}}"
+                                                    class="btn btn-danger m-1"><i class="fas fa-trash"></i></button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -87,6 +89,29 @@
     </div>
 @endsection
 
+@foreach ($mds as $item)
+<!-- Modal -->
+<div class="modal fade" id="ModalConfirmation-{{$item->id_map_district_sport}}" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus Pendaftaran</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Apakah anda yakin akan menghapus data pendaftaran?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <a href="{{ URL::to('mapdistrictsport/delete/' . $item->id_map_district_sports) }}" class="btn btn-danger">Hapus</a>
+            </div>
+        </div>
+    </div>
+  </div>
+  @endforeach
+
 @section('custom_script')
     <!-- JS Libraies -->
     <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
@@ -94,4 +119,5 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
+    <script src="{{ asset('assets/js/page/bootstrap-modal.js') }}"></script>
 @endsection

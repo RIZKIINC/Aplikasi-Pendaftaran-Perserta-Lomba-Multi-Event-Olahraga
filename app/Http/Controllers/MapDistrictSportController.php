@@ -9,6 +9,7 @@ use App\Models\SubDistrictProfile;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 class MapDistrictSportController extends Controller
@@ -20,8 +21,12 @@ class MapDistrictSportController extends Controller
      */
     public function index()
     {
+        $user = SubDistrictProfile::where('id_user', auth()->user()->id)->first();
+
         $mds = MapDistrictSport::select('*','map_district_sports.id as id_map_district_sports')
         ->join('sports','sports.id','=','map_district_sports.id_sport')
+        ->join('tbl_kecamatan','tbl_kecamatan.id_kecamatan','=','map_district_sports.id_sub_district')
+        ->where('id_sub_district', $user->id_kecamatan)
         ->get();
 
         return view('user.pendaftaran.pendaftarandata', compact('mds'));
@@ -49,6 +54,7 @@ class MapDistrictSportController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         //cari kecamatan
         $findSubDistrict = SubDistrictProfile::select('id_kecamatan')->where('id_user', '=', Auth::user()->id)->get();
         $id_sub_district = $findSubDistrict[0]->id_kecamatan;
@@ -82,9 +88,18 @@ class MapDistrictSportController extends Controller
      * @param  \App\Models\MapDistrictSport  $mapDistrictSport
      * @return \Illuminate\Http\Response
      */
-    public function show(MapDistrictSport $mapDistrictSport)
+    public function show($id)
     {
-        //
+        $sports = Sport::all();
+        $mds = MapDistrictSport::select('*', 'map_district_sports.id as id_map_district_sport', 'map_district_sports.status as status_map_district')
+        ->leftjoin('sports','sports.id','=','map_district_sports.id_sport')
+        ->leftjoin('tbl_kecamatan','tbl_kecamatan.id_kecamatan','=','map_district_sports.id_sub_district')
+        ->where('map_district_sports.id', $id)
+        ->get();
+        $participants = Participant::where('id_map_district_sport', $id)
+        ->get();
+
+        return view('user.pendaftaran.pendaftarandetail', compact('sports','mds', 'participants'));
     }
 
     /**
@@ -103,7 +118,6 @@ class MapDistrictSportController extends Controller
         ->get();
         $participants = Participant::where('id_map_district_sport', $id)
         ->get();
-        // dd(count($participants));
 
         return view('user.pendaftaran.pendaftaranedit', compact('sports','mds', 'participants'));
     }
@@ -126,8 +140,24 @@ class MapDistrictSportController extends Controller
      * @param  \App\Models\MapDistrictSport  $mapDistrictSport
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MapDistrictSport $mapDistrictSport)
+    public function destroy($id)
     {
-        //
+        $participants = Participant::where('id_map_district_sport', $id)
+        ->get();
+        
+        foreach ($participants as $participant)
+        {
+            // dd($participant);
+            if(Storage::exists('public/Pas_Foto'.'/'.$participant->pas_foto)){
+                Storage::delete('public/Pas_Foto'.'/'.$participant->pas_foto);
+            }
+            $participants = Participant::find($participant->id);
+            $participants->delete();
+        }
+
+        $mds = MapDistrictSport::find($id);
+        $mds->delete();
+
+        return redirect('/mapdistrictsport/index')->with('success', 'Pendaftaran berhasil dihapus.');
     }
 }

@@ -17,12 +17,12 @@ class CreateSubDistrictProfilesTable extends Migration
             $table->id();
             $table->bigInteger('id_user');
             $table->bigInteger('id_kecamatan');
-            $table->string('kode_kecamatan');
-            $table->string('nama_camat');
-            $table->string('telp_camat');
-            $table->string('alamat');
-            $table->string('email');
-            $table->string('kodepos');
+            $table->string('kode_kecamatan')->length(25);
+            $table->string('nama_camat')->nullable();
+            $table->string('telp_camat')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('email')->nullable();
+            $table->string('kodepos')->length(5)->nullable();
             $table->timestamps();
         });
     }

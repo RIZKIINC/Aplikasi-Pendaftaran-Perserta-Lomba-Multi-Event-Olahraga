@@ -14,7 +14,7 @@ class ChangeDataTypeTelpCamat extends Migration
     public function up()
     {
         Schema::table('sub_district_profiles', function (Blueprint $table) {
-            $table->Integer('telp_camat')->length(14)->change();
+            $table->string('telp_camat')->length(14)->change();
         });
     }
 

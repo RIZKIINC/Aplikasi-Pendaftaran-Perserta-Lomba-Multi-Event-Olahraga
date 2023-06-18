@@ -1,30 +1,27 @@
-@extends('layout.layout_admin')
+@extends('layout.layout_camat')
 @section('title', 'Camat | Pendaftaran')
 
 @section('custom_css')
     <!-- CSS Libraries -->
-    <style>
-        ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-            color: white;
-            opacity: 1; /* Firefox */
-        }
-    </style>
-
+    <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }}">
+    {{-- <link rel="stylesheet" --}}
+        {{-- href="{{ asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}"> --}}
 @endsection
+
 @section('content')
     <div class="section-header">
-        <h1>Verifikasi Pendaftaran</h1>
+        <h1>Detail Pendaftaran</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item"><a href="{{ URL::to('camat') }}">Dashboard</a></div>
             <div class="breadcrumb-item"><a href="{{ URL::to('mapdistrictsport/index') }}">Pendaftaran</a></div>
-            <div class="breadcrumb-item active"><a href="{{ URL::to('mapdistrictsport/create') }}">Grup</a></div>
+            <div class="breadcrumb-item active"><a href="{{ URL::to('mapdistrictsport/show/'. $mds[0]->id_map_district_sport) }}">Detail</a></div>
         </div>
     </div>
     <div class="section-body">
         <div class="col-12 col-sm-12 col-lg-12 px-0">
             <div class="card">
                 <div class="card-header">
-                    <h4>Grup : {{ $mds[0]->group_name }}</h4>
+                    <h4>Detail Grup</h4>
                     <div class="card-header-action">
                         <a data-collapse="#mycard-collapse-{{ $mds[0]->id_map_district_sport }}"
                             class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
@@ -32,22 +29,23 @@
                 </div>
                 <div class="collapse show" id="mycard-collapse-{{ $mds[0]->id_map_district_sport }}">
                     <div class="card-body">
-                        
+                        <form action="{{ URL::to('mapdistrictsport/update/' . $mds[0]->id_map_district_sport) }}"
+                            method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
                                 <label for="id_sub_district" class="col-sm-3 col-form-label">Kecamatan</label>
                                 <div class="col-9">
-                                    <input id="id_sub_district" name="id_sub_district" placeholder="Nama Group"
-                                        class="form-control" value="{{ $mds[0]->nama_kecamatan }}" required="required"
-                                        type="text" disabled>
+                                    <input id="id_sub_district" name="id_sub_district" class="form-control"
+                                        value="{{ $mds[0]->nama_kecamatan }}" type="text" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="id_sport" class="col-sm-3 col-form-label">Cabang Olahraga</label>
                                 <div class="col-9">
-                                    <input id="id_sub_district" name="id_sub_district" placeholder="Nama Group"
-                                        class="form-control" value="{{ $mds[0]->id_sport }}" required="required"
-                                        type="text" disabled>
+                                    @if($mds[0]->map_district_status === 'Verified' || 'Unverified')
+                                        <input id="id_sport" name="id_sport" class="form-control"
+                                            value="{{ $mds[0]->sport_name }}" type="text" disabled>
+                                    @endif
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -61,49 +59,29 @@
                             <div class="form-group row">
                                 <label for="group_name" class="col-sm-3 col-form-label">Status</label>
                                 <div class="col-9">
-                                    <input id="status" name="status" placeholder="Nama Group"
-                                        class="form-control here" value="{{ $mds[0]->status_map_district_sport }}" required="required"
-                                        type="text" disabled>
+                                    @switch($mds[0]->status_map_district)
+                                        @case($mds[0]->status_map_district === 'On Process')
+                                            <span class="badge badge-warning">Sedang Diproses</span>
+                                        @break
+                                        @case($mds[0]->status_map_district === 'Verified')
+                                            <span class="badge badge-success">Lolos</span>
+                                        @break
+                                        @case($mds[0]->status_map_district === 'Unverified')
+                                            <span class="badge badge-danger">Tidak Lolos</span>
+                                        @break
+                                    @endswitch
                                 </div>
                             </div>
-                            @switch($mds[0]->status_map_district_sport)
-                                @case($mds[0]->status_map_district_sport === 'On Process')
-                                <form action="{{ URL::to('verif/' . $mds[0]->id_map_district_sport) }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                <div class="form-group row col-auto float-right">
-                                    <button class="btn btn-success" type="submit"><input class="btn btn-success" value="Verified" id="statusverif" name="status" hidden>Verifikasi Pendaftaran</button>
-                                </div>
-                                </form>
-                                <form action="{{ URL::to('verif/' . $mds[0]->id_map_district_sport) }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                <div class="form-group row col-auto float-right">
-                                    <button class="btn btn-danger" type="submit"><input class="btn btn-danger" value="Unverified" id="statusunverif"name="status" hidden>Tolak Pendaftaran</button>
-                                </div>
-                                </form>
-                                @break
-                                @case($mds[0]->status_map_district_sport === 'Verified')
-                                <div class="form-group row col-auto float-right">
-                                    <input class="btn btn-success" name="status" type="text" style="color:#fffff" placeholder="Pendaftaran Terverifikasi" disabled>
-                                </div>
-                                @break
-                                @case($mds[0]->status_map_district_sport === 'Unverified')
-                                <div class="form-group row col-auto float-right">
-                                    <input class="btn btn-danger" name="status" type="text" style="color:#fffff" placeholder="Pendaftaran Tertolak" disabled>
-                                </div>
-                                @break
-                            @endswitch
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="col-12 col-sm-12 col-lg-12 px-0">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>PESERTA GROUP</h4>
-                    </div>
-                </div>
-        </div>
+        @if (count($participants) < $mds[0]->max_participant)
+            <div class="col-auto text-left mb-1">
+                <span>Jumlah Peserta : {{ count($participants) }}/{{ $mds[0]->max_participant }} </span>
+            </div>
+        @endif
         @php
             $index = 0;
         @endphp
@@ -119,9 +97,7 @@
                     </div>
                     <div class="collapse hide" id="mycard-collapse-{{ $participant->no_ktp }}">
                         <div class="card-body">
-                            <form action=# method="POST"
-                                enctype="multipart/form-data">
-                                @csrf
+                            <form>
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
                                         <div class="form-group col-md-8">
@@ -174,7 +150,7 @@
                                         <input id="participant_domicile" name="participant_domicile"
                                             placeholder="Nama Group" class="form-control"
                                             value="{{ $participant->participant_domicile }}" required="required"
-                                            type="text" disabled> 
+                                            type="text" disabled>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -205,10 +181,6 @@
                                             required="required" type="text" disabled>
                                     </div>
                                 </div>
-                                {{-- <div class="form-group row col-auto float-right">
-                                    <button class="btn btn-success" type="submit"><i class="fa fa-plus-square"> Simpan
-                                            Perubahan </i></button>
-                                </div> --}}
                             </form>
                         </div>
                     </div>
@@ -219,4 +191,14 @@
             @endphp
         @endforeach
     </div>
+@endsection
+
+@section('custom_script')
+    <!-- JS Libraies -->
+    <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="{{ asset('assets/js/page/modules-datatables.js') }}"></script>
+    <script src="{{ asset('assets/js/page/bootstrap-modal.js') }}"></script>
 @endsection

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Participant;
 use App\Models\Sport;
+use App\Models\Participant;
+use App\Models\MapDistrictSport;
+use App\Models\SubDistrictProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,10 +37,17 @@ class DashboardController extends Controller
         // dd(Auth::user()->id_role);
         $admin = count(User::where('id_role', '=', '1')->get());
         $camat = count(User::where('id_role', '=', '3')->get());
+        $user = SubDistrictProfile::where('id_user', auth()->user()->id)->first();
         $peserta = count(Participant::all());
+
+        $team = MapDistrictSport::select('*','map_district_sports.id as id_map_district_sports')
+        ->join('sports','sports.id','=','map_district_sports.id_sport')
+        ->join('tbl_kecamatan','tbl_kecamatan.id_kecamatan','=','map_district_sports.id_sub_district')
+        ->where('id_sub_district', $user->id_kecamatan)
+        ->count();
         $sport = count(Sport::all());
 
-        return view('dashboard.camat', compact('admin', 'camat', 'peserta', 'sport'));
+        return view('dashboard.camat', compact('admin', 'camat', 'peserta', 'sport', 'team'));
     }
 
 }
