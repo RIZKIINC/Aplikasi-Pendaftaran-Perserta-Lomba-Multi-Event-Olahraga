@@ -113,7 +113,7 @@ class MapDistrictSportController extends Controller
     public function edit($id)
     {
         $sports = Sport::all();
-        $mds = MapDistrictSport::select('*', 'map_district_sports.id as id_map_district_sport', 'map_district_sports.status as status_map_district')
+        $mds = MapDistrictSport::select('*', 'map_district_sports.id as id_map_district_sport', 'map_district_sports.status as status_map_district','map_district_sports.keterangan as ket_map_district')
         ->leftjoin('sports','sports.id','=','map_district_sports.id_sport')
         ->leftjoin('tbl_kecamatan','tbl_kecamatan.id_kecamatan','=','map_district_sports.id_sub_district')
         ->where('map_district_sports.id', $id)

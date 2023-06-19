@@ -116,20 +116,20 @@
                                     <!-- <button class="btn btn-danger" type="submit"><input class="btn btn-danger" value="Unverified" id="statusunverif" name="status" hidden>Tolak Pendaftaran</button> -->
 
                                     <button class="btn btn-danger" type="button" onclick="openModal()">Tolak Pendaftaran</button>
-
+                                    
+                                    <form action="{{ URL::to('verif/' . $mds[0]->ket_map_district) }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                     <div id="myModal" class="modal" >
                                         <!-- Konten modal -->
                                         <div class="modal-content">
-                                        <span onclick="closeModal()" style="float: right; cursor: pointer;">&times;</span>
                                         <h1>Konfirmasi Penolakan</h1>
                                         <p>Alasan Penolakan:</p>
-                                        
-                                            <textarea id="keterangan" name="keterangan" id="rejectReason" rows="4" cols="50"></textarea>
+                                            <textarea id="keterangan rejectReason" name="keterangan" value="" rows="6" cols="50"></textarea>
                                             <br>
-                                            <button class="btn btn-danger" type="submit" onclick="rejectRegistration()" value="Unverified" id="statusunverif" name="status">Ya, Tolak</button>
+                                            <input class="btn btn-danger" value="Unverified" id="statusunverif" name="status" hidden>
+                                            <button class="btn btn-danger" type="submit" onclick="rejectRegistration()">Ya, Tolak</button>
                                             <button class="btn btn-secondary" type="button" onclick="closeModal()">Batal</button>
                                             </div>
-
                                         </div>
 
                                     <script>
@@ -152,6 +152,7 @@
                                     </script>
 
                                 </div>
+
                                 </form>
                                 @break
                                 @case($mds[0]->status_map_district_sport === 'Verified')
