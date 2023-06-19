@@ -10,6 +10,31 @@
         }
     </style>
 
+    <style>
+        /* Gaya untuk modal */
+        .modal {
+        display: none; /* Menyembunyikan modal secara default */
+        position: fixed; /* Memastikan modal tampil di atas konten lain */
+        z-index: 1; /* Memberikan indeks tumpukan tinggi pada modal */
+        padding-left: 250px;
+        left: 0;
+        top: 0;
+        width: 100%; /* Menetapkan lebar modal */
+        height: 100%; /* Menetapkan tinggi modal */
+        overflow: auto; /* Memberikan scrolling jika konten terlalu panjang */
+        background-color: rgba(0, 0, 0, 0.4); /* Warna latar belakang dengan transparansi */
+        }
+
+        /* Gaya untuk konten modal */
+        .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto; /* Memberikan jarak dari tepi layar */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Menetapkan lebar konten modal */
+        }
+    </style>
+
 @endsection
 @section('content')
     <div class="section-header">
@@ -67,6 +92,17 @@
                                 </div>
                             </div>
                             @switch($mds[0]->status_map_district_sport)
+                            @case($mds[0]->status_map_district_sport === 'Unverified')
+                            <div class="form-group row">
+                                <label for="group_name" class="col-sm-3 col-form-label">Alasan Penolakan</label>
+                                <div class="col-9">
+                                <textarea class="form-control" type="text" name="nama" id="nama" placeholder="{{ $mds[0]->keterangan }}" style="height: 200px; resize: none;" disabled></textarea>
+                                </div>
+                            </div>
+                            @break
+                            @endswitch
+
+                            @switch($mds[0]->status_map_district_sport)
                                 @case($mds[0]->status_map_district_sport === 'On Process')
                                 <form action="{{ URL::to('verif/' . $mds[0]->id_map_district_sport) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
@@ -77,7 +113,44 @@
                                 <form action="{{ URL::to('verif/' . $mds[0]->id_map_district_sport) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                 <div class="form-group row col-auto float-right">
-                                    <button class="btn btn-danger" type="submit"><input class="btn btn-danger" value="Unverified" id="statusunverif"name="status" hidden>Tolak Pendaftaran</button>
+                                    <!-- <button class="btn btn-danger" type="submit"><input class="btn btn-danger" value="Unverified" id="statusunverif" name="status" hidden>Tolak Pendaftaran</button> -->
+
+                                    <button class="btn btn-danger" type="button" onclick="openModal()">Tolak Pendaftaran</button>
+
+                                    <div id="myModal" class="modal" >
+                                        <!-- Konten modal -->
+                                        <div class="modal-content">
+                                        <span onclick="closeModal()" style="float: right; cursor: pointer;">&times;</span>
+                                        <h1>Konfirmasi Penolakan</h1>
+                                        <p>Alasan Penolakan:</p>
+                                        
+                                            <textarea id="keterangan" name="keterangan" id="rejectReason" rows="4" cols="50"></textarea>
+                                            <br>
+                                            <button class="btn btn-danger" type="submit" onclick="rejectRegistration()" value="Unverified" id="statusunverif" name="status">Ya, Tolak</button>
+                                            <button class="btn btn-secondary" type="button" onclick="closeModal()">Batal</button>
+                                            </div>
+
+                                        </div>
+
+                                    <script>
+                                        // Fungsi untuk membuka modal
+                                        function openModal() {
+                                        document.getElementById("myModal").style.display = "block";
+                                        }
+
+                                        // Fungsi untuk menutup modal
+                                        function closeModal() {
+                                        document.getElementById("myModal").style.display = "none";
+                                        }
+
+                                        // Fungsi untuk menolak pendaftaran
+                                        function rejectRegistration() {
+                                        // var rejectReason = document.getElementById("rejectReason").value;
+                                        closeModal();
+                                        // Tambahkan logika atau panggil fungsi yang sesuai untuk menolak pendaftaran
+                                        }
+                                    </script>
+
                                 </div>
                                 </form>
                                 @break

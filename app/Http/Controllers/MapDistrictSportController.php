@@ -63,6 +63,7 @@ class MapDistrictSportController extends Controller
         $mds = MapDistrictSport::where('id_sport', '=', $request -> id_sport)
         ->where('id_sub_district', '=', $id_sub_district)
         ->where('group_name', '=', $request -> group_name)
+        ->where('keterangan', '=', $request -> keterangan)
         ->get();
 
         if (count($mds) > 0) {
@@ -73,6 +74,7 @@ class MapDistrictSportController extends Controller
         $mds -> id_sub_district = $id_sub_district;
         $mds -> id_sport = $request -> id_sport;
         $mds -> group_name = $request -> group_name;
+        $mds -> keterangan = $request -> keterangan;
         $mds -> status = "On Process";
         $mds -> save();
 

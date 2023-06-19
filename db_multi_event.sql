@@ -128,6 +128,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Table structure for table `participants`
 --
 
+use multi_event;
+
 CREATE TABLE `participants` (
   `id` bigint UNSIGNED NOT NULL,
   `id_map_district_sport` bigint NOT NULL,
