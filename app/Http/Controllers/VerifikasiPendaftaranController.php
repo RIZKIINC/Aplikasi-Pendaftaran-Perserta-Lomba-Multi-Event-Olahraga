@@ -41,6 +41,7 @@ class VerifikasiPendaftaranController extends Controller
     {
         DB::table('map_district_sports')->where('id', $post->id)->update([
 			'status' => $post->status,
+			'keterangan' => $post->keterangan,
         ]);
         return redirect('verifkasi-pendaftaran/index')->with('success', 'Data berhasil diperbarui.');
     }
