@@ -43,7 +43,7 @@
                     <ul class="sidebar-menu">
                         <br>
                         <li class="menu-header">M E N U</li>
-                        <li><a class="nav-link" href="{{ URL::to('dashboard/admin') }}"><i class="fas fa-home"></i><span>Dashboard</span></a>
+                        <li><a class="nav-link" href="{{ URL::to('dashboard/ketupel') }}"><i class="fas fa-home"></i><span>Dashboard</span></a>
                         </li>
                         <li><a class="nav-link" href="{{ URL::to('logout') }}"><i class="fa fa-power-off"></i><span>Logout</span></a>
                         </li>
