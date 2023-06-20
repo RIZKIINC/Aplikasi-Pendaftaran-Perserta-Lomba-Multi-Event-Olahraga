@@ -35,7 +35,7 @@
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand">
                         <img src="{{ asset('assets/template/images/logo_KONI.png') }}" alt="" width="35px">
-                        <a href="{{ URL::to('home') }}">MULTI EVENT</a>
+                        <a href="{{ URL::to('/') }}">MULTI EVENT</a>
                     </div>
                     <ul class="sidebar-menu">
                         <br>
@@ -51,6 +51,9 @@
                                 <li><a class="nav-link" href="{{ URL::to('sport/index') }}">Cabang Olahraga</a></li>
                                 <li><a class="nav-link" href="{{ URL::to('camatlist') }}">Camat</a></li>
                                 <li><a class="nav-link" href="{{ URL::to('/participantlist') }}">Peserta</a></li>
+                                <li><a class="nav-link" href="{{ URL::to('event/index') }}">Kegiatan</a></li>
+                                <li><a class="nav-link" href="{{ URL::to('news/index') }}">Berita</a></li>
+                                <li><a class="nav-link" href="{{ URL::to('team/index') }}">Pengurus</a></li>
                             </ul>
                         </li>
                         <li>
