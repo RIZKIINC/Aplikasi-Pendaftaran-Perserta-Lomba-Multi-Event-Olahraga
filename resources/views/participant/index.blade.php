@@ -65,7 +65,8 @@
                                     @foreach ($participant as $item)
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
-                                            <td class="text-center">{{ $item->pas_foto }}</td>
+                                            <!-- <td class="text-center">{{ $item->pas_foto }}</td> -->
+                                            <td class="text-center"><img style="height : 50px;" src="{{ Storage::url('Pas_Foto/' . $item->pas_foto) }}"></td>
                                             <td class="text-center">{{ $item->participant_name }}</td>
                                             <td class="text-center">{{ $item->participant_dob }}</td>
                                             <td class="text-center">{{ $item->participant_gender }}</td>

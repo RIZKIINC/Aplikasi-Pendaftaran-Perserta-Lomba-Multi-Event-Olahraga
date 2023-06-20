@@ -66,6 +66,18 @@
                                 @endswitch
                             </div>
                         </div>
+Putra_Aditya
+                        @switch($mds[0]->status_map_district)
+                        @case($mds[0]->status_map_district === 'Unverified')
+                        <div class="form-group row">
+                            <label for="group_name" class="col-sm-3 col-form-label">Alasan Penolakan</label>
+                            <div class="col-9">
+                            <textarea class="form-control" type="text" name="nama" id="nama" placeholder="{{ $mds[0]->keterangan }}" style="height: 200px; resize: none;" disabled></textarea>
+                            </div>
+                        </div>
+                        @break
+                        @endswitch
+main
                     </form>
                 </div>
             </div>
@@ -98,9 +110,15 @@
                                             @if ($participant->pas_foto)
                                             <div class="col-md-3">
                                                 <img src="{{ asset('storage/Pas_Foto/' . $participant->pas_foto) }}" alt="" title="" height="200px">
+ Putra_Aditya
                                             </div>
                                             <div class="col-md-2 justify-content-center">
                                             </div>
+
+                                            </div>
+                                            <div class="col-md-2 justify-content-center">
+                                            </div>
+ main
                                             @endif
                                             <div class="col-md-3" id="preview{{$index}}"></div>
                                         </div>

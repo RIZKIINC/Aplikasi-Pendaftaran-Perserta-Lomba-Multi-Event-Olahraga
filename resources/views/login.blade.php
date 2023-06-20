@@ -1,3 +1,4 @@
+ Putra_Aditya
 @extends('landing.layouts.master')
 <style>
     #mainNav {
@@ -14,6 +15,16 @@
 </style>
 <!-- Font Icon -->
 <link rel="stylesheet" href="{{ asset('assets/template/fonts/material-icon/css/material-design-iconic-font.min.css') }}">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('favicon.png') }}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+main
 
 <!-- Main css -->
 <link rel="stylesheet" href="{{ asset('assets/template/css/style.css') }}">
