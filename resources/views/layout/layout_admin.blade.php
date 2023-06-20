@@ -81,9 +81,7 @@
                 Copyright &copy; 2023 <div class="bullet"></div>
                     <a href="">LOMBA PEKAN OLAHRAGA KOTA PALEMBANG - MULTI EVENT</a>
             </div>
-            <div class="footer-right">
-                Airlangga University
-            </div>
+
         </footer>
 
         </div>

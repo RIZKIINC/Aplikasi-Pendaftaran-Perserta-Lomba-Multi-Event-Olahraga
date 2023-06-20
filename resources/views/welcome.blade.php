@@ -108,7 +108,7 @@
     <header class="masthead">
         <div class="container">
             <div class="masthead-subheading">Multi Event!</div>
-            <div class="masthead-heading text-uppercase">Let's grow with us</div>
+            <div class="masthead-heading text-uppercase">Lets grow with us</div>
             {{-- <a class="btn btn-primary btn-xl text-uppercase" href="/pendaftaran">Register</a> --}}
         </div>
     </header>
