@@ -64,7 +64,7 @@ class SubDistrictProfileController extends Controller
 
         $id_kecamatan2 = DB::table('tbl_kecamatan')->where('nama_kecamatan', $post->id_kecamatan)->pluck('id_kecamatan')->first();
 
-        $lala = DB::table('sub_district_profiles')->update([
+        $lala = DB::table('sub_district_profiles')->where('id', $post->id)->update([
             'id_user' => Auth::user()->id,
             'id_kecamatan' => $id_kecamatan2,
             'kode_kecamatan' => $post->kode_kecamatan,
