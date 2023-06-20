@@ -17,7 +17,7 @@ class MapDistrictSport extends Model
         "id_sport",
         'group_name',
         'status',
-        'keterangan'
+        'keterangan',
     ];
     public $incrementing = true;
 

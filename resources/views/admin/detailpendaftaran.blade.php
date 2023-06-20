@@ -50,9 +50,20 @@
             <div class="card">
                 <div class="card-header">
                     <h4>Grup : {{ $mds[0]->group_name }}</h4>
-                    <div class="card-header-action">
+                    <div class="card-header-action" style="display: flex">
+                        @switch($mds[0]->status_map_district_sport)
+                        @case($mds[0]->status_map_district_sport === 'Verified')
+                        <h4><input class="btn btn-success" name="status" type="text" style="color:#fffff" placeholder="Terverifikasi" disabled></h4>
+                        @break
+                        @case($mds[0]->status_map_district_sport === 'On Process')
+                        <h4><input class="btn btn-warning" name="status" type="text" style="color:#fffff" placeholder="On Process" disabled></h4>
+                        @break
+                        @case($mds[0]->status_map_district_sport === 'Unverified')
+                        <h4><input class="btn btn-danger" name="status" type="text" style="color:#fffff" placeholder="Tidak Lolos" disabled></h4>
+                        @break
+                        @endswitch
                         <a data-collapse="#mycard-collapse-{{ $mds[0]->id_map_district_sport }}"
-                            class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
+                        class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
                     </div>
                 </div>
                 <div class="collapse show" id="mycard-collapse-{{ $mds[0]->id_map_district_sport }}">
@@ -106,66 +117,72 @@
                                 @case($mds[0]->status_map_district_sport === 'On Process')
                                 <form action="{{ URL::to('verif/' . $mds[0]->id_map_district_sport) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
-                                <div class="form-group row col-auto float-right">
+                                <div class="form-group row float-right" style="margin-left : 30px;">
                                     <button class="btn btn-success" type="submit"><input class="btn btn-success" value="Verified" id="statusverif" name="status" hidden>Verifikasi Pendaftaran</button>
                                 </div>
                                 </form>
                                 <form action="{{ URL::to('verif/' . $mds[0]->id_map_district_sport) }}" method="POST" enctype="multipart/form-data">
                                     @csrf
-                                <div class="form-group row col-auto float-right">
+                                <div class="form-group row float-right">
                                     <!-- <button class="btn btn-danger" type="submit"><input class="btn btn-danger" value="Unverified" id="statusunverif" name="status" hidden>Tolak Pendaftaran</button> -->
 
                                     <button class="btn btn-danger" type="button" onclick="openModal()">Tolak Pendaftaran</button>
-                                    
-                                    <form action="{{ URL::to('verif/' . $mds[0]->ket_map_district) }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
                                     <div id="myModal" class="modal" >
                                         <!-- Konten modal -->
                                         <div class="modal-content">
                                         <h1>Konfirmasi Penolakan</h1>
                                         <p>Alasan Penolakan:</p>
-                                            <textarea id="keterangan rejectReason" name="keterangan" value="" rows="6" cols="50"></textarea>
+                                            <textarea class="form-control" id="keterangan" name="keterangan" style="height: 200px; resize: none;" ></textarea>
                                             <br>
-                                            <input class="btn btn-danger" value="Unverified" id="statusunverif" name="status" hidden>
+                                            <input class="btn btn-danger" value="Unverified"  name="status" hidden>
                                             <button class="btn btn-danger" type="submit" onclick="rejectRegistration()">Ya, Tolak</button>
-                                            <button class="btn btn-secondary" type="button" onclick="closeModal()">Batal</button>
-                                            </div>
+                                            <button class="btn btn-success" type="button" onclick="closeModal()">Batal</button>
                                         </div>
-
-                                    <script>
-                                        // Fungsi untuk membuka modal
-                                        function openModal() {
-                                        document.getElementById("myModal").style.display = "block";
-                                        }
-
-                                        // Fungsi untuk menutup modal
-                                        function closeModal() {
-                                        document.getElementById("myModal").style.display = "none";
-                                        }
-
-                                        // Fungsi untuk menolak pendaftaran
-                                        function rejectRegistration() {
-                                        // var rejectReason = document.getElementById("rejectReason").value;
-                                        closeModal();
-                                        // Tambahkan logika atau panggil fungsi yang sesuai untuk menolak pendaftaran
-                                        }
-                                    </script>
-
+                                    </div>
                                 </div>
-
                                 </form>
+
+
                                 @break
                                 @case($mds[0]->status_map_district_sport === 'Verified')
+                                <form action="{{ URL::to('verif/' . $mds[0]->id_map_district_sport) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-group row col-auto float-right">
-                                    <input class="btn btn-success" name="status" type="text" style="color:#fffff" placeholder="Pendaftaran Terverifikasi" disabled>
+                                    <!-- <input class="btn btn-success" name="status" type="text" style="color:#fffff" placeholder="Pendaftaran Terverifikasi" disabled> -->
+                                    <button class="btn btn-success" name="status" type="text" value="On Process" style="color:#fffff">Kembali ke On Process</button>
                                 </div>
+                                </form>
                                 @break
                                 @case($mds[0]->status_map_district_sport === 'Unverified')
+
+                                <form action="{{ URL::to('verif/' . $mds[0]->id_map_district_sport) }}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-group row col-auto float-right">
-                                    <input class="btn btn-danger" name="status" type="text" style="color:#fffff" placeholder="Pendaftaran Tertolak" disabled>
+                                    <button class="btn btn-success" type="button" onclick="openModal()">Edit Alasan Penolakan</button>
+                                    <div id="myModal" class="modal" >
+                                        <!-- Konten modal -->
+                                        <div class="modal-content">
+                                        <h1>Edit Penolakan</h1>
+                                        <p>Status:</p>
+                                        <select class="form-control" name="status">
+                                        <option value="On Process">On Process</option>
+                                        <option value="Verified">Verified</option>
+                                        <option value="Unverified">Unverified</option>
+                                        </select>
+                                        <br>
+                                        <p>Alasan Penolakan:</p>
+                                            <textarea class="form-control" id="keterangan" name="keterangan" style="height: 100px; resize: none;" >{{ $mds[0]->keterangan }}</textarea>
+                                            <br>
+                                            <button class="btn btn-success" type="submit" onclick="rejectRegistration()">Edit</button>
+                                            <button class="btn btn-danger" type="button" onclick="closeModal()">Batal</button>
+                                        </div>
+                                    </div>
+                                    <!-- <input class="btn btn-danger" name="status" type="text" style="color:#fffff" placeholder="Pendaftaran Tertolak" disabled> -->
                                 </div>
                                 @break
                             @endswitch
+                                </form>
+
                     </div>
                 </div>
             </div>
@@ -293,4 +310,23 @@
             @endphp
         @endforeach
     </div>
+
+    <script>
+                                        // Fungsi untuk membuka modal
+                                        function openModal() {
+                                        document.getElementById("myModal").style.display = "block";
+                                        }
+
+                                        // Fungsi untuk menutup modal
+                                        function closeModal() {
+                                        document.getElementById("myModal").style.display = "none";
+                                        }
+
+                                        // Fungsi untuk menolak pendaftaran
+                                        function rejectRegistration() {
+                                        // var rejectReason = document.getElementById("rejectReason").value;
+                                        closeModal();
+                                        // Tambahkan logika atau panggil fungsi yang sesuai untuk menolak pendaftaran
+                                        }
+                                    </script>
 @endsection
