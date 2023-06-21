@@ -15,6 +15,8 @@
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('landing/css/styles.css') }}" rel="stylesheet" />
+        <link rel="icon" href="{{ asset('favicon.png') }}">
+
     </head>
     <body id="page-top">
         <!-- Navigation-->
