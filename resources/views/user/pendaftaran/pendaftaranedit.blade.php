@@ -77,6 +77,11 @@
         @foreach ($participants as $participant)
         <div class="col-12 col-sm-12 col-lg-12 px-0">
             <div class="card">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
                 <div class="card-header">
                     <h4>{{ $participant->participant_name }}</h4>
                     <div class="card-header-action">
