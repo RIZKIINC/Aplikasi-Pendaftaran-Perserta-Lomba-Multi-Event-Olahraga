@@ -238,7 +238,7 @@
                 </div>
                 <div class="row">
                     @foreach($teams as $team)
-                    <div class="{{ $team->order == '1' ? 'col-12' : 'col-lg-4' }}">
+                    <div class="{{ $team->order == '0' ? 'col-12' : 'col-lg-4' }}">
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="{{ $team->image ? Storage::disk('local')->url('images/team/'. $team->image) : asset('landing/assets/img/team/1.jpg') }}"/>
                             <h4>{{ $team->name }}</h4>
