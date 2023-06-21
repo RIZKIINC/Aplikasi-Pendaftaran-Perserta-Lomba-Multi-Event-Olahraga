@@ -108,7 +108,7 @@
     <header class="masthead">
         <div class="container">
             <div class="masthead-subheading">Multi Event!</div>
-            <div class="masthead-heading text-uppercase">Lets grow with us</div>
+            <div class="masthead-heading text-uppercase">Lets Join Our Competition!</div>
             {{-- <a class="btn btn-primary btn-xl text-uppercase" href="/pendaftaran">Register</a> --}}
         </div>
     </header>
@@ -234,11 +234,11 @@
         <section class="page-section bg-light" id="team">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Pengurus</h2>
+                    <h2 class="section-heading text-uppercase">Developer</h2>
                 </div>
                 <div class="row">
                     @foreach($teams as $team)
-                    <div class="{{ $team->order == '1' ? 'col-12' : 'col-lg-4' }}">
+                    <div class="{{ $team->order == '0' ? 'col-12' : 'col-lg-4' }}">
                         <div class="team-member">
                             <img class="mx-auto rounded-circle" src="{{ $team->image ? Storage::disk('local')->url('images/team/'. $team->image) : asset('landing/assets/img/team/1.jpg') }}"/>
                             <h4>{{ $team->name }}</h4>
