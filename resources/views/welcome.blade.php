@@ -234,7 +234,7 @@
         <section class="page-section bg-light" id="team">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase">Pengurus</h2>
+                    <h2 class="section-heading text-uppercase">Developer</h2>
                 </div>
                 <div class="row">
                     @foreach($teams as $team)
