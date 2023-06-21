@@ -38,9 +38,13 @@ main
                 <div class="signin-image">
                     <figure><img src="{{ asset('assets/template/images/logo_KONI.png') }}" alt="sing in image"></figure>
                 </div>
-
                 <div class="signin-form">
                     <h2 class="form-title">Sign in</h2>
+                    @if(Session::has('message'))
+                      <div class="alert alert-success">
+                          {{ Session::get('message') }}
+                      </div>
+                    @endif
                     @if (Session::has('error'))
                         <div class="alert alert-danger alert-dismissible show fade mx-4">
                             <div class="alert-body">

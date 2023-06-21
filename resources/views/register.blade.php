@@ -20,6 +20,12 @@
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
             <div class="card-body p-4 p-md-5">
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3>
+              @if(Session::has('message'))
+                  <div class="alert alert-success">
+                      {{ Session::get('message') }}
+                      <a href="{{ route('login') }}">Login</a>
+                  </div>
+              @endif
               <hr>
               <form action="{{ route('post_register') }}" method="post" class="px-md-2">
                 @csrf
@@ -34,7 +40,7 @@
                 </div>
                 <div class="form-group">
                   <label id="password-field" class="form-label" for="label-nama">Password</label>
-                  <input type="password" id="password" name="password" class="form-control" placeholder="password"/>
+                  <input type="password" id="password" name="password" class="form-control" placeholder="Password Minimal 8 Karakter"/>
                   <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                 </div>
                 <div class="form-group">

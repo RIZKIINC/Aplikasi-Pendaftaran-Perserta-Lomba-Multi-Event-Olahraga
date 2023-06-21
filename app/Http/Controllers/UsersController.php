@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\SubDistrictProfile;
 use App\Models\ContactPerson;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -47,10 +48,10 @@ class UsersController extends Controller
 
         $userFind = User::where('email', $request->email)->first();
         if(!$userFind){
-            return redirect('/')->with('error', 'Harap ulangi login! Email atau password anda salah.');
+            return redirect('/login')->with('error', 'Harap ulangi login! Email atau password anda salah.');
         }
         if (!Hash::check($request->password, $userFind->password)) {
-            return redirect('/')->with('error', 'Harap ulangi login! Email atau password anda salah.');
+            return redirect('/login')->with('error', 'Harap ulangi login! Email atau password anda salah.');
         }
 
         $data = $request->only('email', 'password');
@@ -107,13 +108,16 @@ class UsersController extends Controller
             'id_profile'   => $profile->id
         ]);
 
-        return redirect('/');
+        Session::flash('message', 'Registrasi berhasil!');
+
+        return redirect('/login');
     }
 
+    
     public function Logout()
     {
         Auth::logout();
-        return redirect('/');
+        return redirect('/login');
     }
 
     public function indexUser()
