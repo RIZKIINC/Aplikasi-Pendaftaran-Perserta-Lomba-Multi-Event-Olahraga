@@ -131,7 +131,7 @@
                             </a>
 
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading">{{ $event->title }}</div>
+                                <div class="portfolio-caption-heading"><h3>{{ $event->title }}</h3></div>
                                 <div class="portfolio-caption-subheading text-muted">{{ \Carbon\Carbon::parse($event->date)->format('d F Y') }} </div>
                             </div>
                         </div>
