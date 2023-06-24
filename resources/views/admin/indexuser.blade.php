@@ -45,8 +45,7 @@
                 <div class="card-body pt-0">
                     <div class="row p-3">
                         {{-- ini fontawesomenya masih ngebug --}}
-                        <a href="{{ URL::to('user/create') }}" class="btn btn-primary"><i
-                                class="""></i>Tambah User</a>
+                        <a href="{{ URL::to('user/create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah User</a>
                     </div>
                     <div class="row p-3">
                         <div class="table-responsive">
