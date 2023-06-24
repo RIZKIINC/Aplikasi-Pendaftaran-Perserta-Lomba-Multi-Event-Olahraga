@@ -101,7 +101,8 @@
             <div class="card card-warning">
                 <div class="card-header">
                     <h4>Cabang Olahraga yang Terdaftar</h4>
-                    <div class="card-header-action">
+                    <div class="card-header-action" style="text-align: right;">
+                        <a href="" class="btn btn-primary">Print</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -124,7 +125,7 @@
                                     </tr>
                                 </table>
                                 <hr class="solid">
-                                <a href="" class="btn btn-primary">See Details</a>
+                                <a href="{{ URL::to('/ketupel/show_peserta/' . $sport->id) }}" class="btn btn-primary">See Details</a>
                             </div>
                             @endforeach
                         </div>

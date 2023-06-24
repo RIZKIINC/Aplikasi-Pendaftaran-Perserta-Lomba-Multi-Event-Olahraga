@@ -79,7 +79,7 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::get('/sport/edit/{sport}', [SportController::class, 'edit']);
     Route::post('/sport/update/{sport}', [SportController::class, 'update']);
     Route::get('/sport/delete/{sport}', [SportController::class, 'destroy']);
-    
+
     // event
     Route::get('/event/index', [EventController::class, 'index'])->name('event.index');
     Route::get('/event/create', [EventController::class, 'create'])->name('event.create');
@@ -88,7 +88,7 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::get('/event/edit/{event}', [EventController::class, 'edit'])->name('event.edit');
     Route::post('/event/update/{event}', [EventController::class, 'update'])->name('event.update');
     Route::get('/event/delete/{event}', [EventController::class, 'destroy'])->name('event.destroy');
-    
+
     // news
     Route::get('/news/index', [NewsController::class, 'index'])->name('news.index');
     Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
@@ -98,7 +98,7 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::post('/news/update/{news}', [NewsController::class, 'update'])->name('news.update');
     Route::get('/news/delete/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
 
-    
+
     // news
     Route::get('/team/index', [TeamController::class, 'index'])->name('team.index');
     Route::get('/team/create', [TeamController::class, 'create'])->name('team.create');
@@ -120,10 +120,9 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
     Route::get('/verifkasi-pendaftaran/index', [VerifikasiPendaftaranController::class, 'index']);
     Route::get('/detail-pendaftaran/{id}', [VerifikasiPendaftaranController::class, 'indexDetail']);
     Route::post('/verif/{id}', [VerifikasiPendaftaranController::class, 'VerifikasiPendaftaran']);
-
 });
 
-Route::middleware(['auth', 'CheckRole:3'])->group(function () {//haitotttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
+Route::middleware(['auth', 'CheckRole:3'])->group(function () { //haitotttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
     Route::get('/dashboard/camat', [DashboardController::class, 'camatCount']);
 
     Route::get('/subprofil/editsubprofil/{id}', [SubDistrictProfileController::class, 'indexupdateSubProfile'])->name('subprofil');
@@ -159,4 +158,5 @@ Route::middleware(['auth', 'CheckRole:2'])->group(function () {
     Route::get('/ketupel/detail/{id}', [KetupelController::class, 'show']);
     Route::get('/detail/cetak_pdf/{id}', [KetupelController::class, 'print'])->name('print.pdf');
     Route::get('/cetak_pdf/{id}', [KetupelController::class, 'print_detail'])->name('cetak');
+    Route::get('/ketupel/show_peserta/{id}', [KetupelController::class, 'show_peserta']);
 });

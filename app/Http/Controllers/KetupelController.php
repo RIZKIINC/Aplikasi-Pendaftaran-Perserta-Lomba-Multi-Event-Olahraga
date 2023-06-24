@@ -55,6 +55,28 @@ class KetupelController extends Controller
         // return $sports;
     }
 
+    public function show_peserta($id)
+    {
+        $data = MapDistrictSport::find($id);
+
+        if ($data) {
+            $profile = MapDistrictSport::join('tbl_kecamatan', 'map_district_sports.id_sub_district', '=', 'tbl_kecamatan.id_kecamatan')
+                ->join('sports', 'map_district_sports.id_sport', '=', 'sports.id')
+                ->select('tbl_kecamatan.nama_kecamatan', 'sports.sport_name', 'map_district_sports.*')
+                ->where('map_district_sports.id', $data->id)
+                ->first();
+        } else {
+            // Handle the case when the data is not found
+            $profile = null;
+        }
+
+        $peserta = Participant::where('id_map_district_sport', $id)->get();
+
+        return view('ketupel.peserta', compact('profile', 'peserta'));
+        // return $profile;
+        // return $peserta;
+    }
+
     public function print($id)
     {
         $sports = Sport::all();
