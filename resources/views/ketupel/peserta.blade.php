@@ -36,7 +36,7 @@
                 <div class="card-header">
                     <h4>Daftar Peserta</h4>
                     <div class="card-header-action" style="text-align: right;">
-                        <a href="" class="btn btn-primary">Print</a>
+                        <a href="{{ URL::to('/cetak_pdf/peserta/'. $data->id )}}" class="btn btn-primary">Print</a>
                     </div>
                 </div>
                 <div class="card-header">
@@ -68,7 +68,7 @@
                                         <td style="width: 15%; border: 2px solid black; color: black;">Nama</td>
                                         <td style="width: 35%; border: 2px solid black; color: black;">{{$item->participant_name}}</td>
                                         <td rowspan="9" style="width: 10%; border: 2px solid black; color: black;" class="text-center">{{$item->id_map_district_sport}}</td>
-                                        <td rowspan="9" style="width: 20%; border: 2px solid black; color: black;"></td>
+                                        <td rowspan="9" style="width: 20%; border: 2px solid black; color: black;"><img style="width: 100%" src="{{ Storage::url('Pas_Foto/' . $item->pas_foto) }}"></td>
                                     </tr>
                                     <tr>
                                         <td style="border: 2px solid black; color: black;">TTL</td>

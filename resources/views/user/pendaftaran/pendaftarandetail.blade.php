@@ -3,6 +3,12 @@
 
 @section('custom_css')
 <!-- CSS Libraries -->
+<style>
+    .custom-img {
+        width: 100%;
+        height: auto;
+    }
+</style>
 <link rel="stylesheet" href="{{ asset('assets/modules/datatables/datatables.min.css') }}">
 {{-- <link rel="stylesheet" --}}
 {{-- href="{{ asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}"> --}}
@@ -66,18 +72,16 @@
                                 @endswitch
                             </div>
                         </div>
-Putra_Aditya
                         @switch($mds[0]->status_map_district)
                         @case($mds[0]->status_map_district === 'Unverified')
                         <div class="form-group row">
                             <label for="group_name" class="col-sm-3 col-form-label">Alasan Penolakan</label>
                             <div class="col-9">
-                            <textarea class="form-control" type="text" name="nama" id="nama" placeholder="{{ $mds[0]->keterangan }}" style="height: 200px; resize: none;" disabled></textarea>
+                                <textarea class="form-control" type="text" name="nama" id="nama" placeholder="{{ $mds[0]->keterangan }}" style="height: 200px; resize: none;" disabled></textarea>
                             </div>
                         </div>
                         @break
                         @endswitch
-main
                     </form>
                 </div>
             </div>
@@ -100,7 +104,7 @@ main
                         <a data-collapse="#mycard-collapse-{{ $participant->no_ktp }}" class="btn btn-icon btn-info" href="#"><i class="fas fa-plus"></i></a>
                     </div>
                 </div>
-                <div class="collapse hide" id="mycard-collapse-{{ $participant->no_ktp }}">
+                <div class="collapse hide p-4" id="mycard-collapse-{{ $participant->no_ktp }}">
                     <div class="card-body">
                         <form>
                             <div class="form-row">
@@ -109,102 +113,100 @@ main
                                         <div class="row">
                                             @if ($participant->pas_foto)
                                             <div class="col-md-3">
-                                                <img src="{{ asset('storage/Pas_Foto/' . $participant->pas_foto) }}" alt="" title="" height="200px">
- Putra_Aditya
+                                                <img class="custom-img" src="{{ asset('storage/Pas_Foto/' . $participant->pas_foto) }}" alt="" title="" height="200px">
                                             </div>
                                             <div class="col-md-2 justify-content-center">
                                             </div>
-
-                                            </div>
-                                            <div class="col-md-2 justify-content-center">
-                                            </div>
- main
-                                            @endif
-                                            <div class="col-md-3" id="preview{{$index}}"></div>
                                         </div>
+                                        <div class="col-md-2 justify-content-center">
+                                        </div>
+
+                                        @endif
+                                        <div class="col-md-3" id="preview{{$index}}"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <label for="participant_name">Nama Peserta</label>
-                                    <input id="participant_name" name="participant_name" placeholder="Nama Group" class="form-control" value="{{ $participant->participant_name }}" required="required" type="text" disabled>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="participant_gender">Jenis Kelamin</label>
-                                    <input id="participant_gender" name="participant_gender" placeholder="Nama Group" class="form-control" value="{{ $participant->participant_gender }}" required="required" type="text" disabled>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="participant_dob">Tanggal Lahir</label>
-                                    <input id="participant_dob" name="participant_dob" placeholder="Nama Group" class="form-control" value="{{ $participant->participant_dob }}" required="required" type="date" disabled>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="participant_address">Alamat KTP</label>
-                                    <input id="participant_address" name="participant_address" placeholder="Nama Group" class="form-control" value="{{ $participant->participant_address }}" required="required" type="text" disabled>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="participant_domicile">Alamat Domisili</label>
-                                    <input id="participant_domicile" name="participant_domicile" placeholder="Nama Group" class="form-control" value="{{ $participant->participant_domicile }}" required="required" type="text" disabled>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="no_ktp">No KTP</label>
-                                    <input id="no_ktp" name="no_ktp" placeholder="Nama Group" class="form-control" value="{{ $participant->no_ktp }}" required="required" type="text" disabled>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="no_kk">No Kartu Keluarga</label>
-                                    <input id="no_kk" name="no_kk" placeholder="Nama Group" class="form-control" value="{{ $participant->no_kk }}" required="required" type="text" disabled>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="image-container">
-                                        <img src="{{ asset('storage/KTP/' . $participant->fotoktp) }}" alt="" title="" height="400px">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="image-container">
-                                        <img src="{{ asset('storage/KK/' . $participant->fotokk) }}" alt="" title="" height="400px">
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="no_akte">No Akte</label>
-                                    <input id="no_akte" name="no_akte" placeholder="Nama Group" class="form-control" value="{{ $participant->no_akte }}" required="required" type="text" disabled>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="no_ijazah">No Ijazah</label>
-                                    <input id="no_ijazah" name="no_ijazah" placeholder="Nama Group" class="form-control" value="{{ $participant->no_ijazah }}" required="required" type="text" disabled>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="image-container">
-                                        <img src="{{ asset('storage/Akte/' . $participant->fotoakte) }}" alt="" title="" height="400px">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="image-container">
-                                        <img src="{{ asset('storage/Ijazah/' . $participant->fotoijazah) }}" alt="" title="" height="400px">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="participant_name">Nama Peserta</label>
+                            <input id="participant_name" name="participant_name" placeholder="Nama Group" class="form-control" value="{{ $participant->participant_name }}" required="required" type="text" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="participant_gender">Jenis Kelamin</label>
+                            <input id="participant_gender" name="participant_gender" placeholder="Nama Group" class="form-control" value="{{ $participant->participant_gender }}" required="required" type="text" disabled>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="participant_dob">Tanggal Lahir</label>
+                            <input id="participant_dob" name="participant_dob" placeholder="Nama Group" class="form-control" value="{{ $participant->participant_dob }}" required="required" type="date" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="participant_address">Alamat KTP</label>
+                            <input id="participant_address" name="participant_address" placeholder="Nama Group" class="form-control" value="{{ $participant->participant_address }}" required="required" type="text" disabled>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="participant_domicile">Alamat Domisili</label>
+                            <input id="participant_domicile" name="participant_domicile" placeholder="Nama Group" class="form-control" value="{{ $participant->participant_domicile }}" required="required" type="text" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="no_ktp">No KTP</label>
+                            <input id="no_ktp" name="no_ktp" placeholder="Nama Group" class="form-control" value="{{ $participant->no_ktp }}" required="required" type="text" disabled>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="no_kk">No Kartu Keluarga</label>
+                            <input id="no_kk" name="no_kk" placeholder="Nama Group" class="form-control" value="{{ $participant->no_kk }}" required="required" type="text" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="image-container">
+                                <img class="custom-img" src="{{ asset('storage/KTP/' . $participant->fotoktp) }}" alt="" title="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="image-container">
+                                <img class="custom-img" src="{{ asset('storage/KK/' . $participant->fotokk) }}" alt="" title="">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="no_akte">No Akte</label>
+                            <input id="no_akte" name="no_akte" placeholder="Nama Group" class="form-control" value="{{ $participant->no_akte }}" required="required" type="text" disabled>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="no_ijazah">No Ijazah</label>
+                            <input id="no_ijazah" name="no_ijazah" placeholder="Nama Group" class="form-control" value="{{ $participant->no_ijazah }}" required="required" type="text" disabled>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="image-container">
+                                <img class="custom-img" src="{{ asset('storage/Akte/' . $participant->fotoakte) }}" alt="" title="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="image-container">
+                                <img class="custom-img" src="{{ asset('storage/FotoIjazah/' . $participant->fotoijazah) }}" alt="" title="">
+                            </div>
+                        </div>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>
-        @php
-        $index++;
-        @endphp
-        @endforeach
+</div>
+@php
+$index++;
+@endphp
+@endforeach
 </div>
 @endsection
 

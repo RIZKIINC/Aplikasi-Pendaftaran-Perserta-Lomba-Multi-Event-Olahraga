@@ -123,9 +123,18 @@
                                         <td class="label">Nama Cabang :</td>
                                         <td>{{$sport->sport_name}}</td>
                                     </tr>
+                                    <tr>
+                                        <td>
+                                            <br>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label">
+                                            <a href="{{ URL::to('/ketupel/show_peserta/' . $sport->id) }}" class="btn btn-primary">See Details</a>
+                                        </td>
+                                    </tr>
                                 </table>
                                 <hr class="solid">
-                                <a href="{{ URL::to('/ketupel/show_peserta/' . $sport->id) }}" class="btn btn-primary">See Details</a>
                             </div>
                             @endforeach
                         </div>

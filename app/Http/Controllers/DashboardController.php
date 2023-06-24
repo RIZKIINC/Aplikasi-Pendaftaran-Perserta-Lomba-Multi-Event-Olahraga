@@ -48,6 +48,15 @@ class DashboardController extends Controller
             ->count();
         $sport = count(Sport::all());
 
-        return view('dashboard.camat', compact('admin', 'camat', 'peserta', 'sport', 'team'));
+        $nama_kecamatan = SubDistrictProfile::select('*', 'sub_district_profiles.id as id_sub_district_profiles')
+            ->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan', '=', 'sub_district_profiles.id_kecamatan')
+            ->where('id_user', $us)
+            ->first();
+
+        return view('dashboard.camat', compact('admin', 'camat', 'peserta', 'sport', 'team',  'user', 'nama_kecamatan'));
+        // return $user;
+        // return $us;
+        // return $team;
+        // return $nama_kecamatan;
     }
 }

@@ -125,7 +125,7 @@ Route::middleware(['auth', 'CheckRole:1'])->group(function () {
 Route::middleware(['auth', 'CheckRole:3'])->group(function () { //haitotttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
     Route::get('/dashboard/camat', [DashboardController::class, 'camatCount']);
 
-    Route::get('/subprofil/editsubprofil/{id}', [SubDistrictProfileController::class, 'indexupdateSubProfile'])->name('subprofil');
+    Route::get('/subprofil/editsubprofil/', [SubDistrictProfileController::class, 'indexupdateSubProfile'])->name('subprofil');
 
     Route::get('/camat', function () {
         return view('dashboard.camat');

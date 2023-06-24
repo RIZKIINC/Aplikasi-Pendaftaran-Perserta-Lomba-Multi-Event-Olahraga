@@ -81,42 +81,42 @@
                         <tr>
                             <td class="text-center" rowspan="9">{{$loop->iteration}} </td>
                             <td>Nama</td>
-                            <td>{{$item->participant_name}}</td>
+                            <td>: {{$item->participant_name}}</td>
                             <td class="text-center" rowspan="9">{{$item->id_map_district_sport}}</td>
-                            <td rowspan="9" class="text-center"> <img src="https://www.w3schools.com/images/lamp.jpg" width="150" height="200" alt="Participant Photo">
+                            <td rowspan="9" class="text-center"> <img style="width: 100%" src="{{ Storage::url('Pas_Foto/' . $item->pas_foto) }}">
                             </td>
                         </tr>
                         <tr>
                             <td>TTL</td>
-                            <td>{{$item->participant_dob}}</td>
+                            <td>: {{$item->participant_dob}}</td>
                         </tr>
                         <tr>
                             <td>Status</td>
-                            <td>hhahahaa</td>
+                            <td>: hhahahaa</td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
-                            <td>{{$item->participant_address}}</td>
+                            <td>: {{$item->participant_address}}</td>
                         </tr>
                         <tr>
                             <td>Rumah</td>
-                            <td>{{$item->participant_domicile}}</td>
+                            <td>: {{$item->participant_domicile}}</td>
                         </tr>
                         <tr>
                             <td>No KTP</td>
-                            <td>{{$item->no_ktp}}</td>
+                            <td>: {{$item->no_ktp}}</td>
                         </tr>
                         <tr>
                             <td>No KK</td>
-                            <td>{{$item->no_kk}}</td>
+                            <td>: {{$item->no_kk}}</td>
                         </tr>
                         <tr>
                             <td>No Akte</td>
-                            <td>{{$item->no_akte}}</td>
+                            <td>: {{$item->no_akte}}</td>
                         </tr>
                         <tr>
                             <td>No Ijazah</td>
-                            <td>{{$item->no_ijazah}}</td>
+                            <td>: {{$item->no_ijazah}}</td>
                         </tr>
                     </tbody>
                     @endforeach

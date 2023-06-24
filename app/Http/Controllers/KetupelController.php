@@ -73,7 +73,7 @@ class KetupelController extends Controller
 
         $peserta = Participant::where('id_map_district_sport', $id)->get();
 
-        return view('ketupel.peserta', compact('profile', 'peserta'));
+        return view('ketupel.peserta', compact('profile', 'peserta', 'data'));
         // return $profile;
         // return $peserta;
         // return $data;
