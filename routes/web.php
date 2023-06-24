@@ -157,6 +157,6 @@ Route::middleware(['auth', 'CheckRole:2'])->group(function () {
     Route::get('/dashboard/ketupel', [KetupelController::class, 'index']);
     Route::get('/ketupel/detail/{id}', [KetupelController::class, 'show']);
     Route::get('/detail/cetak_pdf/{id}', [KetupelController::class, 'print'])->name('print.pdf');
-    Route::get('/cetak_pdf/{id}', [KetupelController::class, 'print_detail'])->name('cetak');
+    Route::get('/cetak_pdf/peserta/{id}', [KetupelController::class, 'print_peserta'])->name('cetak_peserta');
     Route::get('/ketupel/show_peserta/{id}', [KetupelController::class, 'show_peserta']);
 });

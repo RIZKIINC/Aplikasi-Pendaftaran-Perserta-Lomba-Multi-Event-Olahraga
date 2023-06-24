@@ -102,14 +102,14 @@
                 <div class="card-header">
                     <h4>Cabang Olahraga yang Terdaftar</h4>
                     <div class="card-header-action" style="text-align: right;">
-                        <a href="" class="btn btn-primary">Print</a>
+                        <a id="printButton" href="{{ URL::to('/detail/cetak_pdf/' . $profile->id_sub_district) }}" class="btn btn-primary">Print</a>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="content">
                         <div class="row">
                             @foreach ($sports as $sport)
-                            <div class="col-md-6">
+                            <div class="col-md-6 pb-3">
                                 <table class="table-form" border="0" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td class="label">Nama Grup :</td>
@@ -139,6 +139,7 @@
 @endsection
 
 @section('custom_script')
+
 <!-- JS Libraies -->
 <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
 <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
