@@ -69,7 +69,7 @@
         <div class="col-10 col-md-6 col-lg-6">
             <div class="card card-warning">
                 <div class="card-header">
-                    <h4>Contack Person</h4>
+                    <h4>Contact Person</h4>
                     <div class="card-header-action">
                     </div>
                 </div>
