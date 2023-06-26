@@ -12,8 +12,8 @@
     <div class="section-header">
         <h1>Data Participant</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="{{ URL::to('admin') }}">Dashboard</a></div>
-            <div class="breadcrumb-item active"><a href="{{ URL::to('adminlist/index') }}">List Partisipan</a></div>
+            <div class="breadcrumb-item"><a href="{{ URL::to('dashboard/admin') }}">Dashboard</a></div>
+            <div class="breadcrumb-item active"><a href="#">List Partisipan</a></div>
         </div>
     </div>
     <div class="section-body">

@@ -12,8 +12,8 @@
     <div class="section-header">
         <h1>Data User</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="{{ URL::to('admin') }}">Dashboard</a></div>
-            <div class="breadcrumb-item active"><a href="{{ URL::to('sport/index') }}">Index</a></div>
+            <div class="breadcrumb-item"><a href="{{ URL::to('dashboard/admin') }}">Dashboard</a></div>
+            <div class="breadcrumb-item active"><a href="#">Index</a></div>
         </div>
     </div>
     <div class="section-body">
@@ -67,12 +67,12 @@
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
-                                            <td>{{ $item->role_name }}</td>
+                                            <td class="text-center">{{ $item->role_name }}</td>
                                             <td class="text-center">{{ $item->user_created_at }}</td>
                                             <td class="text-center">{{ $item->user_updated_at }}</td>
                                             @if($item->role_name == 'Admin' || $item->role_name == 'Ketua Pelaksana')
                                             <td class="text-center"><a href="{{ URL::to('user/edit/' . $item->id_user) }}"
-                                                    class="btn btn-warning">Edit</a><a
+                                                    class="btn btn-warning">Edit</a>&nbsp;<a
                                                     href="{{ URL::to('user/delete/' . $item->id_user) }}"
                                                     class="btn btn-danger">Hapus</a>
                                             </td>

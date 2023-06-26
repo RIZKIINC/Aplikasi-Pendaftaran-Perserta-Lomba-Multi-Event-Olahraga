@@ -12,8 +12,8 @@
     <div class="section-header">
         <h1>Cabang Olahraga</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="{{ URL::to('admin') }}">Dashboard</a></div>
-            <div class="breadcrumb-item active"><a href="{{ URL::to('sport/index') }}">Index</a></div>
+            <div class="breadcrumb-item"><a href="{{ URL::to('dashboard/admin') }}">Dashboard</a></div>
+            <div class="breadcrumb-item active"><a href="#">Index</a></div>
         </div>
     </div>
     <div class="section-body">
@@ -66,12 +66,12 @@
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td>{{ $item->sport_name }}</td>
-                                            <td>{{ $item->max_participant }}</td>
+                                            <td class="text-center">{{ $item->max_participant }}</td>
                                             <td>{!! $item->notes !!}</td>
                                             <td class="text-center">{{ $item->created_at }}</td>
                                             <td class="text-center">{{ $item->updated_at }}</td>
                                             <td class="text-center"><a href="{{ URL::to('sport/edit/' . $item->id) }}"
-                                                    class="btn btn-warning">Edit</a><a
+                                                    class="btn btn-warning">Edit</a>&nbsp;<a
                                                     href="{{ URL::to('sport/delete/' . $item->id) }}"
                                                     class="btn btn-danger">Hapus</a>
                                             </td>

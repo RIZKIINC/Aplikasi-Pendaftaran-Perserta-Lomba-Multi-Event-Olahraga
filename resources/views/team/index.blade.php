@@ -12,8 +12,8 @@
     <div class="section-header">
         <h1>Data Team</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="{{ URL::to('admin') }}">Dashboard</a></div>
-            <div class="breadcrumb-item active"><a href="{{ URL::to('team/index') }}">Index</a></div>
+            <div class="breadcrumb-item"><a href="{{ URL::to('dashboard/admin') }}">Dashboard</a></div>
+            <div class="breadcrumb-item active"><a href="#">Index</a></div>
         </div>
     </div>
     <div class="section-body">
@@ -65,11 +65,11 @@
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td>{{ $item->name }}</td>
-                                            <td>{{ $item->position }}</td>
-                                            <td>{{ $item->order }}</td>
+                                            <td class="text-center">{{ $item->position }}</td>
+                                            <td class="text-center">{{ $item->order }}</td>
                                             <td class="text-center"><a target="_blank" href="{{ Storage::disk('local')->url('images/team/'. $item->image) }}">Lihat</a></td>
                                             <td class="text-center"><a href="{{ URL::to('team/edit/' . $item->id) }}"
-                                                    class="btn btn-warning">Edit</a><a
+                                                    class="btn btn-warning">Edit</a>&nbsp;<a
                                                     href="{{ URL::to('team/delete/' . $item->id) }}"
                                                     class="btn btn-danger">Hapus</a>
                                             </td>

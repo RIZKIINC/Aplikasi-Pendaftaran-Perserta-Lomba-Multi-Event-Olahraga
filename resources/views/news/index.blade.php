@@ -11,8 +11,8 @@
 <div class="section-header">
     <h1>Data Berita</h1>
     <div class="section-header-breadcrumb">
-        <div class="breadcrumb-item"><a href="{{ URL::to('admin') }}">Dashboard</a></div>
-        <div class="breadcrumb-item active"><a href="{{ URL::to('news/index') }}">Index</a></div>
+        <div class="breadcrumb-item"><a href="{{ URL::to('dashboard/admin') }}">Dashboard</a></div>
+        <div class="breadcrumb-item active"><a href="#">Index</a></div>
     </div>
 </div>
 <div class="section-body">
@@ -66,14 +66,14 @@
                                     @php
                                     $description = strip_tags($item->description); // Remove HTML tags from the description
                                     $words = explode(' ', $description); // Split the description into an array of words
-                                    $limitedDescription = implode(' ', array_slice($words, 0, 200)); // Take the first 200 words
+                                    $limitedDescription = implode(' ', array_slice($words, 0, 70)); // Take the first 200 words
                                     if (count($words) > 200) {
-                                    $limitedDescription .= '...'; // Add ellipsis if the description exceeds 200 words
+                                    $limitedDescription .= ' ...'; // Add ellipsis if the description exceeds 200 words
                                     }
                                     @endphp
-                                    <td>{!! $limitedDescription !!}</td>
+                                    <td style="text-align: justify;">{!! $limitedDescription !!}</td>
                                     <td class="text-center"><a target="_blank" href="{{ Storage::disk('local')->url('images/news/'. $item->image) }}">Lihat</a></td>
-                                    <td class="text-center"><a href="{{ URL::to('news/edit/' . $item->id) }}" class="btn btn-warning">Edit</a><a href="{{ URL::to('news/delete/' . $item->id) }}" class="btn btn-danger">Hapus</a>
+                                    <td class="text-center" style="width: 120px;"><a href="{{ URL::to('news/edit/' . $item->id) }}" class="btn btn-warning">Edit</a>&nbsp;<a href="{{ URL::to('news/delete/' . $item->id) }}" class="btn btn-danger">Hapus</a>
                                     </td>
                                 </tr>
                                 @endforeach

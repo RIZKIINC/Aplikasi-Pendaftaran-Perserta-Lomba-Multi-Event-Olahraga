@@ -12,8 +12,8 @@
     <div class="section-header">
         <h1>Data Kegiatan</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="{{ URL::to('admin') }}">Dashboard</a></div>
-            <div class="breadcrumb-item active"><a href="{{ URL::to('event/index') }}">Index</a></div>
+            <div class="breadcrumb-item"><a href="{{ URL::to('dashboard/admin') }}">Dashboard</a></div>
+            <div class="breadcrumb-item active"><a href="#">Index</a></div>
         </div>
     </div>
     <div class="section-body">
@@ -66,12 +66,12 @@
                                         <tr>
                                             <td class="text-center">{{ $loop->iteration }}</td>
                                             <td>{{ $item->title }}</td>
-                                            <td>{!! $item->description !!}</td>
+                                            <td style="width: 500px; text-align: justify;">{!! $item->description !!}</td>
                                             <td>{{ $item->date }}</td>
                                             <td class="text-center">{{ $item->location }}</td>
                                             <td class="text-center"><a target="_blank" href="{{ Storage::disk('local')->url('images/event/'. $item->image) }}">Lihat</a></td>
                                             <td class="text-center"><a href="{{ URL::to('event/edit/' . $item->id) }}"
-                                                    class="btn btn-warning">Edit</a><a
+                                                    class="btn btn-warning">Edit</a>&nbsp;<a
                                                     href="{{ URL::to('event/delete/' . $item->id) }}"
                                                     class="btn btn-danger">Hapus</a>
                                             </td>

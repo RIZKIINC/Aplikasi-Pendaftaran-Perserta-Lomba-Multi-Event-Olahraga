@@ -11,15 +11,15 @@
     <div class="section-header">
         <h1>Pendaftaran</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="{{ URL::to('admin') }}">Dashboard</a></div>
-            <div class="breadcrumb-item active"><a href="{{ URL::to('adminlist/index') }}">List Camat</a></div>
+            <div class="breadcrumb-item"><a href="{{ URL::to('dashboard/admin') }}">Dashboard</a></div>
+            <div class="breadcrumb-item active"><a href="#">List Pendaftar</a></div>
         </div>
     </div>
     <div class="section-body">
         <div class="col-12 col-md-12 col-lg-12 px-0">
             <div class="card">
                 <div class="card-header pb-0">
-                    <h4>Daftar List Camat</h4>
+                    <h4>Daftar List Pendaftar</h4>
                 </div>
                 @if (Session::has('success'))
                     <div class="alert alert-success alert-dismissible show fade mx-4">
