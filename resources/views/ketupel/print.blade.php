@@ -95,7 +95,7 @@
                         <tr>
                             <td>4</td>
                             <td>Telepon/Email</td>
-                            <td>: </td>
+                            <td>: {{$profile->email}}</td>
                             <td></td>
                             <td></td>
                         </tr>

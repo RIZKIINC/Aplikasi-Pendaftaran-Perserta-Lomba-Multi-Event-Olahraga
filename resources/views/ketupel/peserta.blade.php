@@ -76,7 +76,7 @@
                                     </tr>
                                     <tr>
                                         <td style="border: 2px solid black; color: black;">Status</td>
-                                        <td style="border: 2px solid black; color: black;">hhahahaa</td>
+                                        <td style="border: 2px solid black; color: black;">{{$profile->status}}</td>
                                     </tr>
                                     <tr>
                                         <td style="border: 2px solid black; color: black;">Alamat</td>
