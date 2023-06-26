@@ -103,6 +103,13 @@ class UsersController extends Controller
             }
         }
 
+        // Check if the id_kecamatan already exists in the SubDistrictProfile table
+        $existingProfile = SubDistrictProfile::where('id_kecamatan', $id_kecamatan)->first();
+        if ($existingProfile) {
+            // Provide an error message for duplicate account
+            return redirect()->back()->with('error', 'Akun kecamatan ini sudah ada.');
+        }
+
         $user = User::create([
             'id_role'   => $request->id_role,
             'name'      => $request->name,

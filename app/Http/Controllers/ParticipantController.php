@@ -235,7 +235,7 @@ class ParticipantController extends Controller
             $filename = $file->getClientOriginalName();
             $extension = $file->getClientOriginalExtension();
             $fileNameToStore = date('dmyHis') . '-' . $id . '-' . $filename;
-            $path = $file->storeAs('public/FotoIjazah', $fileNameToStore);
+            $path = $file->storeAs('public/Ijazah', $fileNameToStore);
             $participant->fotoijazah = $fileNameToStore;
         }
 

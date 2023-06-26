@@ -26,6 +26,12 @@
                                 <a href="{{ route('login') }}">Login</a>
                             </div>
                             @endif
+
+                            @if(Session::has('error'))
+                            <div class="alert alert-danger">
+                                {{ Session::get('error') }}
+                            </div>
+                            @endif
                             <hr>
                             <form action="{{ route('post_register') }}" method="post" class="px-md-2">
                                 @csrf
@@ -67,7 +73,7 @@
                                     <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in <a href="#" class="term-service">Terms of service</a></label>
                                 </div>
                                 <div class="form-group text-center">
-                                    <button type="submit" class="btn btn-success btn-md ">Submit</button>
+                                    <button type="submit" class="btn btn-primary btn-md ">Submit</button>
                                 </div>
                             </form>
                             <p class="text-center">Already have an account? <a href="{{ route('login') }}">Login</a></p>
