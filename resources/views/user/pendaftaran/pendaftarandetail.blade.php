@@ -194,7 +194,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="image-container">
-                                <img class="custom-img" src="{{ asset('storage/FotoIjazah/' . $participant->fotoijazah) }}" alt="" title="">
+                                <img class="custom-img" src="{{ asset('storage/Ijazah/' . $participant->fotoijazah) }}" alt="" title="">
                             </div>
                         </div>
                     </div>
