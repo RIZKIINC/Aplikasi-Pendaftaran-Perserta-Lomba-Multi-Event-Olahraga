@@ -87,7 +87,7 @@
                                 <label for="id_sport" class="col-sm-3 col-form-label">Cabang Olahraga</label>
                                 <div class="col-9">
                                     <input id="id_sub_district" name="id_sub_district" placeholder="Nama Group"
-                                        class="form-control" value="{{ $mds[0]->id_sport }}" required="required"
+                                        class="form-control" value="{{ $mds[0]->sport_name }}" required="required"
                                         type="text" disabled>
                                 </div>
                             </div>
