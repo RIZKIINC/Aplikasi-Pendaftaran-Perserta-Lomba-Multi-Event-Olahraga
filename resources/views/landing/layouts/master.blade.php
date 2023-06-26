@@ -39,7 +39,7 @@
                     <li class="nav-item"><a class="nav-link" href="/">Beranda</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Kegiatan</a></li>
                     <li class="nav-item"><a class="nav-link" href="#portfolio">Berita</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#team">Pengurus</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">Developer</a></li>
                     @if(auth()->check() && auth()->user()->id_role == '1')
                     <li class="nav-item"><a class="nav-link" href="/dashboard/admin">Dashboard</a></li>
                     @elseif(auth()->check() && auth()->user()->id_role == '2')
