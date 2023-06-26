@@ -33,6 +33,11 @@
         border: 1px solid #888;
         width: 80%; /* Menetapkan lebar konten modal */
         }
+
+        .custom-img {
+        width: 100%;
+        height: auto;
+        }
     </style>
 
 @endsection
@@ -283,6 +288,18 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="image-container">
+                                            <img class="custom-img" src="{{ asset('storage/KTP/' . $participant->fotoktp) }}" alt="" title="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="image-container">
+                                            <img class="custom-img" src="{{ asset('storage/KK/' . $participant->fotokk) }}" alt="" title="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="no_akte">No Akte</label>
                                         <input id="no_akte" name="no_akte" placeholder="Nama Group"
@@ -294,6 +311,18 @@
                                         <input id="no_ijazah" name="no_ijazah" placeholder="Nama Group"
                                             class="form-control" value="{{ $participant->no_ijazah }}"
                                             required="required" type="text" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="image-container">
+                                            <img class="custom-img" src="{{ asset('storage/Akte/' . $participant->fotoakte) }}" alt="" title="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="image-container">
+                                            <img class="custom-img" src="{{ asset('storage/FotoIjazah/' . $participant->fotoijazah) }}" alt="" title="">
+                                        </div>
                                     </div>
                                 </div>
                                 {{-- <div class="form-group row col-auto float-right">
