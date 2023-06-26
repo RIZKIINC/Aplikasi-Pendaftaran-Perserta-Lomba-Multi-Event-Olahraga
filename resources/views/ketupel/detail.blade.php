@@ -101,9 +101,11 @@
             <div class="card card-warning">
                 <div class="card-header">
                     <h4>Cabang Olahraga yang Terdaftar</h4>
+                    @if(!$sports->isEmpty())
                     <div class="card-header-action" style="text-align: right;">
                         <a id="printButton" href="{{ URL::to('/detail/cetak_pdf/' . $profile->id_sub_district) }}" class="btn btn-primary">Print</a>
                     </div>
+                    @endif
                 </div>
                 <div class="card-body">
                     <div class="content">
