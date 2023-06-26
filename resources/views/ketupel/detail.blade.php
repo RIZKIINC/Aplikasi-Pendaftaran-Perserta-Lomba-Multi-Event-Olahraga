@@ -79,17 +79,29 @@
                             <tr>
                                 <td width="30%">Nama</td>
                                 <td width="1%">:&nbsp</td>
+                                @if (is_object($cp) && isset($cp->nama_kontak))
                                 <td>{{$cp->nama_kontak}}</td>
+                                @else
+                                <td>N/A</td> {{-- or display an appropriate message --}}
+                                @endif
                             </tr>
                             <tr>
                                 <td>Jabatan</td>
                                 <td width="1%">:&nbsp</td>
+                                @if (is_object($cp) && isset($cp->jabatan_kontak))
                                 <td>{{$cp->jabatan_kontak}}</td>
+                                @else
+                                <td>N/A</td> {{-- or display an appropriate message --}}
+                                @endif
                             </tr>
                             <tr>
                                 <td>Telepon/Email</td>
                                 <td width="1%">:&nbsp</td>
+                                @if (is_object($cp) && isset($cp->telp_kontak))
                                 <td>{{$cp->telp_kontak}}</td>
+                                @else
+                                <td>N/A</td> {{-- or display an appropriate message --}}
+                                @endif
                             </tr>
                         </table>
                         <hr class="solid">

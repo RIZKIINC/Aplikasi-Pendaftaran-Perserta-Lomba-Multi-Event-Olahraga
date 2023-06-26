@@ -7,14 +7,18 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use App\Models\SubDistrictProfile;
 
 
 class SubDistrictProfileController extends Controller
 {
     public function indexupdateSubProfile()
     {
+        $id_profile = Auth::user()->id;
+        $id_profile2 = DB::table('sub_district_profiles')->where('id_user', $id_profile)->first();
+        $id_cp = DB::table('contact_people')->where('id_profile', $id_profile2->id)->get();
+
         $subdisctrictprofile = DB::table('sub_district_profiles')->where('sub_district_profiles.id_user', Auth::user()->id)->get();
-        $contactpeople = DB::table('contact_people')->get();
         $kecamatan = DB::table('tbl_kecamatan')->get();
 
         $postalCode = '';
@@ -34,12 +38,18 @@ class SubDistrictProfileController extends Controller
             'menu' => 'subdisctrictprofile',
             'submenu' => 'subdisctrictprofile',
             'subdisctrictprofile' => $subdisctrictprofile,
-            'contactpeople' => $contactpeople,
+            'contactpeople' => $id_cp,
             'kecamatan' => $kecamatan,
             'postalCode' => $postalCode
         );
+
+        // $datadiri = Auth::user();
+        // $dataprofile = SubDistrictProfile::where('id_user', $datadiri->id)->first();
+
+
         // dd($subdisctrictprofile);
         return view('user.subdistrict.subdistrictdata', $data);
+        // return $id_cp;
     }
     private function fetchPostalCode($subdistrict)
     {
@@ -82,6 +92,7 @@ class SubDistrictProfileController extends Controller
 
     public function indexContactPeople()
     {
+
         $contactpeople = DB::table('contact_people')->get();
         $data = array(
             'menu' => 'contactpeople',
