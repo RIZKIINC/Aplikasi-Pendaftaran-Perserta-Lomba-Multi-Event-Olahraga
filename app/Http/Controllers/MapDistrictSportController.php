@@ -130,6 +130,7 @@ class MapDistrictSportController extends Controller
             ->get();
 
         return view('user.pendaftaran.pendaftaranedit', compact('sports', 'mds', 'participants'));
+        // return $mds;
     }
 
     /**

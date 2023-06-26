@@ -248,6 +248,9 @@ class ParticipantController extends Controller
         $participant->no_kk = $request->no_kk;
         $participant->no_akte = $request->no_akte;
         $participant->no_ijazah = $request->no_ijazah;
+        $mapDistrictSport = MapDistrictSport::find($participant->id_map_district_sport);
+        $mapDistrictSport->status = "On Process";
+        $mapDistrictSport->save();
         $participant->save();
 
         return redirect('participant/edit/' . $participant->id_map_district_sport)->with('success', 'Pendaftaran berhasil diperbarui.');
