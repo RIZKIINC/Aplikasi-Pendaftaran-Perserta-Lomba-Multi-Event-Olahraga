@@ -23,9 +23,9 @@
                             <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="{{ URL::to('/dashboard/ketupel') }}" class="dropdown-item has-icon text-danger">
+                            <!-- <a href="{{ URL::to('/dashboard/ketupel') }}" class="dropdown-item has-icon text-danger">
                                 <i class="fas fa-sign-out-alt"></i><b>PROFILE</b>
-                            </a>
+                            </a> -->
                             <a href="{{ URL::to('logout') }}" class="dropdown-item has-icon text-danger">
                                 <i class="fas fa-sign-out-alt"></i><b>LOG OUT</b>
                             </a>
