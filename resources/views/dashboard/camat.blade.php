@@ -67,7 +67,7 @@
                             <h4>Total Cabang Olahraga Diikuti</h4>
                         </div>
                         <div class="card-body">
-                            {{ $sport }}
+                            {{ $aktif }}
                         </div>
                     </div>
                 </div>

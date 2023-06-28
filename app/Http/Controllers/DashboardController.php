@@ -47,13 +47,17 @@ class DashboardController extends Controller
             ->where('id_sub_district', 'tbl_kecamatan->id_kecamatan')
             ->count();
         $sport = count(Sport::all());
+        
+        // Menghitung Total Cabang Olahraga Diikuti
+        $hitung = MapDistrictSport::all();
+        $aktif = $hitung->unique('group_name')->count(); 
 
         $nama_kecamatan = SubDistrictProfile::select('*', 'sub_district_profiles.id as id_sub_district_profiles')
             ->join('tbl_kecamatan', 'tbl_kecamatan.id_kecamatan', '=', 'sub_district_profiles.id_kecamatan')
             ->where('id_user', $us)
             ->first();
 
-        return view('dashboard.camat', compact('admin', 'camat', 'peserta', 'sport', 'team',  'user', 'nama_kecamatan'));
+        return view('dashboard.camat', compact('admin', 'camat', 'peserta', 'sport', 'team',  'user', 'nama_kecamatan','aktif'));
         // return $user;
         // return $us;
         // return $team;
