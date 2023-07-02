@@ -174,7 +174,7 @@ class ParticipantController extends Controller
     public function update(Request $request, $id)
     {
         $participant = Participant::find($id);
-        return $participant;
+        // return $participant;
 
         // Get File
         if ($file = $request->file('pas_foto')) {
