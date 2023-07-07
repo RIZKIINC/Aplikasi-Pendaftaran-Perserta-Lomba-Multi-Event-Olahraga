@@ -49,6 +49,11 @@
                                         <br>
                                     </div>
                                 </div>
+                                @if(session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
                                 <div class="row">
                                     <div class="col-md-12">
                                         {{-- Update Profil --}}
@@ -120,7 +125,6 @@
                                                     </div>
                                                 </form>
                                             </div>
-
                                             <div class="tab-pane fade in" id="second">
                                                 <form action="/subprofil/updatecontactpeople" method="POST" enctype="multipart/form-data">
                                                     @csrf

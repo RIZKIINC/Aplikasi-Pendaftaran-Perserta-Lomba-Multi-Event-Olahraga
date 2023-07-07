@@ -87,7 +87,12 @@ class SubDistrictProfileController extends Controller
             'updated_at' => Carbon::now(),
         ]);
 
-        return redirect('/subprofil/editsubprofil');
+        if ($lala) {
+            return redirect('/subprofil/editsubprofil')->with('success', 'Data Berhasil Disimpan.');
+        } else {
+            return redirect('/subprofil/editsubprofil')->with('error', 'Gagal memperbarui sub-profil. Silakan coba lagi.');
+        }
+        // return redirect('/subprofil/editsubprofil');
     }
 
     public function indexContactPeople()
@@ -115,7 +120,7 @@ class SubDistrictProfileController extends Controller
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
-
-        return redirect('/subprofil/editsubprofil');
+            return redirect('/subprofil/editsubprofil#second')->with('success', 'Data Contact Person Berhasil Disimpan.');
+        // return redirect('/subprofil/editsubprofil');
     }
 }
