@@ -8,7 +8,12 @@ use App\Models\Sport;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use PDF;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\View;
+use ZipArchive;
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
 
 class ParticipantController extends Controller
 {
@@ -144,7 +149,7 @@ class ParticipantController extends Controller
         //
     }
 
-     /**
+    /**
      * Generate and print ID card for a participant.
      *
      * @param  int  $id
@@ -152,11 +157,61 @@ class ParticipantController extends Controller
      */
     public function printIdCard($id)
     {
-        $participant = Participant::findOrFail($id);
+        $participants = Sport::join('map_district_sports', 'map_district_sports.id_sport', '=', 'sports.id')
+            ->join('participants', 'participants.id_map_district_sport', '=', 'map_district_sports.id')
+            ->where('map_district_sports.id', $id)
+            ->get();
 
-        // Logic to generate the ID card PDF using a PDF library (e.g., Dompdf)
-        $pdf = PDF::loadView('pdf.id_card', compact('participant')); // Replace with your view name
-        return $pdf->stream('id_card.pdf'); // Change the filename as needed
+        // Create a temporary directory for PDFs
+        $tempDirectory = storage_path('app/public/temp_pdf');
+        if (!is_dir($tempDirectory)) {
+            mkdir($tempDirectory, 0755, true);
+        }
+
+        $dompdf = new Dompdf();
+        $options = new Options();
+        $options->set('isHtml5ParserEnabled', true);
+        $dompdf->setOptions($options);
+
+        foreach ($participants as $participant) {
+            // Create a new instance of Dompdf for each participant
+            $dompdf = new Dompdf();
+            $options = new Options();
+            $options->set('isHtml5ParserEnabled', true);
+            $dompdf->setOptions($options);
+
+            // Generate the HTML content for each participant
+            $html = View::make('user.pendaftaran.printidcard', compact('participant'))->render();
+
+            // Load the HTML content into Dompdf
+            $dompdf->loadHtml($html);
+
+            // Render PDF (Generate the PDF file)
+            $dompdf->render();
+
+            // Save the PDF for the participant
+            $pdfFileName = 'participant_' . $participant->id . '.pdf';
+            $pdfFilePath = $tempDirectory . '/' . $pdfFileName;
+            file_put_contents($pdfFilePath, $dompdf->output());
+        }
+
+        // Zip the PDFs
+        $zipFileName = 'participants.zip';
+        $zipFilePath = storage_path('app/public/' . $zipFileName);
+        $zip = new ZipArchive();
+        $zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+        foreach (glob($tempDirectory . '/*.pdf') as $pdfFile) {
+            $zip->addFile($pdfFile, basename($pdfFile));
+        }
+        $zip->close();
+
+        // Clear the temporary directory
+        foreach (glob($tempDirectory . '/*.pdf') as $pdfFile) {
+            unlink($pdfFile);
+        }
+
+        // Return the downloadable response for the zip file
+        return Response::download($zipFilePath, $zipFileName)->deleteFileAfterSend(true);
     }
 
     /**
@@ -166,7 +221,7 @@ class ParticipantController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     
+
     public function edit($id)
     {
         $sports = Sport::all();

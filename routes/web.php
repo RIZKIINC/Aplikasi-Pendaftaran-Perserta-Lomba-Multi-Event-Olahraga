@@ -16,6 +16,8 @@ use App\Http\Controllers\SportController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\VerifikasiPendaftaranController;
 use App\Http\Controllers\WelcomeController;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 /*
 |--------------------------------------------------------------------------
@@ -161,5 +163,3 @@ Route::middleware(['auth', 'CheckRole:2'])->group(function () {
     Route::get('/cetak_pdf/peserta/{id}', [KetupelController::class, 'print_peserta'])->name('cetak_peserta');
     Route::get('/ketupel/show_peserta/{id}', [KetupelController::class, 'show_peserta']);
 });
-
-

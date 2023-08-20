@@ -66,13 +66,18 @@
                             <label for="group_name" class="col-sm-3 col-form-label">Status</label>
                             <div class="col-9">
                                 @switch($mds[0]->status_map_district)
-                                @case($mds[0]->status_map_district === 'On Process')
+                                @case('On Process')
                                 <span class="badge badge-warning">Sedang Diproses</span>
                                 @break
-                                @case($mds[0]->status_map_district === 'Verified')
+                                @case('Verified')
                                 <span class="badge badge-success">Lolos</span>
+                                @foreach ($mds as $item)
+                                <div class="card-header-action pt-2">
+                                    <a id="printButton" href="{{ URL::to('/participant/print-id-card/' . $item->id_map_district_sport) }}" class="btn btn-primary">Print</a>
+                                </div>
+                                @endforeach
                                 @break
-                                @case($mds[0]->status_map_district === 'Unverified')
+                                @case('Unverified')
                                 <span class="badge badge-danger">Tidak Lolos</span>
                                 @break
                                 @endswitch
@@ -206,15 +211,9 @@
                     </div>
                     </form>
                 </div>
-                <div class="form-row">
-                <div class="form-group col-md-12">
-                    @if ($participant->status === 'Verified')
-                    <a href="{{ route('participant.print-id-card', ['id' => $participant->id]) }}" class="btn btn-primary">Print ID Card</a>
-                    @endif
-                </div>
-            </div>
             </div>
         </div>
+</div>
 </div>
 @php
 $index++;
