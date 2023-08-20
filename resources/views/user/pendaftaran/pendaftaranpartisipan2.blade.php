@@ -54,6 +54,14 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="coach_name" class="col-sm-3 col-form-label">Nama Official Coach</label>
+                                <div class="col-9">
+                                    <input id="coach_name" name="coach_name"
+                                        class="form-control here" value="Nama Coach" required="required"
+                                        type="text" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="group_name" class="col-sm-3 col-form-label">Status</label>
                                 <div class="col-9">
                                     <input id="group_name" name="group_name"

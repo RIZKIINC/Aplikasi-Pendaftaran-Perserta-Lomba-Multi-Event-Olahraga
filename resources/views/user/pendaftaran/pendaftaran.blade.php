@@ -47,6 +47,12 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="coach_name" class="col-4 col-form-label">Nama Official Coach</label>
+                            <div class="col-8">
+                                <input id="coach_name" name="coach_name" placeholder="Nama Coach" class="form-control here" value="" required="required" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <div class="offset-10 col-8">
                                 <button class="btn btn-success" type="submit"><i class="fa fa-plus-square"> Tambah Partisipan </i></button>
                             </div>

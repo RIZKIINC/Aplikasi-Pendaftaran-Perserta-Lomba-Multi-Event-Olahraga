@@ -41,6 +41,12 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label for="coach_name" class="col-sm-3 col-form-label">Nama Official Coach</label>
+                            <div class="col-9">
+                                <input id="coach_name" name="coach_name" placeholder="Nama Coach" class="form-control here" value="{{ $mds[0]->coach_name }}" required="required" type="text" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="group_name" class="col-sm-3 col-form-label">Status</label>
                             <div class="col-9">
                                 @switch($mds[0]->status_map_district)

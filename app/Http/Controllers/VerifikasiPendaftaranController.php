@@ -46,4 +46,16 @@ class VerifikasiPendaftaranController extends Controller
         return redirect('verifkasi-pendaftaran/index')->with('success', 'Data berhasil diperbarui.');
     }
 
+    public function printPeserta($id)
+    {
+    // Fetch participant data based on the provided ID
+    $participant = Participant::find($id);
+
+    // Logic to generate and return the ID card, such as a PDF response
+    // Example code using PDF library (e.g., Dompdf):
+    $pdf = \PDF::loadView('pdf.id_card', ['participant' => $participant]);
+    return $pdf->stream('id_card.pdf');
+    }
+
+
 }

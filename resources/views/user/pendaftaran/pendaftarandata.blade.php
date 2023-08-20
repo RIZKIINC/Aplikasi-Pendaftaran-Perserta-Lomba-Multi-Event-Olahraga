@@ -55,6 +55,7 @@
                                     <th class="text-center">No</th>
                                     <th class="text-center">Nama Cabang Olahraga</th>
                                     <th class="text-center">Nama Grup</th>
+                                    <th class="text-center">Nama Official Coach</th>
                                     <th class="text-center">Tanggal Dibuat</th>
                                     <th class="text-center">Terakhir Diperbarui</th>
                                     <th class="text-center">Aksi</th>
@@ -66,6 +67,7 @@
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td class="text-center">{{ $item->sport_name }}</td>
                                     <td class="text-center">{!! $item->group_name !!}</td>
+                                    <td class="text-center">{!! $item->coach_name !!}</td>
                                     <td class="text-center">{{ $item->created_at }}</td>
                                     <td class="text-center">{{ $item->updated_at }}</td>
                                     <td class="text-center">

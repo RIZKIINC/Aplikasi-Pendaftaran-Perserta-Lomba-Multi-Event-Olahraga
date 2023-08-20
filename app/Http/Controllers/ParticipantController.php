@@ -8,6 +8,7 @@ use App\Models\Sport;
 use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use PDF;
 
 class ParticipantController extends Controller
 {
@@ -143,12 +144,29 @@ class ParticipantController extends Controller
         //
     }
 
+     /**
+     * Generate and print ID card for a participant.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function printIdCard($id)
+    {
+        $participant = Participant::findOrFail($id);
+
+        // Logic to generate the ID card PDF using a PDF library (e.g., Dompdf)
+        $pdf = PDF::loadView('pdf.id_card', compact('participant')); // Replace with your view name
+        return $pdf->stream('id_card.pdf'); // Change the filename as needed
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Participant  $participant
      * @return \Illuminate\Http\Response
      */
+
+     
     public function edit($id)
     {
         $sports = Sport::all();

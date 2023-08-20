@@ -55,41 +55,37 @@ class MapDistrictSportController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        //cari kecamatan
-        $findSubDistrict = SubDistrictProfile::select('id_kecamatan')->where('id_user', '=', Auth::user()->id)->get();
-        $id_sub_district = $findSubDistrict[0]->id_kecamatan;
+    // Find the ID of the user's kecamatan
+    $findSubDistrict = SubDistrictProfile::select('id_kecamatan')->where('id_user', '=', Auth::user()->id)->get();
+    $id_sub_district = $findSubDistrict[0]->id_kecamatan;
 
-        // Cek grup apakah sudah terdaftar pada cabor dan kecamatan
-        $mds = MapDistrictSport::where('id_sport', '=', $request->id_sport)
-            ->where('id_sub_district', '=', $id_sub_district)
-            ->where('group_name', '=', $request->group_name)
-            ->where('keterangan', '=', $request->keterangan)
-            ->get();
+    // Check if the group is already registered for the given sport, sub-district, group name, couch name, and keterangan
+    $existingMds = MapDistrictSport::where('id_sport', '=', $request->id_sport)
+        ->where('id_sub_district', '=', $id_sub_district)
+        ->where('group_name', '=', $request->group_name)
+        ->where('coach_name', '=', $request->coach_name)
+        ->where('keterangan', '=', $request->keterangan)
+        ->first();
 
-        $existingMds = MapDistrictSport::where('id_sport', $request->id_sport)
-            ->where('id_sub_district', $id_sub_district)
-            ->where('group_name', $request->group_name)
-            ->where('keterangan', $request->keterangan)
-            ->first();
+    if ($existingMds) {
+        return redirect('/mapdistrictsport/index')->with('error', 'Nama grup atau pelatih telah terdaftar pada cabang olahraga ini.');
+    }
 
-        if ($existingMds) {
-            return redirect('/mapdistrictsport/index')->with('error', 'Nama grup telah terdaftar pada cabang olahraga ini.');
-        }
+    // Create a new MapDistrictSport entry
+    $mds = new MapDistrictSport;
+    $mds->id_sub_district = $id_sub_district;
+    $mds->id_sport = $request->id_sport;
+    $mds->group_name = $request->group_name;
+    $mds->coach_name = $request->coach_name;
+    $mds->keterangan = $request->keterangan;
+    $mds->status = "On Process";
+    $mds->save();
 
-        $mds = new MapDistrictSport;
-        $mds->id_sub_district = $id_sub_district;
-        $mds->id_sport = $request->id_sport;
-        $mds->group_name = $request->group_name;
-        $mds->keterangan = $request->keterangan;
-        $mds->status = "On Process";
-        $mds->save();
+    if (!$mds->id) {
+        return redirect('/participant/index')->with('error', 'Pendaftaran grup gagal.');
+    }
 
-        if (!$mds->id) {
-            return redirect('/participant/index')->with('error', 'Pendaftaran grup gagal.');
-        }
-        return redirect('participant/create/' . $mds->id)->with('success', 'Tambahkan partisipan dalam grup.');
-        // return $mds;
+    return redirect('participant/create/' . $mds->id)->with('success', 'Tambahkan partisipan dalam grup.');
     }
 
     /**
@@ -128,46 +124,47 @@ class MapDistrictSportController extends Controller
             ->get();
         $participants = Participant::where('id_map_district_sport', $id)
             ->get();
-
+    
         return view('user.pendaftaran.pendaftaranedit', compact('sports', 'mds', 'participants'));
-        // return $mds;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\MapDistrictSport  $mapDistrictSport
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, MapDistrictSport $mapDistrictSport)
-    {
-        //
-    }
+  /**
+ * Update the specified resource in storage.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @param  \App\Models\MapDistrictSport  $mapDistrictSport
+ * @return \Illuminate\Http\Response
+ */
+public function update(Request $request, $id)
+{
+    $mds = MapDistrictSport::find($id);
+    $mds->coach_name = $request->coach_name; // Update nama coach
+    $mds->save();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\MapDistrictSport  $mapDistrictSport
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $participants = Participant::where('id_map_district_sport', $id)
-            ->get();
+    // Redirect back with a success message
+    return redirect()->back()->with('success', 'Nama coach berhasil diperbarui.');
+}
 
-        foreach ($participants as $participant) {
-            // dd($participant);
-            if (Storage::exists('public/Pas_Foto' . '/' . $participant->pas_foto)) {
-                Storage::delete('public/Pas_Foto' . '/' . $participant->pas_foto);
-            }
-            $participants = Participant::find($participant->id);
-            $participants->delete();
+/**
+ * Remove the specified resource from storage.
+ *
+ * @param  \App\Models\MapDistrictSport  $mapDistrictSport
+ * @return \Illuminate\Http\Response
+ */
+public function destroy($id)
+{
+    $participants = Participant::where('id_map_district_sport', $id)->get();
+
+    foreach ($participants as $participant) {
+        if (Storage::exists('public/Pas_Foto' . '/' . $participant->pas_foto)) {
+            Storage::delete('public/Pas_Foto' . '/' . $participant->pas_foto);
         }
-
-        $mds = MapDistrictSport::find($id);
-        $mds->delete();
-
-        return redirect('/mapdistrictsport/index')->with('success', 'Pendaftaran berhasil dihapus.');
+        $participant->delete();
     }
+
+    MapDistrictSport::find($id)->delete();
+
+    return redirect('/mapdistrictsport/index')->with('success', 'Pendaftaran berhasil dihapus.');
+}
+    
 }

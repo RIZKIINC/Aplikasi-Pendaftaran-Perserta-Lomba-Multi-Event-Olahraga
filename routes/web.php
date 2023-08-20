@@ -151,6 +151,7 @@ Route::middleware(['auth', 'CheckRole:3'])->group(function () { //haitottttttttt
     Route::get('/participant/edit/{id}', [ParticipantController::class, 'edit']);
     Route::post('/participant/update/{id}', [ParticipantController::class, 'update']);
     Route::get('/participant/delete/{id}', [ParticipantController::class, 'destroy']);
+    Route::get('/participant/print-id-card/{id}', [ParticipantController::class, 'printIdCard'])->name('participant.print-id-card');
 });
 
 Route::middleware(['auth', 'CheckRole:2'])->group(function () {
@@ -160,3 +161,5 @@ Route::middleware(['auth', 'CheckRole:2'])->group(function () {
     Route::get('/cetak_pdf/peserta/{id}', [KetupelController::class, 'print_peserta'])->name('cetak_peserta');
     Route::get('/ketupel/show_peserta/{id}', [KetupelController::class, 'show_peserta']);
 });
+
+
